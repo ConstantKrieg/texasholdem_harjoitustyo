@@ -1,1 +1,1 @@
-# texasholdem_harjoitustyo vol 1
+# texasholdem_harjoitustyo vol 1.0
