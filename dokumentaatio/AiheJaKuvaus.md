@@ -1,16 +1,20 @@
 
 #Texas Hold'em#
 
-**Aihe:** Yksinkertainen Texas hold'em ilman teko‰ly‰. Toteutetaan niin, ett‰ ohjelma sekoittaa kortit, jakaa ne teksun mukaisesti pelaajille ja pˆyt‰‰n, jonka j‰lkeen kokoaa jokaisesta k‰dest‰ viisi parasta korttia ja laittaa arvoj‰jestykseen. Jotta peliss‰ pysyisi jonkinlainen idea, panostaa muut pelaajat aina pˆyd‰n t‰yteen jotta voitonmaksu voisi tapahtua.
+**Aihe:** Yksinkertainen Texas hold'em ilman teko√§ly√§. Toteutetaan niin, ett√§ ohjelma sekoittaa kortit, jakaa ne teksun mukaisesti pelaajille ja p√∂yt√§√§n, jonka j√§lkeen kokoaa jokaisesta k√§dest√§ viisi parasta korttia ja laittaa arvoj√§jestykseen. Jotta peliss√§ pysyisi jonkinlainen idea, panostaa muut pelaajat aina p√∂yd√§n t√§yteen jotta voitonmaksu voisi tapahtua.
 
-**K‰ytt‰j‰t:** Kuka tahansa pelaaja
+**K√§ytt√§j√§t:** Kuka tahansa pelaaja
 
-**K‰ytt‰jien toiminnot:** 
+**K√§ytt√§jien toiminnot:** 
 
 - ohjeiden lukeminen
-- pelaajam‰‰r‰n valitseminen
+- pelaajam√§√§r√§n valitseminen
 - pelin aloittaminen
-- panosm‰‰rien nostaminen 
+- panosm√§√§rien nostaminen 
 - foldaaminen
+- 
+
+**Luokkakaavio**
+![Alt text](/luokkakaavio.png)
 
 
