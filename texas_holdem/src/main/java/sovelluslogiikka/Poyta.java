@@ -44,4 +44,12 @@ public class Poyta {
         }
     }
 
+    public void tulostaTurn() {
+        System.out.println(turn);
+    }
+
+    public void tulostaRiver() {
+        System.out.println(river);
+    }
+
 }

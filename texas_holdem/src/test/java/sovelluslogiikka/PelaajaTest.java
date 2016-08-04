@@ -14,11 +14,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author tokito
+ * @author Kim
  */
-public class PoytaTest {
+public class PelaajaTest {
 
-    public PoytaTest() {
+    public PelaajaTest() {
     }
 
     @BeforeClass
@@ -31,20 +31,6 @@ public class PoytaTest {
 
     @Before
     public void setUp() {
-        Poyta p = new Poyta();
-    }
-
-    @Test
-    public void flopToimii() {
-        Poyta p = new Poyta();
-        Pakka pa = new Pakka();
-        Kortti x = pa.getPakka().get(0);
-        Kortti y = pa.getPakka().get(1);
-        Kortti z = pa.getPakka().get(2);
-
-        p.setFlop(x, y, z);
-
-        assertEquals(p.getFlop()[1], y);
 
     }
 
@@ -52,4 +38,25 @@ public class PoytaTest {
     public void tearDown() {
     }
 
+    @Test
+    public void kortinAntaminenToimii() {
+        Maa maa = Maa.HERTTA;
+        Arvo a = Arvo.A;
+
+        Kortti k = new Kortti(maa, a);
+        Pelaaja p = new Pelaaja(1);
+
+        p.annaKortti(k);
+
+        assertEquals(p.getTaskut().get(0), k);
+    }
+
+    @Test
+    public void kadenAntaminenToimii() {
+        Kasi k = Kasi.NELOSET;
+        Pelaaja p = new Pelaaja(1);
+
+        p.setKasi(k);
+        assertEquals(p.getKasi(), k);
+    }
 }

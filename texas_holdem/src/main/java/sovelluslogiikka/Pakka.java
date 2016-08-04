@@ -31,16 +31,13 @@ public class Pakka {
         Collections.shuffle(pakka);
     }
 
-    public Kortti[] jaaFlop() {
-        Kortti[] k = new Kortti[3];
-        for (int i = 0; i < k.length; i++) {
-            k[1] = this.pakka.get(i);
+    public Kortti jaa() throws Exception {
+        Kortti k = this.pakka.get(0);
+        pakka.remove(0);
+        if (k != null) {
+            return k;
         }
-        return k;
-    }
-
-    public Kortti jaa() {
-        return this.pakka.get(0);
+        return null;
     }
 
     public void poltaKortti() {

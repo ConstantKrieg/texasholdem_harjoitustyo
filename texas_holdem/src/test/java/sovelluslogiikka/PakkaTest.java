@@ -17,33 +17,41 @@ import static org.junit.Assert.*;
  * @author tokito
  */
 public class PakkaTest {
-    
+
     public PakkaTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
-     
+
     }
-    
-    
+
     @Test
-    public void pakkaOikeanKokoinen(){
+    public void pakkaOikeanKokoinen() {
         Pakka p = new Pakka();
         assertEquals(p.getKoko(), 52);
     }
+
+    @Test
+    public void kortinPolttoToimii() {
+        Pakka p = new Pakka();
+        p.poltaKortti();
+
+        assertEquals(p.getKoko(), 51);
+    }
+
     
+
     @After
     public void tearDown() {
     }
 
-    
 }
