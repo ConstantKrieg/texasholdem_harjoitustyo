@@ -12,9 +12,10 @@
 - pelin aloittaminen
 - panosmäärien nostaminen 
 - foldaaminen
-- 
+
+
 
 **Luokkakaavio**
-![Alt text](/luokkakaavio.png)
+![luokkakaavio](/dokumentaatio/luokkakaavio.png)
 
 
