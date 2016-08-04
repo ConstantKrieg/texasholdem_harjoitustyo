@@ -16,6 +16,6 @@
 
 
 **Luokkakaavio**
-![luokkakaavio]()
+![luokkakaavio](/dokumentaatio/luokkakaavio.png)
 
 
