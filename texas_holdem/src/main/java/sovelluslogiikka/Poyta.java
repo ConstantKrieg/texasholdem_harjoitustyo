@@ -1,5 +1,8 @@
 package sovelluslogiikka;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Poyta {
 
     private Kortti[] flop;
@@ -44,12 +47,23 @@ public class Poyta {
         }
     }
 
-    public void tulostaTurn() {
+    public void tulostaTurnJaRiver() {
         System.out.println(turn);
+        System.out.println(river);
     }
 
-    public void tulostaRiver() {
-        System.out.println(river);
+    
+    
+    public List<Kortti> getKortit(){
+        List<Kortti> lista = new ArrayList();
+        
+        for (Kortti k : flop) {
+            lista.add(k);
+        }
+        lista.add(turn);
+        lista.add(river);
+        
+        return lista;
     }
 
 }

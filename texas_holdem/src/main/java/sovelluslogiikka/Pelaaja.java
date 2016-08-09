@@ -4,38 +4,43 @@ import java.util.ArrayList;
 import java.util.List;
 import static sovelluslogiikka.Arvo.KASI;
 
-public class Pelaaja {
+public class Pelaaja  extends Osallistuja{
 
-    private int numero;
+    
     private List<Kortti> taskut;
     private Kasi kasi;
+    private int panokset;
 
-    public Pelaaja(int nro) {
-        this.numero = nro;
-        this.taskut = new ArrayList();
+    public Pelaaja(){
         this.kasi = Kasi.KICKER;
+        this.panokset = 2000;
+        this.taskut = new ArrayList();
     }
 
-    public void setKasi(Kasi k) {
-        this.kasi = k;
+    
+
+    public int getPanokset() {
+        return panokset;
+    }
+    
+    public void panosta(int panos){
+        this.panokset -= panos;
+    }
+    
+    public void  maksaVoitot(int voitot){
+        this.panokset += voitot;
     }
 
-    public void annaKortti(Kortti k) {
-        this.taskut.add(k);
-    }
+    
 
-    public List<Kortti> getTaskut() {
-        return this.taskut;
-    }
+    
 
     @Override
     public String toString(){
         
-        return "Pelaaja " + this.numero;
+        return "Pelaaja ";
     }
 
-    public Kasi getKasi() {
-        return kasi;
-    }
+    
 
 }

@@ -3,60 +3,53 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sovelluslogiikka;
+package sovellus;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import sovelluslogiikka.Arvo;
+import sovelluslogiikka.Kortti;
+import sovelluslogiikka.Maa;
+import sovelluslogiikka.Pakka;
+import sovelluslogiikka.Poyta;
 
 /**
  *
  * @author Kim
  */
-public class PelaajaTest {
-
-    public PelaajaTest() {
+public class VertailijaTest {
+    
+    public VertailijaTest() {
     }
-
+    
     @BeforeClass
     public static void setUpClass() {
     }
-
+    
     @AfterClass
     public static void tearDownClass() {
     }
-
+    
     @Before
     public void setUp() {
-
     }
-
+    
     @After
     public void tearDown() {
     }
+    
+    
+    
 
-    @Test
-    public void kortinAntaminenToimii() {
-        Maa maa = Maa.HERTTA;
-        Arvo a = Arvo.A;
-
-        Kortti k = new Kortti(maa, a);
-        Pelaaja p = new Pelaaja();
-
-        p.annaKortti(k);
-
-        assertEquals(p.getTaskut().get(0), k);
-    }
-
-    @Test
-    public void kadenAntaminenToimii() {
-        Kasi k = Kasi.NELOSET;
-        Pelaaja p = new Pelaaja();
-
-        p.setKasi(k);
-        assertEquals(p.getKasi(), k);
-    }
+    // TODO add test methods here.
+    // The methods must be annotated with annotation @Test. For example:
+    //
+    // @Test
+    // public void hello() {}
 }

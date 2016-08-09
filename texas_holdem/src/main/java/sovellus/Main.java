@@ -13,10 +13,11 @@ public class Main {
         Poyta p = new Poyta();
         Pakka pa = new Pakka();
         
-        Peli peli = new Peli(pa, p, 3);
-        peli.alustaPelaajat();
+        Peli peli = new Peli(pa, p);
+       
         peli.jaaKortit();
-        peli.tulostaTilanne();
+        
+        peli.testaus();
         
         
     }
