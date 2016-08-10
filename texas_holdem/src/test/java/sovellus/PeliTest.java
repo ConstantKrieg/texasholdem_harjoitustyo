@@ -245,6 +245,39 @@ public class PeliTest {
         boolean testi = p.tarkistaTayskasi(lista);
         assertEquals(false, testi);
     }
+    
+    @Test
+    public void kahdenParinTarkastusToimii() {
+        Pakka pa = new Pakka();
+        Poyta po = new Poyta();
+
+        Peli p = new Peli(pa, po);
+
+        List<Kortti> lista = new ArrayList();
+        Kortti k1 = new Kortti(Maa.PATA, Arvo.J);
+        Kortti k2 = new Kortti(Maa.HERTTA, Arvo.J);
+        Kortti k3 = new Kortti(Maa.HERTTA, Arvo.K);
+        Kortti k4 = new Kortti(Maa.PATA, Arvo.K);
+        Kortti k5 = new Kortti(Maa.HERTTA, Arvo.Q);
+        Kortti k6 = new Kortti(Maa.PATA, Arvo.SEISKA);
+        Kortti k7 = new Kortti(Maa.RISTI, Arvo.KUUSI);
+
+        lista.add(k1);
+        lista.add(k2);
+        lista.add(k3);
+        lista.add(k4);
+        lista.add(k5);
+        lista.add(k6);
+        lista.add(k7);
+
+        int[] x = p.tarkistaKaksiParia(lista);
+        Boolean y = false;
+        
+        if(x[0] > 0 && x[1] > 0){
+            y = true;
+        }
+        assertEquals(true, y);
+    }
 
     @Test
     public void hello() {
