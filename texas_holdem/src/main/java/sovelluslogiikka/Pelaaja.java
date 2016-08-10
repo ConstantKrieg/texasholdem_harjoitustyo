@@ -27,7 +27,7 @@ public class Pelaaja  extends Osallistuja{
         this.panokset -= panos;
     }
     
-    public void  maksaVoitot(int voitot){
+    public void  vastaanotaVoitot(int voitot){
         this.panokset += voitot;
     }
 

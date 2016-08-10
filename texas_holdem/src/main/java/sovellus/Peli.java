@@ -62,8 +62,9 @@ public class Peli {
         table.tulostaTurnJaRiver();
     }
 
-    public static boolean tarkistaVari(List<Kortti> kortit) {
+    public static List<Kortti> tarkistaVari(List<Kortti> kortit) {
         List<Kortti> vari = new ArrayList();
+        List<Kortti> palautus = new ArrayList();
 
         for (Kortti k1 : kortit) {
             vari.add(k1);
@@ -73,40 +74,56 @@ public class Peli {
                 }
             }
             if (vari.size() >= 5) {
-                return true;
+                palautus.addAll(vari);
+                break;
             }
             vari.clear();
         }
-        return false;
+
+        return palautus;
     }
 
-    public static List<Kortti> kokoaSuora(List<Kortti> kortit) { //palauttaa listan siksi että voi käyttää myös värisuoran tarkastuksessa
-        List<Kortti> suora = new ArrayList();
+    public static int onkoSuora(List<Kortti> kortit) {
         Collections.sort(kortit);
         int j = 1;
+        int i = 0;
+        int onPerakkain = 1;
+        int suurin = 0;
 
-        for (int i = 0; i < kortit.size() - 1; i++) {
+        while (i < kortit.size() - 1) {
+
             if (kortit.get(i).getArvo() == kortit.get(j).getArvo() + 1) {
-                suora.add(kortit.get(i));
+                if (onPerakkain == 1) {
+                    suurin = kortit.get(i).getArvo();
+                }
+                onPerakkain++;
+                i++;
+                j++;
+            } else if (kortit.get(i).getArvo() == kortit.get(j).getArvo()) {
+                i++;
+                j++;
+            } else {
+                onPerakkain = 1;
+                suurin = 0;
+                i++;
+                j++;
             }
-            j++;
-        }
-        if (kortit.get(6).getArvo() == kortit.get(5).getArvo() - 1) {
-            suora.add(kortit.get(6));
-        }
-
-        if (suora.size() == 5) {
-            return suora;
-        } else if (suora.size() == 6) {
-            suora.remove(5);
-            return suora;
-        } else if (suora.size() == 7) {
-            suora.remove(6);
-            suora.remove(7);
-            return suora;
+            if(onPerakkain == 5){
+                return suurin;
+            }
         }
 
-        return null;
+        
+            if (onPerakkain == 4) {
+                int apu = kortit.size();
+                if (kortit.get(apu -1).getArvo() == kortit.get(apu - 2).getArvo() - 1) {
+                    return kortit.get(apu - 5).getArvo();
+                }
+            }
+
+            return 0;
+        
+
     }
 
     public static int tarkistaSamat(int koko, List<Kortti> kortit) {
@@ -162,17 +179,18 @@ public class Peli {
         return lista;
     }
 
-    public boolean tarkistaVarisuora(List<Kortti> kortit) {
-        List<Kortti> lista = kokoaSuora(kortit);
+    public int tarkistaVarisuora(List<Kortti> kortit) {
+        List<Kortti> vari = tarkistaVari(kortit);
+        int palautus = 0;
 
-        if (!lista.equals(null)) {
-            if (tarkistaVari(lista)) {
-                return true;
-            } else {
-                return false;
+        if (!vari.isEmpty()) {
+            int x = onkoSuora(vari);
+            if (x > 0) {
+                Collections.sort(vari);
+                palautus = vari.get(0).getArvo();
             }
         }
-        return false;
+        return palautus;
     }
 
     public static int[] tarkistaKaksiParia(List<Kortti> kortit) {

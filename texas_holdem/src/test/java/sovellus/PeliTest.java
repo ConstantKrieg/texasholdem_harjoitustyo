@@ -44,98 +44,134 @@ public class PeliTest {
 
     }
 
-    
-    
-    
     @After
     public void tearDown() {
     }
 
     @Test
-    public void samojenTarkistusToimiiJosKolmoset(){
+    public void samojenTarkistusToimiiJosKolmoset() {
         Pakka pa = new Pakka();
         Poyta po = new Poyta();
-        
+
         Peli p = new Peli(pa, po);
-        
-        
+
         List<Kortti> lista = new ArrayList();
         Kortti k1 = new Kortti(Maa.HERTTA, Arvo.K);
         Kortti k2 = new Kortti(Maa.PATA, Arvo.K);
         Kortti k3 = new Kortti(Maa.RISTI, Arvo.K);
         Kortti k4 = new Kortti(Maa.HERTTA, Arvo.A);
         Kortti k5 = new Kortti(Maa.HERTTA, Arvo.SEISKA);
-        
+
         lista.add(k1);
         lista.add(k2);
         lista.add(k3);
         lista.add(k4);
         lista.add(k5);
-        
+
         int testi = tarkistaSamat(3, lista);
         assertEquals(13, testi);
-        
+
     }
-    
+
     @Test
-    public void varinTarkastusToimii(){
+    public void varinTarkastusToimii() {
         Pakka pa = new Pakka();
         Poyta po = new Poyta();
-        
+
         Peli p = new Peli(pa, po);
-        
-        
+
         List<Kortti> lista = new ArrayList();
         Kortti k1 = new Kortti(Maa.HERTTA, Arvo.YSI);
         Kortti k2 = new Kortti(Maa.HERTTA, Arvo.J);
         Kortti k3 = new Kortti(Maa.HERTTA, Arvo.K);
         Kortti k4 = new Kortti(Maa.HERTTA, Arvo.A);
         Kortti k5 = new Kortti(Maa.HERTTA, Arvo.SEISKA);
-        
+
         lista.add(k1);
         lista.add(k2);
         lista.add(k3);
         lista.add(k4);
         lista.add(k5);
-        
-        Boolean testi = tarkistaVari(lista);
+
+        List<Kortti> l = tarkistaVari(lista);
+        Boolean testi = false;
+
+        if (!l.isEmpty()) {
+            testi = true;
+        }
+
         assertEquals(true, testi);
     }
-    
+
     @Test
-    public void varinTarkastusToimiiJosEiPade(){
+    public void varinTarkastusToimiiJosEiPade() {
         Pakka pa = new Pakka();
         Poyta po = new Poyta();
-        
+
         Peli p = new Peli(pa, po);
-        
-        
+
         List<Kortti> lista = new ArrayList();
         Kortti k1 = new Kortti(Maa.HERTTA, Arvo.YSI);
         Kortti k2 = new Kortti(Maa.PATA, Arvo.J);
         Kortti k3 = new Kortti(Maa.HERTTA, Arvo.K);
         Kortti k4 = new Kortti(Maa.HERTTA, Arvo.A);
         Kortti k5 = new Kortti(Maa.HERTTA, Arvo.SEISKA);
-        
+
         lista.add(k1);
         lista.add(k2);
         lista.add(k3);
         lista.add(k4);
         lista.add(k5);
-        
-        Boolean testi = tarkistaVari(lista);
+
+        List<Kortti> l = tarkistaVari(lista);
+        Boolean testi = false;
+
+        if (!l.isEmpty()) {
+            testi = true;
+        }
+
         assertEquals(false, testi);
     }
-    
-    
+
     @Test
-    public void varisuoranTarkastusToimii(){
+    public void suoranKokoaminenToimii() {
         Pakka pa = new Pakka();
         Poyta po = new Poyta();
-        
+
         Peli p = new Peli(pa, po);
-        
-        
+
+        List<Kortti> lista = new ArrayList();
+        Kortti k1 = new Kortti(Maa.HERTTA, Arvo.Q);
+        Kortti k2 = new Kortti(Maa.PATA, Arvo.J);
+        Kortti k3 = new Kortti(Maa.RISTI, Arvo.K);
+        Kortti k4 = new Kortti(Maa.HERTTA, Arvo.A);
+        Kortti k5 = new Kortti(Maa.RUUTU, Arvo.KYMPPI);
+        Kortti k6 = new Kortti(Maa.PATA, Arvo.SEISKA);
+        Kortti k7 = new Kortti(Maa.RISTI, Arvo.KUUSI);
+
+        lista.add(k1);
+        lista.add(k2);
+        lista.add(k3);
+        lista.add(k4);
+        lista.add(k5);
+        lista.add(k6);
+        lista.add(k7);
+
+        int suora = p.onkoSuora(lista);
+        Boolean x = false;
+        if(suora > 0){
+            x = true;
+        }
+        assertEquals(true, x);
+    }
+
+    @Test
+    public void varisuoranTarkastusToimii() {
+        Pakka pa = new Pakka();
+        Poyta po = new Poyta();
+
+        Peli p = new Peli(pa, po);
+
         List<Kortti> lista = new ArrayList();
         Kortti k1 = new Kortti(Maa.HERTTA, Arvo.KYMPPI);
         Kortti k2 = new Kortti(Maa.HERTTA, Arvo.J);
@@ -144,73 +180,74 @@ public class PeliTest {
         Kortti k5 = new Kortti(Maa.HERTTA, Arvo.Q);
         Kortti k6 = new Kortti(Maa.PATA, Arvo.SEISKA);
         Kortti k7 = new Kortti(Maa.RISTI, Arvo.KUUSI);
-        
+
         lista.add(k1);
         lista.add(k2);
         lista.add(k3);
         lista.add(k4);
         lista.add(k5);
-        lista.add(k7);
         lista.add(k6);
+        lista.add(k7);
+
+        int x = p.tarkistaVarisuora(lista);
+        Boolean y = false;
         
-        Boolean testi = p.tarkistaVarisuora(lista);
-        assertEquals(true, testi);
+        if(x > 0){
+            y = true;
+        }
+        assertEquals(true, y);
     }
-    
+
     @Test
-    public void tayskadentarkistusToimii(){
+    public void tayskadentarkistusToimii() {
         Pakka pa = new Pakka();
         Poyta po = new Poyta();
-        
+
         Peli p = new Peli(pa, po);
-        
-        
+
         List<Kortti> lista = new ArrayList();
         Kortti k1 = new Kortti(Maa.HERTTA, Arvo.K);
         Kortti k2 = new Kortti(Maa.PATA, Arvo.K);
         Kortti k3 = new Kortti(Maa.RISTI, Arvo.K);
         Kortti k4 = new Kortti(Maa.HERTTA, Arvo.A);
         Kortti k5 = new Kortti(Maa.HERTTA, Arvo.A);
-        
+
         lista.add(k1);
         lista.add(k2);
         lista.add(k3);
         lista.add(k4);
         lista.add(k5);
-        
+
         boolean testi = p.tarkistaTayskasi(lista);
         assertEquals(true, testi);
     }
-    
+
     @Test
-    public void tayskadentarkistusToimiiJosVaara(){
+    public void tayskadentarkistusToimiiJosVaara() {
         Pakka pa = new Pakka();
         Poyta po = new Poyta();
-        
+
         Peli p = new Peli(pa, po);
-        
-        
+
         List<Kortti> lista = new ArrayList();
         Kortti k1 = new Kortti(Maa.HERTTA, Arvo.K);
         Kortti k2 = new Kortti(Maa.PATA, Arvo.K);
         Kortti k3 = new Kortti(Maa.RISTI, Arvo.K);
         Kortti k4 = new Kortti(Maa.HERTTA, Arvo.J);
         Kortti k5 = new Kortti(Maa.HERTTA, Arvo.A);
-        
-        
+
         lista.add(k1);
         lista.add(k2);
         lista.add(k3);
         lista.add(k4);
         lista.add(k5);
-        
+
         boolean testi = p.tarkistaTayskasi(lista);
         assertEquals(false, testi);
     }
-     
-    
-     @Test
-     public void hello() {}
 
-    
+    @Test
+    public void hello() {
+    }
+
 }
