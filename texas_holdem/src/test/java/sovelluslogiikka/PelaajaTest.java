@@ -5,6 +5,11 @@
  */
 package sovelluslogiikka;
 
+import domain.Kortti;
+import domain.Maa;
+import domain.Kasi;
+import domain.Pelaaja;
+import domain.Arvo;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

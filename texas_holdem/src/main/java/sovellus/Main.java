@@ -1,23 +1,16 @@
 
 package sovellus;
 
-import sovelluslogiikka.Kortti;
-import sovelluslogiikka.Pakka;
-import sovelluslogiikka.Poyta;
+import domain.Kortti;
+import domain.Pakka;
+import domain.Poyta;
 
 
 public class Main {
 
   
     public static void main(String[] args) throws Exception {
-        Poyta p = new Poyta();
-        Pakka pa = new Pakka();
         
-        Peli peli = new Peli(pa, p);
-       
-        peli.jaaKortit();
-        
-        peli.testaus();
         
         
     }

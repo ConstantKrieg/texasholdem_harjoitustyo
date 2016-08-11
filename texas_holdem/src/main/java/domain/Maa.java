@@ -1,4 +1,4 @@
-package sovelluslogiikka;
+package domain;
 
 public enum Maa {
 

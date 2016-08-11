@@ -1,14 +1,13 @@
+﻿
+#Casino Hold'em#
 
-#Texas Hold'em#
-
-**Aihe:** Yksinkertainen Texas hold'em ilman tekoälyä. Toteutetaan niin, että ohjelma sekoittaa kortit, jakaa ne teksun mukaisesti pelaajille ja pöytään, jonka jälkeen kokoaa jokaisesta kädestä viisi parasta korttia ja laittaa arvojäjestykseen. Jotta pelissä pysyisi jonkinlainen idea, panostaa muut pelaajat aina pöydän täyteen jotta voitonmaksu voisi tapahtua.
+**Aihe:** Pelataan Texas hold'emia jakajaa vastaan. Kortit jaetaan kuten Texas hold'emissa eli kaksi omaa korttia pelaajalle sekä jakajalle ja viisi yhteistä korttia pöytään. Näistä korteista muodostetaan paras mahdollinen viiden kortin pelikäsi. Pelaaja asettaa ennen kierrosta alkupanoksen eli anten, jonka jälkeen näkyville tulevat omat taskukortit sekä flop. Tämän jälkeen pelaaja saa päättää panostaako lisää vai luovuttaako. Ohjelma tarkistaa ja kokoaa molempien pelikäden ja ilmoittaa voittajan. 
 
 **Käyttäjät:** Kuka tahansa pelaaja
 
 **Käyttäjien toiminnot:** 
 
 - ohjeiden lukeminen
-- pelaajamäärän valitseminen
 - pelin aloittaminen
 - panosmäärien nostaminen 
 - foldaaminen
@@ -16,6 +15,6 @@
 
 
 **Luokkakaavio**
-![luokkakaavio](/dokumentaatio/luokkakaavio.png)
+![luokkakaavio](/dokumentaatio/Luokkakaavio.png)
 
 

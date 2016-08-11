@@ -5,21 +5,35 @@
  */
 package sovelluslogiikka;
 
+import domain.Kortti;
+import domain.Osallistuja;
+import domain.Kasi;
 import java.util.List;
 
 /**
  *
  * @author Kim
  */
-public class Jakaja extends Osallistuja{
-    
-    
+public class Jakaja extends Osallistuja {
+
     private List<Kortti> taskut;
     private Kasi kasi;
-    
-    public Jakaja(){
+
+    public Jakaja() {
         super();
     }
-    
-    
+
+    public boolean mahtuukoPoytaan() {
+        boolean palautus = false;
+
+        if (this.kasi.getKadenArvo() > 2) {
+            palautus = true;
+        } else if (this.kasi.getKadenArvo() == 2) {
+            if (this.getKorkeinKortti() >= 4) {
+                palautus = true;
+            }
+        }
+        return palautus;
+    }
+
 }

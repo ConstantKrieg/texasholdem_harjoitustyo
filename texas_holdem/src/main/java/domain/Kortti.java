@@ -1,6 +1,6 @@
-package sovelluslogiikka;
+package domain;
 
-public class Kortti implements Comparable<Kortti>{
+public class Kortti implements Comparable<Kortti> {
 
     private Maa maa;
     private Arvo arvo;
@@ -28,16 +28,10 @@ public class Kortti implements Comparable<Kortti>{
         }
         return s;
     }
-    
+
     @Override
-    public int compareTo(Kortti toinen){
+    public int compareTo(Kortti toinen) {
         return toinen.getArvo() - this.getArvo();
     }
-
-    
-    
-    
-
-  
 
 }

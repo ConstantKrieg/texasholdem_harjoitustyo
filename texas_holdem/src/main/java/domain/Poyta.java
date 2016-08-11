@@ -1,4 +1,4 @@
-package sovelluslogiikka;
+package domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,17 +52,15 @@ public class Poyta {
         System.out.println(river);
     }
 
-    
-    
-    public List<Kortti> getKortit(){
+    public List<Kortti> getKortit() {
         List<Kortti> lista = new ArrayList();
-        
+
         for (Kortti k : flop) {
             lista.add(k);
         }
         lista.add(turn);
         lista.add(river);
-        
+
         return lista;
     }
 

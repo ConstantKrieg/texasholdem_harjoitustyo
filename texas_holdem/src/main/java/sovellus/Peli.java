@@ -3,21 +3,33 @@ package sovellus;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import sovelluslogiikka.Kortti;
-import sovelluslogiikka.Pakka;
-import sovelluslogiikka.Pelaaja;
-import sovelluslogiikka.Poyta;
+import java.util.Scanner;
+import domain.Jakaja;
+import domain.Kasi;
+import domain.Kortti;
+import domain.Osallistuja;
+import domain.Pakka;
+import domain.Pelaaja;
+import domain.Poyta;
 
 public class Peli {
 
-    private Pakka deck;
-    private Poyta table;
-    private Pelaaja player;
+    private final Pakka deck;
+    private final Poyta table;
+    private final Pelaaja player;
+    private final Jakaja dealer;
+    private int ante;
+    private int raise;
+    private Scanner lukija;
 
     public Peli(Pakka pakka, Poyta poyta) {
         this.deck = pakka;
         this.table = poyta;
         this.player = new Pelaaja();
+        this.dealer = new Jakaja();
+        this.ante = 0;
+        this.raise = 0;
+        this.lukija = new Scanner(System.in);
 
     }
 
@@ -25,11 +37,29 @@ public class Peli {
         return table;
     }
 
+    public void kysyPanos() {
+
+        while (true) {
+            System.out.print("Anna panos (Panoksen oltava parillinen sekä välillä 10-500): ");
+            int x = Integer.parseInt(lukija.nextLine());
+
+            if (x <= 500 && x >= 10 && x % 2 == 0) { //tarkistaa että panostuksen ehdot tayttyvat
+                this.ante = x;
+                break;
+            }
+
+        }
+    }
+
     public void jaaKortit() throws Exception {
 
         this.deck.sekoitus();
-        this.player.annaKortti(this.deck.jaa());
-        this.player.annaKortti(this.deck.jaa());
+
+        for (int i = 0; i < 2; i++) {   //Jakaa taskukortit pelaajalle sekä jakajalle
+            this.player.annaKortti(this.deck.jaa());
+            this.dealer.annaKortti(this.deck.jaa());
+
+        }
 
         Kortti x = deck.jaa(); //jakaa flopin
         Kortti y = deck.jaa();
@@ -41,185 +71,60 @@ public class Peli {
         table.setRiver(river);
     }
 
-    public void testaus() {
-        List<Kortti> kaikki = kaikkiKortit(this.player.getTaskut(), this.table.getKortit());
-        Collections.sort(kaikki);
+    public void tulostaTilanneEnnenJatkoPanostusta(List<Kortti> pelaajanKortit) {
 
-        for (Kortti k : kaikki) {
-            System.out.println(k);
-        }
-
-    }
-
-    public void tulostaTilanne() {
-
-        List<Kortti> lista = player.getTaskut();
-
-        for (Kortti k : lista) {
+        for (Kortti k : pelaajanKortit) {
             System.out.println(k);
         }
         table.tulostaFlop();
+    }
+
+    public void tulostaLoppuTilanne(List<Kortti> jakajanKortit) {
+
+        for (Kortti k : jakajanKortit) {
+            System.out.println(k);
+        }
         table.tulostaTurnJaRiver();
     }
 
-    public static List<Kortti> tarkistaVari(List<Kortti> kortit) {
-        List<Kortti> vari = new ArrayList();
-        List<Kortti> palautus = new ArrayList();
+    public boolean lisaatkoPanosta() {
 
-        for (Kortti k1 : kortit) {
-            vari.add(k1);
-            for (Kortti k2 : kortit) {
-                if (!k1.equals(k2) && k1.getMaa().equals(k2.getMaa())) {
-                    vari.add(k2);
-                }
-            }
-            if (vari.size() >= 5) {
-                palautus.addAll(vari);
-                break;
-            }
-            vari.clear();
-        }
-
-        return palautus;
-    }
-
-    public static int onkoSuora(List<Kortti> kortit) {
-        Collections.sort(kortit);
-        int j = 1;
-        int i = 0;
-        int onPerakkain = 1;
-        int suurin = 0;
-
-        while (i < kortit.size() - 1) {
-
-            if (kortit.get(i).getArvo() == kortit.get(j).getArvo() + 1) {
-                if (onPerakkain == 1) {
-                    suurin = kortit.get(i).getArvo();
-                }
-                onPerakkain++;
-                i++;
-                j++;
-            } else if (kortit.get(i).getArvo() == kortit.get(j).getArvo()) {
-                i++;
-                j++;
+        System.out.println("Lähdetkö mukaan (k/e)?:");
+        while (true) {
+            String vastaus = lukija.nextLine();
+            if (vastaus.equals("k")) {
+                this.raise = 2 * this.ante;
+                return true;
+            } else if (vastaus.equals("e")) {
+                return false;
             } else {
-                onPerakkain = 1;
-                suurin = 0;
-                i++;
-                j++;
-            }
-            if(onPerakkain == 5){
-                return suurin;
+                System.out.println("Vastaukseksi kelpaa vain k tai e ");
             }
         }
-
-        
-            if (onPerakkain == 4) {
-                int apu = kortit.size();
-                if (kortit.get(apu -1).getArvo() == kortit.get(apu - 2).getArvo() - 1) {
-                    return kortit.get(apu - 5).getArvo();
-                }
-            }
-
-            return 0;
-        
-
     }
 
-    public static int tarkistaSamat(int koko, List<Kortti> kortit) {
-        List<Kortti> samat = new ArrayList();
-
-        for (Kortti k1 : kortit) {
-            samat.add(k1);
-            for (Kortti k2 : kortit) {
-                if (!k1.equals(k2) && k1.getArvo() == k2.getArvo()) {
-                    samat.add(k2);
-                }
-            }
-            if (samat.size() == koko) {
-                return samat.get(0).getArvo();
-            }
-            samat.clear();
-        }
-        return 0;
+    public Pakka getDeck() {
+        return deck;
     }
 
-    public boolean tarkistaPari(List<Kortti> kortit) {
-        if (tarkistaSamat(2, kortit) > 0) {
-            return true;
-        }
-        return false;
+    public Pelaaja getPlayer() {
+        return player;
     }
 
-    public boolean tarkistaKolmoset(List<Kortti> kortit) {
-        if (tarkistaSamat(3, kortit) > 0) {
-            return true;
-        }
-        return false;
+    public Jakaja getDealer() {
+        return dealer;
     }
 
-    public boolean tarkistaNeloset(List<Kortti> kortit) {
-        if (tarkistaSamat(4, kortit) > 0) {
-            return true;
-        }
-        return false;
+    public int getAnte() {
+        return ante;
     }
 
-    public boolean tarkistaTayskasi(List<Kortti> kortit) {
-        if (tarkistaPari(kortit) && tarkistaKolmoset(kortit)) {
-            return true;
-        }
-        return false;
+    public Scanner getLukija() {
+        return lukija;
     }
 
-    public static List<Kortti> kaikkiKortit(List<Kortti> taskut, List<Kortti> poydat) {
-        List<Kortti> lista = new ArrayList();
-        lista.addAll(poydat);
-        lista.addAll(taskut);
-        return lista;
-    }
-
-    public int tarkistaVarisuora(List<Kortti> kortit) {
-        List<Kortti> vari = tarkistaVari(kortit);
-        int palautus = 0;
-
-        if (!vari.isEmpty()) {
-            int x = onkoSuora(vari);
-            if (x > 0) {
-                Collections.sort(vari);
-                palautus = vari.get(0).getArvo();
-            }
-        }
-        return palautus;
-    }
-
-    public static int[] tarkistaKaksiParia(List<Kortti> kortit) {
-        int ensimmaisenParinArvo = tarkistaSamat(2, kortit);
-
-        List<Kortti> valiaikainen = new ArrayList();
-        List<Kortti> poistettavat = new ArrayList();
-
-        for (Kortti k : kortit) {
-            if (k.getArvo() == ensimmaisenParinArvo) {
-                valiaikainen.add(k);
-                poistettavat.add(k);
-            }
-        }
-        kortit.removeAll(poistettavat);
-
-        int toisenParinArvo = tarkistaSamat(2, kortit);
-
-        int[] luvut = new int[2];
-
-        if (ensimmaisenParinArvo > toisenParinArvo) {
-            luvut[0] = ensimmaisenParinArvo;
-            luvut[1] = toisenParinArvo;
-        } else {
-            luvut[0] = toisenParinArvo;
-            luvut[1] = ensimmaisenParinArvo;
-        }
-        kortit.addAll(valiaikainen);
-        return luvut;
+    public int getRaise() {
+        return raise;
     }
 
 }

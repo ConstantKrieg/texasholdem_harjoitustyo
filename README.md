@@ -1,7 +1,7 @@
+﻿
+##Casino Hold'em
 
-##Texas Hold'em
-
-Yksinkertainen graafinen texas hold'em ilman tekoälyä
+Ideana on pelata Texas hold'emia jakajaa vastaan. Jos voittaa jakajan, maksetaan voitot voittotaulukon mukaan
 
 
 ###Dokumentaatio

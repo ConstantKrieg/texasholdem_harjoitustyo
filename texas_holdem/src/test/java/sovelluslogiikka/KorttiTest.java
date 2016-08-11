@@ -5,6 +5,9 @@
  */
 package sovelluslogiikka;
 
+import domain.Kortti;
+import domain.Maa;
+import domain.Arvo;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
