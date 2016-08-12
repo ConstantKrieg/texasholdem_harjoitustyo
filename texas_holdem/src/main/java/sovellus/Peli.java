@@ -21,6 +21,7 @@ public class Peli {
     private int ante;
     private int raise;
     private Scanner lukija;
+    private int voittaja; //jos voittaja on 1 niin pelajaa voittaa ja os -1 niin jakaja. Jos pelaaja voittaa niin ettei jakaja mahdu pöytään on voittajan arvo 2
 
     public Peli(Pakka pakka, Poyta poyta) {
         this.deck = pakka;
@@ -30,6 +31,51 @@ public class Peli {
         this.ante = 0;
         this.raise = 0;
         this.lukija = new Scanner(System.in);
+        this.voittaja = 0;
+
+    }
+
+    public void setVoittaja(int voittaja) {
+        this.voittaja = voittaja;
+    }
+
+    public void kaynnista() throws Exception {
+        kysyPanos();
+        jaaKortit();
+        this.tulostaTilanneEnnenJatkoPanostusta(this.player.getTaskut());
+        if (lisaatkoPanosta()) {
+            this.tulostaLoppuTilanne(this.dealer.getTaskut());
+            paataVoittaja();
+            //if () 
+            {
+                
+            }
+        }
+
+    }
+
+    public void paataVoittaja() {
+        Vertailu v = new Vertailu(this);
+        KadenTarkistaja kt = new KadenTarkistaja(v);
+        kt.tarkistaKasi(player);
+        kt.tarkistaKasi(dealer);
+        if (dealer.mahtuukoPoytaan()) {
+            if (player.getKasi().getKadenArvo() > dealer.getKasi().getKadenArvo()) {
+                this.setVoittaja(1);
+            } else if (player.getKasi().getKadenArvo() < dealer.getKasi().getKadenArvo()) {
+                this.setVoittaja(-1);
+            } else {
+                if (player.getKorkeinKortti() > dealer.getKorkeinKortti()) {
+                    this.setVoittaja(1);
+                } else if (player.getKorkeinKortti() < dealer.getKorkeinKortti()) {
+                    this.setVoittaja(-1);
+                } else {
+                    this.setVoittaja(v.tieBreakerKickerilla(dealer, player));
+                }
+            }
+        } else {
+            this.setVoittaja(2);
+        }
 
     }
 
@@ -38,29 +84,23 @@ public class Peli {
     }
 
     public void kysyPanos() {
-
         while (true) {
-            System.out.print("Anna panos (Panoksen oltava parillinen sekä välillä 10-500): ");
+            System.out.print("Anna panos (Panoksen oltava välillä 10-500): ");
             int x = Integer.parseInt(lukija.nextLine());
 
-            if (x <= 500 && x >= 10 && x % 2 == 0) { //tarkistaa että panostuksen ehdot tayttyvat
+            if (x <= 500 && x >= 10) { //tarkistaa että panostuksen ehdot tayttyvat
                 this.ante = x;
                 break;
             }
-
         }
     }
 
     public void jaaKortit() throws Exception {
-
         this.deck.sekoitus();
-
         for (int i = 0; i < 2; i++) {   //Jakaa taskukortit pelaajalle sekä jakajalle
             this.player.annaKortti(this.deck.jaa());
             this.dealer.annaKortti(this.deck.jaa());
-
         }
-
         Kortti x = deck.jaa(); //jakaa flopin
         Kortti y = deck.jaa();
         Kortti z = deck.jaa();
@@ -103,6 +143,9 @@ public class Peli {
         }
     }
 
+    public int getVoittaja() {
+        return voittaja;
+    }
     public Pakka getDeck() {
         return deck;
     }

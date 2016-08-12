@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import sovellus.Peli;
 
 public class Jakaja extends Osallistuja {
 
@@ -22,6 +23,14 @@ public class Jakaja extends Osallistuja {
             }
         } else {
             return false;
+        }
+    }
+    
+    public void maksaVoitot(Peli p) {
+        if(p.getVoittaja() == 2){
+            if(p.getPlayer().getKasi().getKadenArvo() < 6){
+                p.getPlayer().vastaanotaVoitot(p.getAnte() * 2);
+            }
         }
     }
 

@@ -3,8 +3,8 @@ package domain;
 public enum Kasi {
 
     KICKER(1), PARI(2), KAKSIPARIA(3),
-    KOLMOSET(3), SUORA(4), VARI(5),
-    TAYSKASI(6), NELOSET(7), VARISUORA(8);
+    KOLMOSET(4), SUORA(5), VARI(6),
+    TAYSKASI(7), NELOSET(8), VARISUORA(9);
 
     private final int kadenArvo;
 

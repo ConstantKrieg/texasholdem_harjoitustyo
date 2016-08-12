@@ -291,281 +291,7 @@ public class VertailuTest {
         assertEquals(true, y);
     }
 
-    @Test
-    public void kadenTarkastusToimiiJosPari() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
-        Vertailu v = new Vertailu(p);
-
-        Kortti p1 = new Kortti(Maa.HERTTA, Arvo.J);
-        Kortti p2 = new Kortti(Maa.HERTTA, Arvo.K);
-
-        p.getPlayer().annaKortti(p1);
-        p.getPlayer().annaKortti(p2);
-
-        Kortti k1 = new Kortti(Maa.PATA, Arvo.J);
-        Kortti k2 = new Kortti(Maa.RUUTU, Arvo.A);
-        Kortti k3 = new Kortti(Maa.HERTTA, Arvo.NELJÄ);
-        Kortti k4 = new Kortti(Maa.PATA, Arvo.KUUSI);
-        Kortti k5 = new Kortti(Maa.HERTTA, Arvo.Q);
-
-        p.getTable().setFlop(k1, k2, k3);
-        p.getTable().setTurn(k4);
-        p.getTable().setRiver(k5);
-
-        v.tarkistaKasi(p.getPlayer());
-        int apu = p.getPlayer().getKasi().getKadenArvo();
-
-        boolean x = false;
-        if (apu == 2 && p.getPlayer().getKorkeinKortti() == 11) {
-            x = true;
-        }
-
-        assertEquals(true, x);
-    }
-
-    @Test
-    public void kadenTarkastusToimiiJosKaksiParia() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
-        Vertailu v = new Vertailu(p);
-
-        Kortti p1 = new Kortti(Maa.HERTTA, Arvo.J);
-        Kortti p2 = new Kortti(Maa.HERTTA, Arvo.K);
-
-        p.getPlayer().annaKortti(p1);
-        p.getPlayer().annaKortti(p2);
-
-        Kortti k1 = new Kortti(Maa.PATA, Arvo.J);
-        Kortti k2 = new Kortti(Maa.RUUTU, Arvo.KUUSI);
-        Kortti k3 = new Kortti(Maa.HERTTA, Arvo.NELJÄ);
-        Kortti k4 = new Kortti(Maa.PATA, Arvo.K);
-        Kortti k5 = new Kortti(Maa.HERTTA, Arvo.Q);
-
-        p.getTable().setFlop(k1, k2, k3);
-        p.getTable().setTurn(k4);
-        p.getTable().setRiver(k5);
-
-        v.tarkistaKasi(p.getPlayer());
-        int apu = p.getPlayer().getKasi().getKadenArvo();
-
-        boolean x = false;
-        if (apu == 3 && p.getPlayer().getKorkeinKortti() == 13) {
-            x = true;
-        }
-
-        assertEquals(true, x);
-    }
-
-    @Test
-    public void kadenTarkastusToimiiJosKolmoset() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
-        Vertailu v = new Vertailu(p);
-
-        Kortti p1 = new Kortti(Maa.HERTTA, Arvo.J);
-        Kortti p2 = new Kortti(Maa.HERTTA, Arvo.K);
-
-        p.getPlayer().annaKortti(p1);
-        p.getPlayer().annaKortti(p2);
-
-        Kortti k1 = new Kortti(Maa.PATA, Arvo.J);
-        Kortti k2 = new Kortti(Maa.RUUTU, Arvo.J);
-        Kortti k3 = new Kortti(Maa.HERTTA, Arvo.NELJÄ);
-        Kortti k4 = new Kortti(Maa.PATA, Arvo.A);
-        Kortti k5 = new Kortti(Maa.HERTTA, Arvo.Q);
-
-        p.getTable().setFlop(k1, k2, k3);
-        p.getTable().setTurn(k4);
-        p.getTable().setRiver(k5);
-
-        v.tarkistaKasi(p.getPlayer());
-        int apu = p.getPlayer().getKasi().getKadenArvo();
-
-        boolean x = false;
-        if (apu == 3 && p.getPlayer().getKorkeinKortti() == 11) {
-            x = true;
-        }
-
-        assertEquals(true, x);
-    }
-
-    @Test
-    public void kadenTarkastusToimiiJosSuora() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
-        Vertailu v = new Vertailu(p);
-
-        Kortti p1 = new Kortti(Maa.HERTTA, Arvo.J);
-        Kortti p2 = new Kortti(Maa.HERTTA, Arvo.K);
-
-        p.getPlayer().annaKortti(p1);
-        p.getPlayer().annaKortti(p2);
-
-        Kortti k1 = new Kortti(Maa.PATA, Arvo.KYMPPI);
-        Kortti k2 = new Kortti(Maa.RUUTU, Arvo.J);
-        Kortti k3 = new Kortti(Maa.HERTTA, Arvo.A);
-        Kortti k4 = new Kortti(Maa.PATA, Arvo.K);
-        Kortti k5 = new Kortti(Maa.HERTTA, Arvo.Q);
-
-        p.getTable().setFlop(k1, k2, k3);
-        p.getTable().setTurn(k4);
-        p.getTable().setRiver(k5);
-
-        v.tarkistaKasi(p.getPlayer());
-        int apu = p.getPlayer().getKasi().getKadenArvo();
-
-        boolean x = false;
-        if (apu == 4 && p.getPlayer().getKorkeinKortti() == 14) {
-            x = true;
-        }
-
-        assertEquals(true, x);
-    }
-
-    @Test
-    public void kadenTarkastusToimiiJosVari() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
-        Vertailu v = new Vertailu(p);
-
-        Kortti p1 = new Kortti(Maa.HERTTA, Arvo.J);
-        Kortti p2 = new Kortti(Maa.HERTTA, Arvo.K);
-
-        p.getPlayer().annaKortti(p1);
-        p.getPlayer().annaKortti(p2);
-
-        Kortti k1 = new Kortti(Maa.PATA, Arvo.J);
-        Kortti k2 = new Kortti(Maa.HERTTA, Arvo.KASI);
-        Kortti k3 = new Kortti(Maa.HERTTA, Arvo.NELJÄ);
-        Kortti k4 = new Kortti(Maa.PATA, Arvo.K);
-        Kortti k5 = new Kortti(Maa.HERTTA, Arvo.Q);
-
-        p.getTable().setFlop(k1, k2, k3);
-        p.getTable().setTurn(k4);
-        p.getTable().setRiver(k5);
-
-        v.tarkistaKasi(p.getPlayer());
-        int apu = p.getPlayer().getKasi().getKadenArvo();
-
-        assertEquals(5, apu);
-
-    }
-
-    @Test
-    public void kadenTarkastusToimiiJosTayskasi() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
-        Vertailu v = new Vertailu(p);
-
-        Kortti p1 = new Kortti(Maa.HERTTA, Arvo.J);
-        Kortti p2 = new Kortti(Maa.HERTTA, Arvo.K);
-
-        p.getPlayer().annaKortti(p1);
-        p.getPlayer().annaKortti(p2);
-
-        Kortti k1 = new Kortti(Maa.PATA, Arvo.J);
-        Kortti k2 = new Kortti(Maa.RUUTU, Arvo.J);
-        Kortti k3 = new Kortti(Maa.HERTTA, Arvo.NELJÄ);
-        Kortti k4 = new Kortti(Maa.PATA, Arvo.K);
-        Kortti k5 = new Kortti(Maa.HERTTA, Arvo.Q);
-
-        p.getTable().setFlop(k1, k2, k3);
-        p.getTable().setTurn(k4);
-        p.getTable().setRiver(k5);
-
-        v.tarkistaKasi(p.getPlayer());
-        int apu = p.getPlayer().getKasi().getKadenArvo();
-
-        boolean x = false;
-        if (apu == 6 && p.getPlayer().getKorkeinKortti() == 11) {
-            x = true;
-        }
-
-        assertEquals(true, x);
-    }
-
-    @Test
-    public void kadenTarkastusToimiiJosNeloset() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
-        Vertailu v = new Vertailu(p);
-
-        Kortti p1 = new Kortti(Maa.HERTTA, Arvo.K);
-        Kortti p2 = new Kortti(Maa.RISTI, Arvo.K);
-
-        p.getPlayer().annaKortti(p1);
-        p.getPlayer().annaKortti(p2);
-
-        Kortti k1 = new Kortti(Maa.RUUTU, Arvo.K);
-        Kortti k2 = new Kortti(Maa.HERTTA, Arvo.KASI);
-        Kortti k3 = new Kortti(Maa.HERTTA, Arvo.NELJÄ);
-        Kortti k4 = new Kortti(Maa.PATA, Arvo.K);
-        Kortti k5 = new Kortti(Maa.HERTTA, Arvo.Q);
-
-        p.getTable().setFlop(k1, k2, k3);
-        p.getTable().setTurn(k4);
-        p.getTable().setRiver(k5);
-
-        v.tarkistaKasi(p.getPlayer());
-        int apu = p.getPlayer().getKasi().getKadenArvo();
-
-        boolean x = false;
-        if (apu == 7 && p.getPlayer().getKorkeinKortti() == 13) {
-            x = true;
-        }
-
-        assertEquals(true, x);
-
-    }
-
-    @Test
-    public void kadenTarkastusToimiiJosVarisuora() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
-        Vertailu v = new Vertailu(p);
-        Kortti p1 = new Kortti(Maa.HERTTA, Arvo.J);
-        Kortti p2 = new Kortti(Maa.HERTTA, Arvo.K);
-
-        p.getPlayer().annaKortti(p1);
-        p.getPlayer().annaKortti(p2);
-
-        Kortti k1 = new Kortti(Maa.HERTTA, Arvo.A);
-        Kortti k2 = new Kortti(Maa.RUUTU, Arvo.J);
-        Kortti k3 = new Kortti(Maa.HERTTA, Arvo.KYMPPI);
-        Kortti k4 = new Kortti(Maa.PATA, Arvo.K);
-        Kortti k5 = new Kortti(Maa.HERTTA, Arvo.Q);
-
-        p.getTable().setFlop(k1, k2, k3);
-        p.getTable().setTurn(k4);
-        p.getTable().setRiver(k5);
-
-        v.tarkistaKasi(p.getPlayer());
-        int apu = p.getPlayer().getKasi().getKadenArvo();
-
-        boolean x = false;
-        if (apu == 8 && p.getPlayer().getKorkeinKortti() == 14) {
-            x = true;
-        }
-
-        assertEquals(true, x);
-    }
+    
 
     @Test
     public void tieBreakerKickerillaToimiiJosTasapeli() throws Exception {
@@ -574,6 +300,7 @@ public class VertailuTest {
 
         Peli p = new Peli(pa, po);
         Vertailu v = new Vertailu(p);
+        KadenTarkistaja kt = new KadenTarkistaja(v);
 
         Kortti p1 = new Kortti(Maa.HERTTA, Arvo.J);
         Kortti j1 = new Kortti(Maa.PATA, Arvo.J);
@@ -595,7 +322,7 @@ public class VertailuTest {
         p.getTable().setTurn(k4);
         p.getTable().setRiver(k5);
 
-        v.tarkistaKasi(p.getPlayer());
+        kt.tarkistaKasi(p.getPlayer());
         int apu = v.tieBreakerKickerilla(p.getDealer(), p.getPlayer());
 
         assertEquals(0, apu);
@@ -608,6 +335,7 @@ public class VertailuTest {
 
         Peli p = new Peli(pa, po);
         Vertailu v = new Vertailu(p);
+        KadenTarkistaja kt = new KadenTarkistaja(v);
 
         Kortti p1 = new Kortti(Maa.HERTTA, Arvo.A);
         Kortti j1 = new Kortti(Maa.PATA, Arvo.J);
@@ -629,7 +357,7 @@ public class VertailuTest {
         p.getTable().setTurn(k4);
         p.getTable().setRiver(k5);
 
-        v.tarkistaKasi(p.getPlayer());
+        kt.tarkistaKasi(p.getPlayer());
         int apu = v.tieBreakerKickerilla(p.getDealer(), p.getPlayer());
 
         assertEquals(1, apu);
@@ -642,6 +370,7 @@ public class VertailuTest {
 
         Peli p = new Peli(pa, po);
         Vertailu v = new Vertailu(p);
+        KadenTarkistaja kt = new KadenTarkistaja(v);
 
         Kortti p1 = new Kortti(Maa.HERTTA, Arvo.J);
         Kortti j1 = new Kortti(Maa.PATA, Arvo.A);
@@ -663,7 +392,7 @@ public class VertailuTest {
         p.getTable().setTurn(k4);
         p.getTable().setRiver(k5);
 
-        v.tarkistaKasi(p.getPlayer());
+        kt.tarkistaKasi(p.getPlayer());
         int apu = v.tieBreakerKickerilla(p.getDealer(), p.getPlayer());
 
         assertEquals(-1, apu);

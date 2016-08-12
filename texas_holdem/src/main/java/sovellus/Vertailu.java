@@ -29,7 +29,6 @@ public class Vertailu {
     public List<Kortti> tarkistaVari(List<Kortti> kortit) {
         List<Kortti> vari = new ArrayList();
         List<Kortti> palautus = new ArrayList();
-
         for (Kortti k1 : kortit) {
             vari.add(k1);
             for (Kortti k2 : kortit) {
@@ -43,7 +42,6 @@ public class Vertailu {
             }
             vari.clear();
         }
-
         return palautus;
     }
 
@@ -53,7 +51,6 @@ public class Vertailu {
         int i = 0;
         int onPerakkain = 1;
         int suurin = 0;
-
         while (i < kortit.size() - 1) {
 
             if (kortit.get(i).getArvo() == kortit.get(j).getArvo() + 1) {
@@ -76,16 +73,13 @@ public class Vertailu {
                 return suurin;
             }
         }
-
         if (onPerakkain == 4) {
             int apu = kortit.size();
             if (kortit.get(apu - 1).getArvo() == kortit.get(apu - 2).getArvo() - 1) {
                 return kortit.get(apu - 5).getArvo();
             }
         }
-
         return 0;
-
     }
 
     public int tarkistaSamat(int koko, List<Kortti> kortit) {
@@ -120,71 +114,17 @@ public class Vertailu {
             } else if (pelaaja.get(i).getArvo() < jakaja.get(i).getArvo()) {
                 apu = -1;
             }
-
         }
-
         return apu;
     }
 
+    public Peli getGame() {
+        return game;
+    }
     /**
      *
      * @param o
      */
-    public void tarkistaKasi(Osallistuja o) { //Metodimonsteri mutta en keksinyt muitakaan tapoja toteuttaa kuin else if:eillä. Tarkistaa jokaisen mahdollisen käden ja antaa sen osallistujalle.
-        List<Kortti> kortit = kaikkiKortit(o.getTaskut(), game.getTable().getKortit());
-        List<Kortti> apuLista = new ArrayList();
-        Kasi k = Kasi.KICKER;
-
-        int x = tarkistaSamat(2, kortit);
-        if (x > 0) {
-            k = Kasi.PARI;
-            o.setKasi(k);
-            o.setKorkeinKortti(x);
-        }
-        int[] kp = tarkistaKaksiParia(kortit);
-        if (kp[0] > 0 && kp[1] > 0) {
-            k = Kasi.KAKSIPARIA;
-            o.setKasi(k);
-            o.setKorkeinKortti(kp[0]);
-        }
-        x = tarkistaSamat(3, kortit);
-        if (x > 0) {
-            k = Kasi.KOLMOSET;
-            o.setKasi(k);
-            o.setKorkeinKortti(x);
-        }
-        x = onkoSuora(kortit);
-        if (x > 0) {
-            k = Kasi.SUORA;
-            o.setKasi(k);
-            o.setKorkeinKortti(x);
-        }
-        apuLista = tarkistaVari(kortit);
-        if (!apuLista.isEmpty()) {
-            k = Kasi.VARI;
-            o.setKasi(k);
-            o.setKorkeinKortti(apuLista.get(0).getArvo());
-        }
-        int[] tk = tarkistaTayskasi(kortit);
-        if (tk[0] > 0 && tk[1] > 0) {
-            k = Kasi.TAYSKASI;
-            o.setKasi(k);
-            o.setKorkeinKortti(tk[0]);
-        }
-        x = tarkistaSamat(4, kortit);
-        if (x > 0) {
-            k = Kasi.NELOSET;
-            o.setKasi(k);
-            o.setKorkeinKortti(x);
-        }
-        x = tarkistaVarisuora(kortit);
-        if (x > 0) {
-            k = Kasi.VARISUORA;
-            o.setKasi(k);
-            o.setKorkeinKortti(x);
-        }
-    }
-
     /**
      *
      * @param kortit
@@ -204,7 +144,6 @@ public class Vertailu {
             luvut[1] = 0;
             return luvut;
         }
-
     }
 
     public static List<Kortti> kaikkiKortit(List<Kortti> taskut, List<Kortti> poydat) {
@@ -227,7 +166,6 @@ public class Vertailu {
         }
         return palautus;
     }
-
     public int[] tarkistaKaksiParia(List<Kortti> kortit) {
         int ensimmaisenParinArvo = tarkistaSamat(2, kortit);
 
@@ -256,5 +194,4 @@ public class Vertailu {
         kortit.addAll(valiaikainen);
         return luvut;
     }
-
 }
