@@ -16,7 +16,9 @@ import domain.Pelaaja;
 
 /**
  *
- * @author Kim
+ * @author Kim Luokka toteuttaa metodeja joiden avulla tarkistetaan mikä
+ * pokerikäsi pelaajalla tai jakajalla on
+ *
  */
 public class Vertailu {
 
@@ -26,6 +28,13 @@ public class Vertailu {
         this.game = p;
     }
 
+    /**
+     * Metodi tarkistaa onko korteissa ainaki viisi saman maan omaavaa korttia
+     *
+     * @param kortit Osallistujan kortit sekä pöytäkortit
+     * @return Lista korteista jotka ovat samaa maata
+     *
+     */
     public List<Kortti> tarkistaVari(List<Kortti> kortit) {
         List<Kortti> vari = new ArrayList();
         List<Kortti> palautus = new ArrayList();
@@ -45,6 +54,13 @@ public class Vertailu {
         return palautus;
     }
 
+    /**
+     * Metodi tarkistaa onko korteissa ainaki viisi arvoltaan peräkkäistä korttia
+     *
+     * @param kortit Osallistujan kortit sekä pöytäkortit
+     * @return Palauttaa suoran suurimman kortin. Jos ei suoraa palauttaa 0
+     *
+     */
     public int onkoSuora(List<Kortti> kortit) {
         Collections.sort(kortit);
         int j = 1;
@@ -81,7 +97,13 @@ public class Vertailu {
         }
         return 0;
     }
-
+    /**
+     * Metodi tarkistaa kuinka paljon saman omaavia kortteja on listassa
+     *
+     * @param koko, kortit Osallistujan kortit ja pöytäkortit sekä haluttu samojen korttien määrä
+     * @return Jos haluttu määrä vastaa korteissa olevien määrää, palautetaan samojen korttien arvo
+     *
+     */
     public int tarkistaSamat(int koko, List<Kortti> kortit) {
         List<Kortti> samat = new ArrayList();
 
@@ -99,7 +121,14 @@ public class Vertailu {
         }
         return 0;
     }
-
+    
+    /**
+     * Metodi tarkistaa kumpi osallistujista voittaa jos kummallakaan ei ole mitään kättä ja suurin kortti sama
+     *
+     * @param kortit Osallistujan kortit sekä pöytäkortit
+     * @return Lista korteista jotka ovat samaa maata
+     *
+     */
     public int tieBreakerKickerilla(Jakaja j, Pelaaja p) {
         int apu = 0;
 
@@ -121,14 +150,14 @@ public class Vertailu {
     public Peli getGame() {
         return game;
     }
+
+   
     /**
+     * Metodi tarkistaa onko korteissa ainakin kolmoset sekä pari
      *
-     * @param o
-     */
-    /**
+     * @param kortit Osallistujan kortit sekä pöytäkortit
+     * @return Kahden numeron taulukko jossa ensimmäisenä kolmosten arvo ja toisena parin arvo. Taulukon molemmat arvot 0 jos ei täyskättä.
      *
-     * @param kortit
-     * @return
      */
     public int[] tarkistaTayskasi(List<Kortti> kortit) {
         int x = tarkistaSamat(2, kortit);
@@ -146,6 +175,13 @@ public class Vertailu {
         }
     }
 
+    /**
+     * Metodi kokoaa listan pöydässä olevista korteista sekä osallistjan korteista
+     *
+     * @param kortit Osallistujan kortit sekä pöytäkortit erillisinä
+     * @return Lista parametrien yhdistymisestä
+     *
+     */
     public static List<Kortti> kaikkiKortit(List<Kortti> taskut, List<Kortti> poydat) {
         List<Kortti> lista = new ArrayList();
         lista.addAll(poydat);
@@ -153,6 +189,13 @@ public class Vertailu {
         return lista;
     }
 
+    /**
+     * Metodi tarkistaa onko korteissa ainaki viisi saman maan omaavaa korttia jotka ovat arvoltaan peräkkäisiä
+     *
+     * @param kortit Osallistujan kortit sekä pöytäkortit
+     * @return Kokonaisluku joka on suurin arvo siinä tapauksessa että värisuora muodostuu
+     *
+     */
     public int tarkistaVarisuora(List<Kortti> kortit) {
         List<Kortti> vari = tarkistaVari(kortit);
         int palautus = 0;
@@ -166,6 +209,15 @@ public class Vertailu {
         }
         return palautus;
     }
+    
+    /**
+     * Metodi tarkistaa onko korteissa ainaki kaksi eri arvoista paria
+     *
+     * @param kortit Osallistujan kortit sekä pöytäkortit
+     * @return Taulukko jossa lukuina ovat molempien parien arvot. Luvut ovat 0 jos kahta paria ei ole
+     *
+     */
+
     public int[] tarkistaKaksiParia(List<Kortti> kortit) {
         int ensimmaisenParinArvo = tarkistaSamat(2, kortit);
 

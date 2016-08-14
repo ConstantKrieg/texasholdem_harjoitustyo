@@ -11,6 +11,7 @@ import java.util.List;
 /**
  *
  * @author Kim
+ * Luokka joka toteuttaa jakajan sekä pelaajan. 
  */
 public class Osallistuja {
 

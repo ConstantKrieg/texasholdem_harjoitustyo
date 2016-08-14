@@ -15,10 +15,12 @@ import static sovellus.Vertailu.kaikkiKortit;
 /**
  *
  * @author Kim
+ * Käyttää vertailu-oliotaan laittamaan oikean käden oikealle osallistujalle
  */
 public class KadenTarkistaja {
     
     private Vertailu v;
+    
     
     public KadenTarkistaja(Vertailu v){
         this.v = v;
@@ -79,5 +81,7 @@ public class KadenTarkistaja {
             o.setKorkeinKortti(x);
         }
     }
+    
+   
     
 }

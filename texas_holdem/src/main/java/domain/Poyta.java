@@ -3,6 +3,9 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Luokka pitää sisällään pöytään tulevat kortit
+ */
 public class Poyta {
 
     private Kortti[] flop;
@@ -42,12 +45,14 @@ public class Poyta {
     }
 
     public void tulostaFlop() {
+        System.out.println("Flop:");
         for (int i = 0; i < flop.length; i++) {
             System.out.println(flop[i]);
         }
     }
 
     public void tulostaTurnJaRiver() {
+        System.out.println("Turn ja River:");
         System.out.println(turn);
         System.out.println(river);
     }

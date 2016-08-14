@@ -12,11 +12,11 @@ public class Jakaja extends Osallistuja {
         super();
     }
 
-    public boolean mahtuukoPoytaan() {
-        if (this.kasi.getKadenArvo() > 2) {
+    public boolean mahtuukoPoytaan(Peli p) {
+        if (p.getDealer().getKasi().getKadenArvo() > 2) {
             return true;
-        } else if (this.kasi.getKadenArvo() == 2) {
-            if (this.getKorkeinKortti() > 3) {
+        } else if (p.getDealer().getKasi().getKadenArvo() == 2) {
+            if (p.getDealer().getKorkeinKortti() > 3) {
                 return true;
             } else {
                 return false;
@@ -25,13 +25,49 @@ public class Jakaja extends Osallistuja {
             return false;
         }
     }
-    
+
     public void maksaVoitot(Peli p) {
-        if(p.getVoittaja() == 2){
-            if(p.getPlayer().getKasi().getKadenArvo() < 6){
-                p.getPlayer().vastaanotaVoitot(p.getAnte() * 2);
+        int voitto = 0;
+        int veto = 0;
+        if (p.getVoittaja() == 1) { //tarkistaa onko jakaja pöydässä. Jos on niin maksaa myös raisen 1:1 suhteella.
+            veto = p.getRaise() * 2;
+        }
+        if (p.getVoittaja() > 0) {        //Maksaa voittotaulukon mukaisesti voitot tarkistettuaan käden arvon
+            if (p.getPlayer().getKasi().getKadenArvo() < 6) {
+                voitto = p.getAnte() * 2 + veto;
+                System.out.println("Voitit " + voitto);
+                p.getPlayer().vastaanotaVoitot(voitto);
+            } else if (p.getPlayer().getKasi().getKadenArvo() == 6) {
+                voitto = p.getAnte() * 3 + veto;
+                System.out.println("Voitit " + voitto);
+                p.getPlayer().vastaanotaVoitot(voitto);
+            } else if (p.getPlayer().getKasi().getKadenArvo() == 7) {
+                voitto = p.getAnte() * 4 + veto;
+                System.out.println("Voitit " + voitto);
+                p.getPlayer().vastaanotaVoitot(voitto);
+            } else if (p.getPlayer().getKasi().getKadenArvo() == 8) {
+                voitto = p.getAnte() * 11 + veto;
+                System.out.println("Voitit " + voitto);
+                p.getPlayer().vastaanotaVoitot(voitto);
+            } else if (p.getPlayer().getKasi().getKadenArvo() == 9) {
+                voitto = p.getAnte() * 51 + veto;
+                System.out.println("Voitit " + voitto);
+                p.getPlayer().vastaanotaVoitot(voitto);
+            } else if (p.getPlayer().getKasi().getKadenArvo() == 9 && p.getPlayer().getKorkeinKortti() == 14) {
+                voitto = p.getAnte() * 101 + veto;
             }
+        } else if (p.getVoittaja() == 0) {
+            if (p.getRaise() > 0) {
+                System.out.println("Tasapeli");
+                voitto = p.getAnte() + p.getRaise();
+                p.getPlayer().vastaanotaVoitot(voitto);
+            } else {
+                System.out.println("Tasapeli");
+                voitto = p.getAnte();
+                p.getPlayer().vastaanotaVoitot(p.getAnte());
+            }
+        } else {
+            System.out.println("Jakaja voittaa");
         }
     }
-
 }

@@ -1,5 +1,9 @@
 package domain;
 
+
+/**
+ *  Luokka toteuttaa Kortti-olion kahden enumin avulla.
+ */
 public class Kortti implements Comparable<Kortti> {
 
     private Maa maa;
@@ -17,6 +21,7 @@ public class Kortti implements Comparable<Kortti> {
     public int getArvo() {
         return this.arvo.getArvo();
     }
+    
 
     @Override
     public String toString() {
@@ -29,6 +34,11 @@ public class Kortti implements Comparable<Kortti> {
         return s;
     }
 
+ /**
+ * Metodi kertoo kumpi korteista on arvokkaampi
+ * @param toinen Vertailtava kortti
+ * @return Luku sen mukaan kumpi on isompi
+ */
     @Override
     public int compareTo(Kortti toinen) {
         return toinen.getArvo() - this.getArvo();

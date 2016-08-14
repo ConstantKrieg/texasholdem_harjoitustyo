@@ -12,6 +12,9 @@ import domain.Pakka;
 import domain.Pelaaja;
 import domain.Poyta;
 
+/** @author Kim
+ * Luokka toteuttaa kaikki pelin kulkuun vaikuttavat metodit
+ */
 public class Peli {
 
     private final Pakka deck;
@@ -39,6 +42,9 @@ public class Peli {
         this.voittaja = voittaja;
     }
 
+    /**
+     * Metodi toteuttaa koko pelin kulun kutsumalla muita metodeja
+     */
     public void kaynnista() throws Exception {
         kysyPanos();
         jaaKortit();
@@ -46,20 +52,23 @@ public class Peli {
         if (lisaatkoPanosta()) {
             this.tulostaLoppuTilanne(this.dealer.getTaskut());
             paataVoittaja();
-            //if () 
-            {
-                
-            }
+            this.dealer.maksaVoitot(this);
+        } else {
+            System.out.println("Luovutit. Häviät alkupanoksen");
         }
 
     }
 
+    /**
+     * Metodi luo vertailu-ja kädentarkistajaoliot ja käyttämällä näiden
+     * metodeja asettaa arvon voittaja-muuttujaan
+     */
     public void paataVoittaja() {
         Vertailu v = new Vertailu(this);
         KadenTarkistaja kt = new KadenTarkistaja(v);
         kt.tarkistaKasi(player);
         kt.tarkistaKasi(dealer);
-        if (dealer.mahtuukoPoytaan()) {
+        if (dealer.mahtuukoPoytaan(this)) {
             if (player.getKasi().getKadenArvo() > dealer.getKasi().getKadenArvo()) {
                 this.setVoittaja(1);
             } else if (player.getKasi().getKadenArvo() < dealer.getKasi().getKadenArvo()) {
@@ -95,6 +104,10 @@ public class Peli {
         }
     }
 
+    /**
+     * Metodi käyttää Jakaja- ja Pelaaja-luokkien metodia ja asettaa taskukortit
+     * niille. Jakaa myös kortit pöytään
+     */
     public void jaaKortit() throws Exception {
         this.deck.sekoitus();
         for (int i = 0; i < 2; i++) {   //Jakaa taskukortit pelaajalle sekä jakajalle
@@ -112,21 +125,30 @@ public class Peli {
     }
 
     public void tulostaTilanneEnnenJatkoPanostusta(List<Kortti> pelaajanKortit) {
-
+        System.out.println("Pelaajan kortit");
         for (Kortti k : pelaajanKortit) {
             System.out.println(k);
         }
+        System.out.println("");
         table.tulostaFlop();
     }
 
     public void tulostaLoppuTilanne(List<Kortti> jakajanKortit) {
+        System.out.println("");
+        table.tulostaTurnJaRiver();
+        System.out.println("");
 
+        System.out.println("Jakajan kortit");
         for (Kortti k : jakajanKortit) {
             System.out.println(k);
         }
-        table.tulostaTurnJaRiver();
+
     }
 
+    /**
+     * Metodi kysyy pelaajalta panostaako enemman peliin vai luovuttaako
+     * @return true tai false sen mukaan laheeko pelaaja mukaan
+     */
     public boolean lisaatkoPanosta() {
 
         System.out.println("Lähdetkö mukaan (k/e)?:");
@@ -146,6 +168,7 @@ public class Peli {
     public int getVoittaja() {
         return voittaja;
     }
+
     public Pakka getDeck() {
         return deck;
     }

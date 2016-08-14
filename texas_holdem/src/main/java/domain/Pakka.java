@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/*
+ * Luokka luo ja hallitsee 52 kortista tehtyä listaa
+ */
+
 public class Pakka {
 
     private List<Kortti> pakka;
@@ -26,11 +30,17 @@ public class Pakka {
     public List<Kortti> getPakka() {
         return this.pakka;
     }
-
+/*
+ * Sekoittaa pakan
+ */
     public void sekoitus() {
         Collections.shuffle(pakka);
     }
 
+    /*
+ * Antaa ensimmäisenä olevan kortin pois
+    @return Kortti-olio joka listan ensimmäisenä
+ */
     public Kortti jaa() throws Exception {
         Kortti k = this.pakka.get(0);
         pakka.remove(0);
@@ -40,9 +50,7 @@ public class Pakka {
         return null;
     }
 
-    public void poltaKortti() {
-        this.pakka.remove(0);
-    }
+  
 
     @Override
     public String toString() {

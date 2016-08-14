@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sovelluslogiikka;
+package domain;
 
 import domain.Kortti;
 import domain.Osallistuja;
@@ -12,7 +12,9 @@ import java.util.List;
 
 /**
  *
- * @author Kim
+ * @author Kim Luokka luo ilmentymän osallistujasta jolla ei ole
+ * panostusmahdollisuutta ja tarvitsee tietyn suuruisen käden päästäkseen
+ * pöytään
  */
 public class Jakaja extends Osallistuja {
 
@@ -23,6 +25,9 @@ public class Jakaja extends Osallistuja {
         super();
     }
 
+    /*
+     * Tarkistaa onko jakajan käsi tarpeeksi hyvä mahtuakseen pöytään
+     */
     public boolean mahtuukoPoytaan() {
         boolean palautus = false;
 

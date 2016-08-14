@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sovelluslogiikka;
+package domain;
 
 import domain.Pakka;
-import domain.Kortti;
-import domain.Poyta;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,9 +17,9 @@ import static org.junit.Assert.*;
  *
  * @author tokito
  */
-public class PoytaTest {
+public class PakkaTest {
 
-    public PoytaTest() {
+    public PakkaTest() {
     }
 
     @BeforeClass
@@ -34,22 +32,18 @@ public class PoytaTest {
 
     @Before
     public void setUp() {
-        Poyta p = new Poyta();
+
     }
 
     @Test
-    public void flopToimii() {
-        Poyta p = new Poyta();
-        Pakka pa = new Pakka();
-        Kortti x = pa.getPakka().get(0);
-        Kortti y = pa.getPakka().get(1);
-        Kortti z = pa.getPakka().get(2);
-
-        p.setFlop(x, y, z);
-
-        assertEquals(p.getFlop()[1], y);
-
+    public void pakkaOikeanKokoinen() {
+        Pakka p = new Pakka();
+        assertEquals(p.getKoko(), 52);
     }
+
+  
+
+    
 
     @After
     public void tearDown() {

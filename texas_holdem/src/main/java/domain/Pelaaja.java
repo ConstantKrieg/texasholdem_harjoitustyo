@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import static domain.Arvo.KASI;
 
+/*
+ * Osallistujan ilmentymä jolla panostusmahdollisuus
+ */
 public class Pelaaja extends Osallistuja {
 
     private List<Kortti> taskut;
@@ -18,11 +21,18 @@ public class Pelaaja extends Osallistuja {
     public int getPanokset() {
         return panokset;
     }
+    /*
+     * Metodi asettaa pelikierrokselle panoksen poistamalla sen pelaajalta
+     */
 
     public void panosta(int panos) {
         this.panokset -= panos;
     }
 
+    /*
+     * Lisää pelaajan panostuksiin luvun
+     * @param voitot Voiton määrä
+     */
     public void vastaanotaVoitot(int voitot) {
         this.panokset += voitot;
     }
