@@ -14,23 +14,32 @@ import static sovellus.Vertailu.kaikkiKortit;
 
 /**
  *
- * @author Kim
- * Käyttää vertailu-oliotaan laittamaan oikean käden oikealle osallistujalle
+ * @author Kim Käyttää vertailu-oliotaan laittamaan oikean käden oikealle
+ * osallistujalle
  */
 public class KadenTarkistaja {
-    
+
     private Vertailu v;
-    
-    
-    public KadenTarkistaja(Vertailu v){
+
+    public KadenTarkistaja(Vertailu v) {
         this.v = v;
     }
-    
-    
-    public void tarkistaKasi(Osallistuja o) { //Metodimonsteri mutta en keksinyt muitakaan tapoja toteuttaa kuin else if:eillä. Tarkistaa jokaisen mahdollisen käden ja antaa sen osallistujalle.
+
+    public void tarkistaKasi(Osallistuja o) { 
         List<Kortti> kortit = kaikkiKortit(o.getTaskut(), v.getGame().getTable().getKortit());
-        List<Kortti> apuLista = new ArrayList();
         Kasi k = Kasi.KICKER;
+        
+        tarkistaPari(o, kortit, k);
+        tarkistaKaksiParia(o, kortit, k);
+        tarkistaKolmoset(o, kortit, k);
+        tarkistaSuora(o, kortit, k);
+        tarkistaVari(o, kortit, k);
+        tarkistaTayskasi(o, kortit, k);
+        tarkistaNeloset(o, kortit, k);
+        tarkistaVarisuora(o, kortit, k);
+    }
+
+    private void tarkistaPari(Osallistuja o, List<Kortti> kortit, Kasi k) {
 
         int x = v.tarkistaSamat(2, kortit);
         if (x > 0) {
@@ -38,50 +47,71 @@ public class KadenTarkistaja {
             o.setKasi(k);
             o.setKorkeinKortti(x);
         }
+    }
+
+    private void tarkistaKolmoset(Osallistuja o, List<Kortti> kortit, Kasi k) {
+        int x = v.tarkistaSamat(3, kortit);
+        if (x > 0) {
+            k = Kasi.KOLMOSET;
+            o.setKasi(k);
+            o.setKorkeinKortti(x);
+        }
+
+    }
+
+    private void tarkistaKaksiParia(Osallistuja o, List<Kortti> kortit, Kasi k) {
         int[] kp = v.tarkistaKaksiParia(kortit);
         if (kp[0] > 0 && kp[1] > 0) {
             k = Kasi.KAKSIPARIA;
             o.setKasi(k);
             o.setKorkeinKortti(kp[0]);
         }
-        x = v.tarkistaSamat(3, kortit);
-        if (x > 0) {
-            k = Kasi.KOLMOSET;
-            o.setKasi(k);
-            o.setKorkeinKortti(x);
-        }
-        x = v.onkoSuora(kortit);
+    }
+
+    private void tarkistaSuora(Osallistuja o, List<Kortti> kortit, Kasi k) {
+        int x = v.onkoSuora(kortit);
         if (x > 0) {
             k = Kasi.SUORA;
             o.setKasi(k);
             o.setKorkeinKortti(x);
         }
+    }
+
+    private void tarkistaVari(Osallistuja o, List<Kortti> kortit, Kasi k) {
+        List<Kortti> apuLista = new ArrayList();
         apuLista = v.tarkistaVari(kortit);
         if (!apuLista.isEmpty()) {
             k = Kasi.VARI;
             o.setKasi(k);
             o.setKorkeinKortti(apuLista.get(0).getArvo());
         }
+    }
+
+    private void tarkistaTayskasi(Osallistuja o, List<Kortti> kortit, Kasi k) {
         int[] tk = v.tarkistaTayskasi(kortit);
         if (tk[0] > 0 && tk[1] > 0) {
             k = Kasi.TAYSKASI;
             o.setKasi(k);
             o.setKorkeinKortti(tk[0]);
         }
-        x = v.tarkistaSamat(4, kortit);
+    }
+
+    private void tarkistaNeloset(Osallistuja o, List<Kortti> kortit, Kasi k) {
+        int x = v.tarkistaSamat(4, kortit);
         if (x > 0) {
             k = Kasi.NELOSET;
             o.setKasi(k);
             o.setKorkeinKortti(x);
         }
-        x = v.tarkistaVarisuora(kortit);
+    }
+
+    private void tarkistaVarisuora(Osallistuja o, List<Kortti> kortit, Kasi k) {
+        int x = v.tarkistaVarisuora(kortit);
         if (x > 0) {
             k = Kasi.VARISUORA;
             o.setKasi(k);
             o.setKorkeinKortti(x);
         }
     }
-    
-   
-    
+
 }

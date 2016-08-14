@@ -150,8 +150,6 @@ public class Vertailu {
     public Peli getGame() {
         return game;
     }
-
-   
     /**
      * Metodi tarkistaa onko korteissa ainakin kolmoset sekä pari
      *
@@ -174,7 +172,6 @@ public class Vertailu {
             return luvut;
         }
     }
-
     /**
      * Metodi kokoaa listan pöydässä olevista korteista sekä osallistjan korteista
      *
@@ -188,7 +185,6 @@ public class Vertailu {
         lista.addAll(taskut);
         return lista;
     }
-
     /**
      * Metodi tarkistaa onko korteissa ainaki viisi saman maan omaavaa korttia jotka ovat arvoltaan peräkkäisiä
      *

@@ -12,11 +12,10 @@ import javax.swing.JPanel;
  *
  * @author Kim
  */
-public class PeliPaneeli extends JPanel{
-    
-    
-    public PeliPaneeli(){
+public class PeliPaneeli extends JPanel {
+
+    public PeliPaneeli() {
         super(new GridBagLayout());
     }
-    
+
 }
