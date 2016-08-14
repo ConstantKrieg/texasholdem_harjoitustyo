@@ -11,3 +11,6 @@ Päivä | Tunnit | Kuvaus
 09.08.2016|2h| Käsien arvioimisen tekemistä
 10.08.2016|3h| Käsien arvioimisen tekemistä
 11.08.2016|3h| Käsien arvioimisen viimeistely sekä testien kirjoittaminen sille. 
+12.08.2016|3h| Toiminnallisuuden valmistelua
+13.08.2016|3h| Käyttöliittymän aloittelua ja Swingiin tutustumista
+14.08.2016|4h| Koodin refaktorointia ja käyttöliittymän ohjelmointia 
