@@ -12,8 +12,8 @@ import domain.Pakka;
 import domain.Pelaaja;
 import domain.Poyta;
 
-/** @author Kim
- * Luokka toteuttaa kaikki pelin kulkuun vaikuttavat metodit
+/**
+ * @author Kim Luokka toteuttaa kaikki pelin kulkuun vaikuttavat metodit
  */
 public class Peli {
 
@@ -24,7 +24,8 @@ public class Peli {
     private int ante;
     private int raise;
     private Scanner lukija;
-    private int voittaja; //jos voittaja on 1 niin pelajaa voittaa ja os -1 niin jakaja. Jos pelaaja voittaa niin ettei jakaja mahdu pöytään on voittajan arvo 2
+    private int voittaja; //jos voittaja on 1 niin pelajaa voittaa ja jos -1 niin jakaja. Jos pelaaja voittaa niin ettei jakaja mahdu pöytään on voittajan arvo 2
+    private boolean lisaakoPanosta;
 
     public Peli(Pakka pakka, Poyta poyta) {
         this.deck = pakka;
@@ -35,29 +36,14 @@ public class Peli {
         this.raise = 0;
         this.lukija = new Scanner(System.in);
         this.voittaja = 0;
-
+        this.lisaakoPanosta = false;
     }
 
     public void setVoittaja(int voittaja) {
         this.voittaja = voittaja;
     }
 
-    /**
-     * Metodi toteuttaa koko pelin kulun kutsumalla muita metodeja
-     */
-    public void kaynnista() throws Exception {
-        kysyPanos();
-        jaaKortit();
-        this.tulostaTilanneEnnenJatkoPanostusta(this.player.getTaskut());
-        if (lisaatkoPanosta()) {
-            this.tulostaLoppuTilanne(this.dealer.getTaskut());
-            paataVoittaja();
-            this.dealer.maksaVoitot(this);
-        } else {
-            System.out.println("Luovutit. Häviät alkupanoksen");
-        }
-
-    }
+    
 
     /**
      * Metodi luo vertailu-ja kädentarkistajaoliot ja käyttämällä näiden
@@ -73,14 +59,12 @@ public class Peli {
                 this.setVoittaja(1);
             } else if (player.getKasi().getKadenArvo() < dealer.getKasi().getKadenArvo()) {
                 this.setVoittaja(-1);
+            } else if (player.getKorkeinKortti() > dealer.getKorkeinKortti()) {
+                this.setVoittaja(1);
+            } else if (player.getKorkeinKortti() < dealer.getKorkeinKortti()) {
+                this.setVoittaja(-1);
             } else {
-                if (player.getKorkeinKortti() > dealer.getKorkeinKortti()) {
-                    this.setVoittaja(1);
-                } else if (player.getKorkeinKortti() < dealer.getKorkeinKortti()) {
-                    this.setVoittaja(-1);
-                } else {
-                    this.setVoittaja(v.tieBreakerKickerilla(dealer, player));
-                }
+                this.setVoittaja(v.tieBreakerKickerilla(dealer, player));
             }
         } else {
             this.setVoittaja(2);
@@ -92,17 +76,7 @@ public class Peli {
         return table;
     }
 
-    public void kysyPanos() {
-        while (true) {
-            System.out.print("Anna panos (Panoksen oltava välillä 10-500): ");
-            int x = Integer.parseInt(lukija.nextLine());
-
-            if (x <= 500 && x >= 10) { //tarkistaa että panostuksen ehdot tayttyvat
-                this.ante = x;
-                break;
-            }
-        }
-    }
+    
 
     /**
      * Metodi käyttää Jakaja- ja Pelaaja-luokkien metodia ja asettaa taskukortit
@@ -124,45 +98,8 @@ public class Peli {
         table.setRiver(river);
     }
 
-    public void tulostaTilanneEnnenJatkoPanostusta(List<Kortti> pelaajanKortit) {
-        System.out.println("Pelaajan kortit");
-        for (Kortti k : pelaajanKortit) {
-            System.out.println(k);
-        }
-        System.out.println("");
-        table.tulostaFlop();
-    }
-
-    public void tulostaLoppuTilanne(List<Kortti> jakajanKortit) {
-        System.out.println("");
-        table.tulostaTurnJaRiver();
-        System.out.println("");
-
-        System.out.println("Jakajan kortit");
-        for (Kortti k : jakajanKortit) {
-            System.out.println(k);
-        }
-
-    }
-
-    /**
-     * Metodi kysyy pelaajalta panostaako enemman peliin vai luovuttaako
-     * @return true tai false sen mukaan laheeko pelaaja mukaan
-     */
-    public boolean lisaatkoPanosta() {
-
-        System.out.println("Lähdetkö mukaan (k/e)?:");
-        while (true) {
-            String vastaus = lukija.nextLine();
-            if (vastaus.equals("k")) {
-                this.raise = 2 * this.ante;
-                return true;
-            } else if (vastaus.equals("e")) {
-                return false;
-            } else {
-                System.out.println("Vastaukseksi kelpaa vain k tai e ");
-            }
-        }
+    public void setLisaakoPanosta(boolean lisaakoPanosta) {
+        this.lisaakoPanosta = lisaakoPanosta;
     }
 
     public int getVoittaja() {
@@ -175,6 +112,14 @@ public class Peli {
 
     public Pelaaja getPlayer() {
         return player;
+    }
+
+    public void setAnte(int ante) {
+        this.ante = ante;
+    }
+
+    public void setRaise(int raise) {
+        this.raise = raise;
     }
 
     public Jakaja getDealer() {

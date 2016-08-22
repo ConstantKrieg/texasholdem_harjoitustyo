@@ -5,18 +5,23 @@
  */
 package kayttoliittyma;
 
+import domain.Pakka;
+import domain.Poyta;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Insets;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
+import sovellus.Peli;
 
 /**
  *
@@ -26,11 +31,16 @@ public class Kayttoliittyma implements Runnable {
 
     private JFrame frame;
     private JButton button;
+    private Pakka pakka1 = new Pakka();
+    private Poyta poyta1 = new Poyta();
+    private Peli peli = new Peli(pakka1, poyta1);
 
     @Override
     public void run() {
         frame = new JFrame("Casino Hold'em");
         frame.setPreferredSize(new Dimension(1200, 800));
+        frame.setResizable(false);
+        
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,75 +48,38 @@ public class Kayttoliittyma implements Runnable {
 
         frame.pack();
         frame.setVisible(true);
+        
     }
 
     public void luoKomponentit(Container container) {
-        JPanel pelialusta = luoPelialusta();
-        container.add(pelialusta);
+        BoxLayout layout = new BoxLayout(container, BoxLayout.Y_AXIS);
+        container.setLayout(layout);
+        KorttiPaneeli jakaja = new KorttiPaneeli("Jakaja");
+        KorttiPaneeli pelaaja = new KorttiPaneeli("Pelaaja");
+        PoytaPaneeli poyta = new PoytaPaneeli();
+        PanostusPaneeli panostus = new PanostusPaneeli();
+        PanostuksenKuuntelija pk = new PanostuksenKuuntelija(this.peli, jakaja, pelaaja, poyta, panostus);
+        panostus.getPanostusNappi().addActionListener(pk);
+        RaisenKuuntelija rk = new RaisenKuuntelija(this.peli, jakaja, pelaaja, poyta, panostus);
+        panostus.getRaiseNappi().addActionListener(rk);
+        
+        container.add(jakaja);
+        container.add(poyta);
+        container.add(pelaaja);
+        container.add(panostus);
+        container.add(alavalikko());
+    }
+    
+    private JPanel alavalikko(){
+        JPanel paneeli = new JPanel(new GridLayout(1,2));
+        JButton uusiPeli = new JButton("Uusi peli");
+        JButton ohjeet = new JButton("Ohjeet");
+        
+        paneeli.add(uusiPeli);
+        paneeli.add(ohjeet);
+        return paneeli;
     }
 
-    public JPanel luoPelialusta() {
-        JPanel pane = new JPanel(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-
-        c.weightx = 5;
-        c.weighty = 5;
-        c.gridx = 1;
-        c.gridy = 2;
-        c.anchor = GridBagConstraints.CENTER;
-
-        JLabel jakaja1 = new JLabel("jakaja1");
-        c.gridx = 1;
-        c.gridy = 0;
-        pane.add(jakaja1, c);
-
-        JLabel jakaja2 = new JLabel("jakaja2");
-        c.gridx = 2;
-        c.gridy = 0;
-        pane.add(jakaja2, c);
-        
-        c.anchor = GridBagConstraints.LINE_START;
-
-        JLabel flop1 = new JLabel("flop1");
-        c.gridx = 5;
-        c.gridy = 1;
-        pane.add(flop1, c);
-        
-        JLabel flop2 = new JLabel("flop2");
-        c.gridx = 4;
-        c.gridy = 1;
-        pane.add(flop2, c);
-        
-        JLabel flop3 = new JLabel("flop3");
-        c.gridx = 3;
-        c.gridy = 1;
-        pane.add(flop3, c);
-        
-        JLabel turn = new JLabel("turn");
-        c.gridx = 2;
-        c.gridy = 1;
-        pane.add(turn, c);
-        
-        JLabel river = new JLabel("river");
-        c.gridx = 1;
-        c.gridy = 1;
-        pane.add(river, c);
-        
-        c.anchor = GridBagConstraints.CENTER;
-        
-        JLabel pelaaja1 = new JLabel("pelaaja1");
-        c.gridx = 1;
-        c.gridy = 2;
-        pane.add(pelaaja1, c);
-        
-        JLabel pelaaja2 = new JLabel("pelaaja2");
-        c.gridx = 2;
-        c.gridy = 2;
-        pane.add(pelaaja2, c);
-        
-        
-
-        return pane;
-    }
+    
 
 }
