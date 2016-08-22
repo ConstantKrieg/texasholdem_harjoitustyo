@@ -5,12 +5,16 @@
  */
 package kayttoliittyma;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Insets;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -41,72 +45,39 @@ public class Kayttoliittyma implements Runnable {
     }
 
     public void luoKomponentit(Container container) {
-        JPanel pelialusta = luoPelialusta();
-        container.add(pelialusta);
+        BorderLayout layout = new BorderLayout();
+        container.setLayout(layout);
+        
+        Box laatikko = Box.createVerticalBox();
+        
+        KorttiPaneeli jakaja = new KorttiPaneeli();
+        laatikko.add(jakaja);
+        
+        PoytaKorttiPaneeli poyta = new PoytaKorttiPaneeli();
+        laatikko.add(poyta);
+        
+        KorttiPaneeli pelaaja = new KorttiPaneeli();
+        laatikko.add(pelaaja);
+        
+        container.add(laatikko, BorderLayout.CENTER);
+        container.add(alaValikko(), BorderLayout.SOUTH);
+        
+        
+        
     }
 
-    public JPanel luoPelialusta() {
-        JPanel pane = new JPanel(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
+    private JPanel alaValikko() {
+        JPanel paneeli = new JPanel(new GridLayout(1, 2));
+        JButton uusiPeli = new JButton("Uusi peli");
+        
+        paneeli.add(uusiPeli);
+        JButton ohjeet = new JButton("Ohjeet");
+        paneeli.add(ohjeet);
+        
+        return paneeli;
 
-        c.weightx = 5;
-        c.weighty = 5;
-        c.gridx = 1;
-        c.gridy = 2;
-        c.anchor = GridBagConstraints.CENTER;
-
-        JLabel jakaja1 = new JLabel("jakaja1");
-        c.gridx = 1;
-        c.gridy = 0;
-        pane.add(jakaja1, c);
-
-        JLabel jakaja2 = new JLabel("jakaja2");
-        c.gridx = 2;
-        c.gridy = 0;
-        pane.add(jakaja2, c);
-        
-        c.anchor = GridBagConstraints.LINE_START;
-
-        JLabel flop1 = new JLabel("flop1");
-        c.gridx = 5;
-        c.gridy = 1;
-        pane.add(flop1, c);
-        
-        JLabel flop2 = new JLabel("flop2");
-        c.gridx = 4;
-        c.gridy = 1;
-        pane.add(flop2, c);
-        
-        JLabel flop3 = new JLabel("flop3");
-        c.gridx = 3;
-        c.gridy = 1;
-        pane.add(flop3, c);
-        
-        JLabel turn = new JLabel("turn");
-        c.gridx = 2;
-        c.gridy = 1;
-        pane.add(turn, c);
-        
-        JLabel river = new JLabel("river");
-        c.gridx = 1;
-        c.gridy = 1;
-        pane.add(river, c);
-        
-        c.anchor = GridBagConstraints.CENTER;
-        
-        JLabel pelaaja1 = new JLabel("pelaaja1");
-        c.gridx = 1;
-        c.gridy = 2;
-        pane.add(pelaaja1, c);
-        
-        JLabel pelaaja2 = new JLabel("pelaaja2");
-        c.gridx = 2;
-        c.gridy = 2;
-        pane.add(pelaaja2, c);
-        
-        
-
-        return pane;
     }
+    
+    
 
 }
