@@ -25,9 +25,15 @@ public class Pelaaja extends Osallistuja {
      * Metodi asettaa pelikierrokselle panoksen poistamalla sen pelaajalta
      */
 
-    public void panosta(int panos) {
-        this.panokset -= panos;
+    public boolean panosta(int panos) {
+        if(panos  <= this.panokset){
+            this.panokset -= panos;
+            return true;
+        }
+        return false;
     }
+    
+    
 
     /*
      * Lisää pelaajan panostuksiin luvun

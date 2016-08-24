@@ -16,12 +16,12 @@ import java.util.List;
  * panostusmahdollisuutta ja tarvitsee tietyn suuruisen käden päästäkseen
  * pöytään
  */
-public class Jakaja extends Osallistuja {
+public class JakajaTest extends Osallistuja {
 
     private List<Kortti> taskut;
     private Kasi kasi;
 
-    public Jakaja() {
+    public JakajaTest() {
         super();
     }
 
