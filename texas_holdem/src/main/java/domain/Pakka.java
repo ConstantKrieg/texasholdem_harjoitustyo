@@ -1,5 +1,6 @@
 package domain;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,9 +18,12 @@ public class Pakka {
 
         for (Maa m : Maa.values()) {
             for (Arvo a : Arvo.values()) {
+                
                 pakka.add(new Kortti(m, a));
             }
         }
+        
+      
 
     }
 
@@ -36,6 +40,8 @@ public class Pakka {
     public void sekoitus() {
         Collections.shuffle(pakka);
     }
+    
+    
 
     /*
  * Antaa ensimmäisenä olevan kortin pois

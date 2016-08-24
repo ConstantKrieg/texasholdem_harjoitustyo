@@ -48,7 +48,13 @@ public class PanostuksenKuuntelija implements ActionListener {
         this.poyta.getFlop2().setText("");
         this.poyta.getFlop3().setText("");
 
-        int panostus = Integer.parseInt(this.panostus.getPanostuskentta().getText());
+        int panostus = 0;
+        
+        try{
+            panostus = Integer.parseInt(this.panostus.getPanostuskentta().getText());
+        } catch (Exception e2){
+            return;
+        }
         if (peli.getPlayer().panosta(panostus)) {
             this.peli.setAnte(panostus);
             this.panostus.getPanostenMaara().setText("Pelimerkkejä: " + this.peli.getPlayer().getPanokset() + "");
@@ -58,7 +64,9 @@ public class PanostuksenKuuntelija implements ActionListener {
             } catch (Exception ex) {
                 Logger.getLogger(PanostuksenKuuntelija.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            
+            this.pelaaja.asetaVariKorttienJakamiseksi();
+            this.poyta.asetaVariFlopille();
             Kortti[] flop = this.peli.getTable().getFlop();
             tarkistaVarit(flop);
             asetaTekstit(flop);
@@ -67,33 +75,11 @@ public class PanostuksenKuuntelija implements ActionListener {
     }
 
     private void tarkistaVarit(Kortti[] flop) {
-
-        if (this.peli.getPlayer().getTaskut().get(0).getMaa().equals(Maa.HERTTA.getMaa()) || this.peli.getPlayer().getTaskut().get(0).getMaa().equals(Maa.RUUTU.getMaa())) {
-            this.pelaaja.getK1().setForeground(Color.red);
-        } else {
-            this.pelaaja.getK1().setForeground(Color.BLACK);
-        }
-        if (this.peli.getPlayer().getTaskut().get(1).getMaa().equals(Maa.HERTTA.getMaa()) || this.peli.getPlayer().getTaskut().get(1).getMaa().equals(Maa.RUUTU.getMaa())) {
-            this.pelaaja.getK2().setForeground(Color.red);
-        } else {
-            this.pelaaja.getK2().setForeground(Color.BLACK);
-        }
-
-        if (flop[0].getMaa().equals(Maa.HERTTA.getMaa()) || flop[0].getMaa().equals(Maa.RUUTU.getMaa())) {
-            this.poyta.getFlop1().setForeground(Color.red);
-        } else {
-            this.poyta.getFlop1().setForeground(Color.BLACK);
-        }
-        if (flop[1].getMaa().equals(Maa.HERTTA.getMaa()) || flop[1].getMaa().equals(Maa.RUUTU.getMaa())) {
-            this.poyta.getFlop2().setForeground(Color.red);
-        } else {
-            this.poyta.getFlop2().setForeground(Color.BLACK);
-        }
-        if (flop[2].getMaa().equals(Maa.HERTTA.getMaa()) || flop[2].getMaa().equals(Maa.RUUTU.getMaa())) {
-            this.poyta.getFlop3().setForeground(Color.red);
-        } else {
-            this.poyta.getFlop3().setForeground(Color.BLACK);
-        }
+          this.pelaaja.getK1().setForeground(this.peli.getPlayer().getTaskut().get(0).getVari());
+          this.pelaaja.getK2().setForeground(this.peli.getPlayer().getTaskut().get(1).getVari());
+          this.poyta.getFlop1().setForeground(flop[0].getVari());
+          this.poyta.getFlop2().setForeground(flop[1].getVari());
+          this.poyta.getFlop3().setForeground(flop[2].getVari());
     }
 
     private void saadaNapit() {
@@ -104,6 +90,8 @@ public class PanostuksenKuuntelija implements ActionListener {
     }
 
     private void asetaTekstit(Kortti[] flop) {
+        String taka = "\u1F0A0";
+        
         this.pelaaja.getK1().setText(this.peli.getPlayer().getTaskut().get(0).toString());
         this.pelaaja.getK2().setText(this.peli.getPlayer().getTaskut().get(1).toString());
 

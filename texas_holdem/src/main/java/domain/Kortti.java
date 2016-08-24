@@ -1,5 +1,7 @@
 package domain;
 
+import java.awt.Color;
+
 /**
  * Luokka toteuttaa Kortti-olion kahden enumin avulla.
  */
@@ -7,14 +9,24 @@ public class Kortti implements Comparable<Kortti> {
 
     private Maa maa;
     private Arvo arvo;
+    private Color vari;
 
     public Kortti(Maa maa, Arvo arvo) {
         this.maa = maa;
         this.arvo = arvo;
+        
     }
-
+    
+    
+   
+    
+    
     public String getMaa() {
         return this.maa.getMaa();
+    }
+    
+    public Color getVari(){
+        return this.maa.getVari();
     }
 
     public int getArvo() {

@@ -38,7 +38,7 @@ public class Kayttoliittyma implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("Casino Hold'em");
-        frame.setPreferredSize(new Dimension(1200, 800));
+        frame.setPreferredSize(new Dimension(1200, 900));
         frame.setResizable(false);
         
 
@@ -67,6 +67,7 @@ public class Kayttoliittyma implements Runnable {
         container.add(poyta);
         container.add(pelaaja);
         container.add(panostus);
+        panostus.getPanostenMaara().setText("Pelimerkkejä: " + this.peli.getPlayer().getPanokset());
         //container.add(alavalikko());
     }
     

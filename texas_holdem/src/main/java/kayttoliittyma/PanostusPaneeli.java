@@ -7,6 +7,7 @@ package kayttoliittyma;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -25,13 +26,13 @@ public class PanostusPaneeli extends JPanel{
     private JButton foldNappi;
     private JLabel panostenMaara;
     private JLabel status;
-    private JLabel tayte;
+    private JLabel info;
     private Color vari;
     
     public PanostusPaneeli(){
         super(new FlowLayout());
         //super(new GridLayout(1,6));
-        this.vari = new Color(15,99,0);
+        this.vari = new Color(148, 7, 43);
         this.setBackground(vari);
         this.panostuskentta = new JTextField(4);
         this.panostusNappi = new JButton("Panosta");
@@ -39,19 +40,32 @@ public class PanostusPaneeli extends JPanel{
         this.foldNappi = new JButton ("Fold");
         this.panostenMaara = new JLabel("");
         this.status = new JLabel();
-        this.tayte = new JLabel();
+        this.info = new JLabel("Panoksen oltava kokonaisluku | ");
         this.setAlignmentY(CENTER_ALIGNMENT);
         
         this.raiseNappi.setEnabled(false);
         this.foldNappi.setEnabled(false);
+        asetaVarit();
         
-        add(tayte);
+        add(info);
         add(this.status);
         add(this.panostuskentta);
         add(this.panostusNappi);
         add(this.raiseNappi);
         add(this.foldNappi);
         add(this.panostenMaara);
+        
+    }
+    
+    private void asetaVarit(){
+        Font f = new Font("Unicorn", Font.BOLD, 18);
+        Color c = new Color(201, 172, 6);
+        this.info.setFont(f);
+        this.info.setForeground(c);
+        this.status.setFont(f);
+        this.status.setForeground(c);
+        this.panostenMaara.setFont(f);
+        this.panostenMaara.setForeground(c);
         
     }
 

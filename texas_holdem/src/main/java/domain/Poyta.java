@@ -44,18 +44,7 @@ public class Poyta {
         this.river = k;
     }
 
-    public void tulostaFlop() {
-        System.out.println("Flop:");
-        for (int i = 0; i < flop.length; i++) {
-            System.out.println(flop[i]);
-        }
-    }
-
-    public void tulostaTurnJaRiver() {
-        System.out.println("Turn ja River:");
-        System.out.println(turn);
-        System.out.println(river);
-    }
+    
 
     public List<Kortti> getKortit() {
         List<Kortti> lista = new ArrayList();

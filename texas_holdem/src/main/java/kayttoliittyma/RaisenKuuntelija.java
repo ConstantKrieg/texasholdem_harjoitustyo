@@ -36,10 +36,10 @@ public class RaisenKuuntelija implements ActionListener {
         int raise = this.peli.getAnte() * 2;
         this.peli.setRaise(raise);
         this.peli.getPlayer().panosta(raise);
-
+        this.poyta.asetaVariTurnilleJaRiverille();
+        this.jakaja.asetaVariKorttienJakamiseksi();
         asetaVarit();
         asetaTekstit();
-        
 
         this.peli.paataVoittaja();
 
@@ -52,45 +52,28 @@ public class RaisenKuuntelija implements ActionListener {
         }
 
         this.panostus.getPanostenMaara().setText("Pelimerkkejä: " + this.peli.getPlayer().getPanokset() + "");
-        
+
         asetaNapit();
     }
-    
-    private void asetaVarit(){
-        if (this.peli.getDealer().getTaskut().get(0).getMaa().equals(Maa.HERTTA.getMaa()) || this.peli.getDealer().getTaskut().get(0).getMaa().equals(Maa.RUUTU.getMaa())) {
-            this.jakaja.getK1().setForeground(Color.red);
-        } else {
-            this.jakaja.getK1().setForeground(Color.BLACK);
-        }
-        if (this.peli.getDealer().getTaskut().get(1).getMaa().equals(Maa.HERTTA.getMaa()) || this.peli.getDealer().getTaskut().get(1).getMaa().equals(Maa.RUUTU.getMaa())) {
-            this.jakaja.getK2().setForeground(Color.red);
-        } else {
-            this.jakaja.getK2().setForeground(Color.BLACK);
-        }
+
+    private void asetaVarit() {
+        this.poyta.getTurn().setForeground(this.peli.getTable().getTurn().getVari());
+        this.poyta.getRiver().setForeground(this.peli.getTable().getRiver().getVari());
+        this.jakaja.getK1().setForeground(this.peli.getDealer().getTaskut().get(0).getVari());
+        this.jakaja.getK2().setForeground(this.peli.getDealer().getTaskut().get(1).getVari());
         
-        if(this.peli.getTable().getTurn().getMaa().equals(Maa.HERTTA.getMaa()) || this.peli.getTable().getTurn().getMaa().equals(Maa.RUUTU.getMaa())){
-            this.poyta.getTurn().setForeground(Color.red);
-        } else {
-            this.poyta.getTurn().setForeground(Color.BLACK);
-        }
-        
-        if(this.peli.getTable().getRiver().getMaa().equals(Maa.HERTTA.getMaa()) || this.peli.getTable().getRiver().getMaa().equals(Maa.RUUTU.getMaa())){
-            this.poyta.getRiver().setForeground(Color.red);
-        } else {
-            this.poyta.getRiver().setForeground(Color.BLACK);
-        }
         
     }
-    
-    private void asetaTekstit(){
+
+    private void asetaTekstit() {
         this.jakaja.getK1().setText(this.peli.getDealer().getTaskut().get(0).toString());
         this.jakaja.getK2().setText(this.peli.getDealer().getTaskut().get(1).toString());
 
         this.poyta.getTurn().setText(this.peli.getTable().getTurn().toString());
         this.poyta.getRiver().setText(this.peli.getTable().getRiver().toString());
     }
-    
-    private void asetaNapit(){
+
+    private void asetaNapit() {
         this.panostus.getRaiseNappi().setEnabled(false);
         this.panostus.getFoldNappi().setEnabled(false);
         this.panostus.getPanostuskentta().setEnabled(true);
