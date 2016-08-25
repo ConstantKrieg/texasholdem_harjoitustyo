@@ -14,3 +14,7 @@ Päivä | Tunnit | Kuvaus
 12.08.2016|3h| Toiminnallisuuden valmistelua
 13.08.2016|3h| Käyttöliittymän aloittelua ja Swingiin tutustumista
 14.08.2016|4h| Koodin refaktorointia ja käyttöliittymän ohjelmointia 
+22.08.2016|2h|Käyttöliittymän tekoa
+23.08.2016|3h|Käyttöliittymän tekoa
+24.08.2016|2h|Käyttöliittymän tekoa
+25.08.2016|5h|Testien kirjoittamista, luokkien lisäämistä sekä sekvenssikaavion piirtämistä
