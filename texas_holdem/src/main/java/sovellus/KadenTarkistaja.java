@@ -12,19 +12,25 @@ import java.util.ArrayList;
 import java.util.List;
 import static sovellus.Vertailu.kaikkiKortit;
 
-/**
- *
- * @author Kim Käyttää vertailu-oliotaan laittamaan oikean käden oikealle
- * osallistujalle
+/*
+ * @author Kim Käyttää vertailu-oliotaan asettamaan kädet.
  */
 public class KadenTarkistaja {
 
     private Vertailu v;
 
+    /**
+     * Konstruktori.
+     * @param v Vertailu-olio
+     */
     public KadenTarkistaja(Vertailu v) {
         this.v = v;
     }
 
+    /**
+     * Tarkistaa muiden metodien avulla mikä käsi osallistujalla on.
+     * @param o Osallistuja jonka käsi tarkistetaan
+     */
     public void tarkistaKasi(Osallistuja o) {
         List<Kortti> kortit = kaikkiKortit(o.getTaskut(), v.getGame().getTable().getKortit());
         Kasi k = Kasi.KICKER;

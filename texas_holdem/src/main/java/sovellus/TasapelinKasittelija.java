@@ -13,10 +13,8 @@ import java.util.Collections;
 import java.util.List;
 import static sovellus.Vertailu.kaikkiKortit;
 
-/**
- *
- * @author Kim Luokka toteuttaa metodin kaynnistaTarkistus joka aloitetaan
- * Peli-luokasta mikäli jakajan ja pelaajan kädet ovat samanarvoisia
+/*
+ * @author Kim Luokka toteuttaa metodin kaynnistaTarkistus.
  */
 public class TasapelinKasittelija {
 
@@ -24,6 +22,10 @@ public class TasapelinKasittelija {
     private Jakaja j;
     private Pelaaja pe;
 
+    /**
+     * Konstruktori.
+     * @param p Peli jossa tasapeli tapahtunut
+     */
     public TasapelinKasittelija(Peli p) {
         this.p = p;
         this.j = this.p.getDealer();
@@ -32,7 +34,7 @@ public class TasapelinKasittelija {
 
     /**
      * Metodi käy läpi kaikki eri käsien arvot private metodeilla ja palauttaa
-     * kokonaisluvun sitä mukaan kumpi voittaa
+     * kokonaisluvun sitä mukaan kumpi voittaa.
      *
      * @return Kokonaisluku sen mukaan oliko pelaajalla vai jakajalla korkeampi
      * käsi

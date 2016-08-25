@@ -5,22 +5,27 @@
  */
 package sovellus;
 
-/**
- *
+/*
  * @author Kim Luokka saa Peli-olion jonka kautta se maksaa mahdolliset voitot
- * pelaajalle
+ * pelaajalle.
  */
 public class VoitonMaksaja {
 
     private Peli game;
 
+    /**
+     * Konstruktori.
+     * @param p Käytettävä peli
+     */
     public VoitonMaksaja(Peli p) {
         this.game = p;
     }
 
-    /*
-     *Maksaa voitot voittotaulukon mukaisesti tarkistettuaan ensiksi käden arvon
-     * @return int voitto Voiton määrä
+    /**
+     * Metodi maksaa panoksen ja käden mukaisesti voiton pelaajalle.
+     *
+     * @return Kokonaisluku joka on voiton määrä
+     *
      */
     public int maksaVoitot() {
         int voitto = 0;

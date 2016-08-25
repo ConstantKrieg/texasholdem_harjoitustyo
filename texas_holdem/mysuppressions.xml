@@ -12,4 +12,5 @@
     <suppress files="PanostusPaneeli.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="RaisenKuuntelija.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="PanostuksenKuuntelija.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="Main.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>

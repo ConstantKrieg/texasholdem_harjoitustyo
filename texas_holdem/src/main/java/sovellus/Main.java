@@ -8,6 +8,9 @@ import kayttoliittyma.Kayttoliittyma;
 
 public class Main {
 
+    /**
+     * Pääluokka.
+     */
     public static void main(String[] args) throws Exception {
 
 //        Pakka pakka = new Pakka();

@@ -13,8 +13,8 @@ import domain.Pelaaja;
 import domain.Poyta;
 import java.util.Random;
 
-/**
- * @author Kim Luokka toteuttaa kaikki pelin kulkuun vaikuttavat metodit
+/*
+ * @author Kim Luokka toteuttaa kaikki pelin kulkuun vaikuttavat metodit.
  */
 public class Peli {
 
@@ -28,6 +28,11 @@ public class Peli {
     private int voittaja; //jos voittaja on 1 niin pelajaa voittaa ja jos -1 niin jakaja. Jos pelaaja voittaa niin ettei jakaja mahdu pöytään on voittajan arvo 2
     private boolean lisaakoPanosta;
 
+    /**
+     * Konstruktori joka saa parametrina joitain arvoja ja luo loput tarvittavat oliot ja muuttujat itse.
+     * @param pakka Käytettävä pakka
+     * @param poyta Käytettävä pöytä
+     */
     public Peli(Pakka pakka, Poyta poyta) {
         this.deck = pakka;
         this.table = poyta;
@@ -46,7 +51,7 @@ public class Peli {
 
     /**
      * Metodi luo vertailu-ja kädentarkistajaoliot ja käyttämällä näiden
-     * metodeja asettaa arvon voittaja-muuttujaan
+     * metodeja asettaa arvon voittaja-muuttujaan.
      */
     public void paataVoittaja() {
         Vertailu v = new Vertailu(this);
@@ -69,10 +74,18 @@ public class Peli {
         }
     }
 
+    /**
+     * Palauttaa poyta-muuttujan.
+     * @return Peli-luokan muuttujan table
+     */
     public Poyta getTable() {
         return table;
     }
 
+    /**
+     * Palauttaa luomansa voitonmaksajaolion laskemat voitot kokonaislukuna.
+     * @return kokonaislukuna voittojen määrä
+     */
     public int maksaVoitot() {
         VoitonMaksaja vm = new VoitonMaksaja(this);
         return vm.maksaVoitot();
@@ -81,7 +94,8 @@ public class Peli {
 
     /**
      * Metodi käyttää Jakaja- ja Pelaaja-luokkien metodia ja asettaa taskukortit
-     * niille. Jakaa myös kortit pöytään
+     * niille. Jakaa myös kortit pöytään.
+     * @throws Exception Jos ei onnistu
      */
     public void jaaKortit() throws Exception {
         alusta();

@@ -14,22 +14,23 @@ import domain.Kortti;
 import domain.Osallistuja;
 import domain.Pelaaja;
 
-/**
- *
- * @author Kim Luokka toteuttaa metodeja joiden avulla tarkistetaan mikä
- * pokerikäsi pelaajalla tai jakajalla on
- *
+/*
+ *@author Kim Luokka toteuttaa metodeja joiden avulla tarkistetaan mikä käsi
+ * pelaajalla on.
  */
 public class Vertailu {
 
     private Peli game;
 
+    /** Konstruktori.
+     * @param p Vertailtava peli
+     */
     public Vertailu(Peli p) {
         this.game = p;
     }
 
     /**
-     * Metodi tarkistaa onko korteissa ainaki viisi saman maan omaavaa korttia
+     * Metodi tarkistaa onko korteissa ainaki viisi saman maan omaavaa korttia.
      *
      * @param kortit Osallistujan kortit sekä pöytäkortit
      * @return Lista korteista jotka ovat samaa maata
@@ -56,7 +57,7 @@ public class Vertailu {
 
     /**
      * Metodi tarkistaa onko korteissa ainaki viisi arvoltaan peräkkäistä
-     * korttia
+     * korttia.
      *
      * @param kortit Osallistujan kortit sekä pöytäkortit
      * @return Palauttaa suoran suurimman kortin. Jos ei suoraa palauttaa 0
@@ -100,17 +101,15 @@ public class Vertailu {
     }
 
     /**
-     * Metodi tarkistaa kuinka paljon saman omaavia kortteja on listassa
+     * Metodi tarkistaa kuinka paljon saman omaavia kortteja on listassa.
      *
-     * @param koko, kortit Osallistujan kortit ja pöytäkortit sekä haluttu
-     * samojen korttien määrä
+     * @param koko haluttu samojen korttien määrä
+     * @param kortit Osallistujan kortit ja pöytäkortit 
      * @return Jos haluttu määrä vastaa korteissa olevien määrää, palautetaan
      * samojen korttien arvo
-     *
      */
     public int tarkistaSamat(int koko, List<Kortti> kortit) {
         List<Kortti> samat = new ArrayList();
-
         for (Kortti k1 : kortit) {
             samat.add(k1);
             for (Kortti k2 : kortit) {
@@ -131,12 +130,11 @@ public class Vertailu {
     }
 
     /**
-     * Metodi tarkistaa onko korteissa ainakin kolmoset sekä pari
+     * Metodi tarkistaa onko korteissa ainakin kolmoset sekä pari.
      *
      * @param kortit Osallistujan kortit sekä pöytäkortit
      * @return Kahden numeron taulukko jossa ensimmäisenä kolmosten arvo ja
-     * toisena parin arvo. Taulukon molemmat arvot 0 jos ei täyskättä.
-     *
+     * toisena parin arvo. Taulukon molemmat arvot 0 jos ei täyskättä
      */
     public int[] tarkistaTayskasi(List<Kortti> kortit) {
         int x = tarkistaSamat(2, kortit);
@@ -156,9 +154,10 @@ public class Vertailu {
 
     /**
      * Metodi kokoaa listan pöydässä olevista korteista sekä osallistjan
-     * korteista
+     * korteista.
      *
-     * @param kortit Osallistujan kortit sekä pöytäkortit erillisinä
+     * @param taskut Osallistujan kortit
+     * @param poydat Pöytäkortit
      * @return Lista parametrien yhdistymisestä
      *
      */
@@ -171,7 +170,7 @@ public class Vertailu {
 
     /**
      * Metodi tarkistaa onko korteissa ainaki viisi saman maan omaavaa korttia
-     * jotka ovat arvoltaan peräkkäisiä
+     * jotka ovat arvoltaan peräkkäisiä.
      *
      * @param kortit Osallistujan kortit sekä pöytäkortit
      * @return Kokonaisluku joka on suurin arvo siinä tapauksessa että värisuora
@@ -193,7 +192,7 @@ public class Vertailu {
     }
 
     /**
-     * Metodi tarkistaa onko korteissa ainaki kaksi eri arvoista paria
+     * Metodi tarkistaa onko korteissa ainaki kaksi eri arvoista paria.
      *
      * @param kortit Osallistujan kortit sekä pöytäkortit
      * @return Taulukko jossa lukuina ovat molempien parien arvot. Luvut ovat 0

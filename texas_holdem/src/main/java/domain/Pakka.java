@@ -5,13 +5,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/*
- * Luokka luo ja hallitsee 52 kortista tehtyä listaa
+/**
+ * Luokka luo ja hallitsee 52 kortista tehtyä listaa.
  */
 public class Pakka {
 
     private List<Kortti> pakka;
 
+    /**
+     * Konstruktori.
+     */
     public Pakka() {
         this.pakka = new ArrayList();
 
@@ -31,17 +34,17 @@ public class Pakka {
     public List<Kortti> getPakka() {
         return this.pakka;
     }
-    /*
-     * Sekoittaa pakan
+    /**
+     * Sekoittaa pakan.
      */
-
     public void sekoitus() {
         Collections.shuffle(pakka);
     }
 
-    /*
-     * Antaa ensimmäisenä olevan kortin pois
-     @return Kortti-olio joka listan ensimmäisenä
+    /**
+     * Antaa ensimmäisenä olevan kortin pois.
+     * @return Kortti-olio joka listan ensimmäisenä
+     * @throws Exception Jos ei onnistu 
      */
     public Kortti jaa() throws Exception {
         Kortti k = this.pakka.get(0);

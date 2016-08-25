@@ -11,6 +11,11 @@ public class Kortti implements Comparable<Kortti> {
     private Arvo arvo;
     private Color vari;
 
+    /**
+     * Konstruktori.
+     * @param arvo Kortin arvo
+     * @param maa Kortin maa
+     */
     public Kortti(Maa maa, Arvo arvo) {
         this.maa = maa;
         this.arvo = arvo;
@@ -59,7 +64,7 @@ public class Kortti implements Comparable<Kortti> {
     }
 
     /**
-     * Metodi kertoo kumpi korteista on arvokkaampi
+     * Metodi kertoo kumpi korteista on arvokkaampi.
      *
      * @param toinen Vertailtava kortti
      * @return Luku sen mukaan kumpi on isompi

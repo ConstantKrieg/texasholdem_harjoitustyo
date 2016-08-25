@@ -8,8 +8,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
+/*
  * @author Kim Luokka joka toteuttaa jakajan sekä pelaajan.
  */
 public class Osallistuja {
@@ -18,6 +17,9 @@ public class Osallistuja {
     private Kasi kasi;
     private int korkeinKortti;
 
+    /**
+     * Konstruktori.
+     */
     public Osallistuja() {
         this.taskut = new ArrayList();
         this.kasi = Kasi.KICKER;
@@ -32,10 +34,19 @@ public class Osallistuja {
         this.kasi = k;
     }
 
+    /**
+     * Palauttaa korkeimman kortin pelaajan kädestä.
+     *
+     * @return int korkeinKortti
+     */
     public int getKorkeinKortti() {
         return korkeinKortti;
     }
 
+    /**
+     * Lisää osallistujan  taskukortteihin kortin.
+     * @param k Lisättävä kortti
+     */
     public void annaKortti(Kortti k) {
         this.taskut.add(k);
     }

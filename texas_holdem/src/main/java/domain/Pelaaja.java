@@ -13,6 +13,9 @@ public class Pelaaja extends Osallistuja {
     private Kasi kasi;
     private int panokset;
 
+    /**
+     * Konstruktori.
+     */
     public Pelaaja() {
         super();
         this.panokset = 2000;
@@ -21,10 +24,11 @@ public class Pelaaja extends Osallistuja {
     public int getPanokset() {
         return panokset;
     }
-    /*
-     * Metodi asettaa pelikierrokselle panoksen poistamalla sen pelaajalta
+    /**
+     * Metodi asettaa pelikierrokselle panoksen poistamalla sen pelaajalta.
+     * @param panos Panoksen määrä.
+     * @return boolean Jos panosten määrä sallittu
      */
-
     public boolean panosta(int panos) {
         if (panos <= this.panokset) {
             this.panokset -= panos;
@@ -33,8 +37,8 @@ public class Pelaaja extends Osallistuja {
         return false;
     }
 
-    /*
-     * Lisää pelaajan panostuksiin luvun
+    /**
+     * Lisää pelaajan panostuksiin luvun.
      * @param voitot Voiton määrä
      */
     public void vastaanotaVoitot(int voitot) {
