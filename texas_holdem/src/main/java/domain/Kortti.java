@@ -14,18 +14,14 @@ public class Kortti implements Comparable<Kortti> {
     public Kortti(Maa maa, Arvo arvo) {
         this.maa = maa;
         this.arvo = arvo;
-        
+
     }
-    
-    
-   
-    
-    
+
     public String getMaa() {
         return this.maa.getMaa();
     }
-    
-    public Color getVari(){
+
+    public Color getVari() {
         return this.maa.getVari();
     }
 
@@ -40,7 +36,7 @@ public class Kortti implements Comparable<Kortti> {
         if (this.arvo.getArvo() < 11) {
             if (this.maa.equals(Maa.HERTTA)) {
                 s = this.arvo.getArvo() + "\u2665";
-            } else if (this.maa.equals(Maa.RUUTU)) {  
+            } else if (this.maa.equals(Maa.RUUTU)) {
                 s = this.arvo.getArvo() + "\u2666";
             } else if (this.maa.equals(Maa.RISTI)) {
                 s = this.arvo.getArvo() + "\u2663";

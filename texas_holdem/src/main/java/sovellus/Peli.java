@@ -51,28 +51,32 @@ public class Peli {
     public void paataVoittaja() {
         Vertailu v = new Vertailu(this);
         KadenTarkistaja kt = new KadenTarkistaja(v);
+        TasapelinKasittelija tk = new TasapelinKasittelija(this);
+
         kt.tarkistaKasi(player);
         kt.tarkistaKasi(dealer);
         if (dealer.mahtuukoPoytaan(this)) {
             if (player.getKasi().getKadenArvo() > dealer.getKasi().getKadenArvo()) {
-                this.setVoittaja(1);
+                setVoittaja(1);
             } else if (player.getKasi().getKadenArvo() < dealer.getKasi().getKadenArvo()) {
-                this.setVoittaja(-1);
-            } else if (player.getKorkeinKortti() > dealer.getKorkeinKortti()) {
-                this.setVoittaja(1);
-            } else if (player.getKorkeinKortti() < dealer.getKorkeinKortti()) {
-                this.setVoittaja(-1);
-            } else {
-                this.setVoittaja(v.tieBreakerKickerilla(dealer, player));
+                setVoittaja(-1);
+            } else if (player.getKasi().getKadenArvo() == dealer.getKasi().getKadenArvo()) {
+                setVoittaja(tk.kaynnistaTarkistus());
             }
+
         } else {
             this.setVoittaja(2);
         }
-
     }
 
     public Poyta getTable() {
         return table;
+    }
+
+    public int maksaVoitot() {
+        VoitonMaksaja vm = new VoitonMaksaja(this);
+        return vm.maksaVoitot();
+
     }
 
     /**
@@ -80,7 +84,6 @@ public class Peli {
      * niille. Jakaa myös kortit pöytään
      */
     public void jaaKortit() throws Exception {
-        //this.deck = new Pakka();
         alusta();
 
         this.deck.sekoitus();
@@ -136,10 +139,6 @@ public class Peli {
 
     public int getAnte() {
         return ante;
-    }
-
-    public Scanner getLukija() {
-        return lukija;
     }
 
     public int getRaise() {

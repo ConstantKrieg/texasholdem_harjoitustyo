@@ -95,7 +95,7 @@ public class PoytaPaneeli extends JPanel {
     }
 
     private void luoReunat() {
-        javax.swing.border.Border reuna = BorderFactory.createLineBorder(vari, 12);
+        javax.swing.border.Border reuna = BorderFactory.createLineBorder(vari, 20);
         Color vari2 = new Color(201, 172, 6);
         javax.swing.border.Border reuna2 = BorderFactory.createLineBorder(vari2, 3);
         this.flop1.setBorder(reuna);

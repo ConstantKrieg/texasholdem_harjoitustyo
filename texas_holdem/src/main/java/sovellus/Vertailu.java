@@ -55,7 +55,8 @@ public class Vertailu {
     }
 
     /**
-     * Metodi tarkistaa onko korteissa ainaki viisi arvoltaan peräkkäistä korttia
+     * Metodi tarkistaa onko korteissa ainaki viisi arvoltaan peräkkäistä
+     * korttia
      *
      * @param kortit Osallistujan kortit sekä pöytäkortit
      * @return Palauttaa suoran suurimman kortin. Jos ei suoraa palauttaa 0
@@ -97,11 +98,14 @@ public class Vertailu {
         }
         return 0;
     }
+
     /**
      * Metodi tarkistaa kuinka paljon saman omaavia kortteja on listassa
      *
-     * @param koko, kortit Osallistujan kortit ja pöytäkortit sekä haluttu samojen korttien määrä
-     * @return Jos haluttu määrä vastaa korteissa olevien määrää, palautetaan samojen korttien arvo
+     * @param koko, kortit Osallistujan kortit ja pöytäkortit sekä haluttu
+     * samojen korttien määrä
+     * @return Jos haluttu määrä vastaa korteissa olevien määrää, palautetaan
+     * samojen korttien arvo
      *
      */
     public int tarkistaSamat(int koko, List<Kortti> kortit) {
@@ -121,40 +125,17 @@ public class Vertailu {
         }
         return 0;
     }
-    
-    /**
-     * Metodi tarkistaa kumpi osallistujista voittaa jos kummallakaan ei ole mitään kättä ja suurin kortti sama
-     *
-     * @param kortit Osallistujan kortit sekä pöytäkortit
-     * @return Lista korteista jotka ovat samaa maata
-     *
-     */
-    public int tieBreakerKickerilla(Jakaja j, Pelaaja p) {
-        int apu = 0;
-
-        List<Kortti> pelaaja = kaikkiKortit(p.getTaskut(), game.getTable().getKortit());
-        List<Kortti> jakaja = kaikkiKortit(j.getTaskut(), game.getTable().getKortit());
-        Collections.sort(pelaaja);
-        Collections.sort(jakaja);
-
-        for (int i = 0; i < 5; i++) {
-            if (pelaaja.get(i).getArvo() > jakaja.get(i).getArvo()) {
-                apu = 1;
-            } else if (pelaaja.get(i).getArvo() < jakaja.get(i).getArvo()) {
-                apu = -1;
-            }
-        }
-        return apu;
-    }
 
     public Peli getGame() {
         return game;
     }
+
     /**
      * Metodi tarkistaa onko korteissa ainakin kolmoset sekä pari
      *
      * @param kortit Osallistujan kortit sekä pöytäkortit
-     * @return Kahden numeron taulukko jossa ensimmäisenä kolmosten arvo ja toisena parin arvo. Taulukon molemmat arvot 0 jos ei täyskättä.
+     * @return Kahden numeron taulukko jossa ensimmäisenä kolmosten arvo ja
+     * toisena parin arvo. Taulukon molemmat arvot 0 jos ei täyskättä.
      *
      */
     public int[] tarkistaTayskasi(List<Kortti> kortit) {
@@ -172,8 +153,10 @@ public class Vertailu {
             return luvut;
         }
     }
+
     /**
-     * Metodi kokoaa listan pöydässä olevista korteista sekä osallistjan korteista
+     * Metodi kokoaa listan pöydässä olevista korteista sekä osallistjan
+     * korteista
      *
      * @param kortit Osallistujan kortit sekä pöytäkortit erillisinä
      * @return Lista parametrien yhdistymisestä
@@ -185,11 +168,14 @@ public class Vertailu {
         lista.addAll(taskut);
         return lista;
     }
+
     /**
-     * Metodi tarkistaa onko korteissa ainaki viisi saman maan omaavaa korttia jotka ovat arvoltaan peräkkäisiä
+     * Metodi tarkistaa onko korteissa ainaki viisi saman maan omaavaa korttia
+     * jotka ovat arvoltaan peräkkäisiä
      *
      * @param kortit Osallistujan kortit sekä pöytäkortit
-     * @return Kokonaisluku joka on suurin arvo siinä tapauksessa että värisuora muodostuu
+     * @return Kokonaisluku joka on suurin arvo siinä tapauksessa että värisuora
+     * muodostuu
      *
      */
     public int tarkistaVarisuora(List<Kortti> kortit) {
@@ -205,15 +191,15 @@ public class Vertailu {
         }
         return palautus;
     }
-    
+
     /**
      * Metodi tarkistaa onko korteissa ainaki kaksi eri arvoista paria
      *
      * @param kortit Osallistujan kortit sekä pöytäkortit
-     * @return Taulukko jossa lukuina ovat molempien parien arvot. Luvut ovat 0 jos kahta paria ei ole
+     * @return Taulukko jossa lukuina ovat molempien parien arvot. Luvut ovat 0
+     * jos kahta paria ei ole
      *
      */
-
     public int[] tarkistaKaksiParia(List<Kortti> kortit) {
         int ensimmaisenParinArvo = tarkistaSamat(2, kortit);
 

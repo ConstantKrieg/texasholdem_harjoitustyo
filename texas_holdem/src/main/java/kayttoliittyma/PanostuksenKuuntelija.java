@@ -9,11 +9,18 @@ import domain.Kortti;
 import domain.Maa;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import sovellus.Peli;
@@ -42,6 +49,16 @@ public class PanostuksenKuuntelija implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(getClass().getClassLoader().getResource("kortti.png"));
+        } catch (IOException ie) {
+            ie.printStackTrace();
+        }
+
+        Image dimg = img.getScaledInstance(this.poyta.getTurn().getWidth(), this.poyta.getTurn().getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon kuva = new ImageIcon(dimg);
+
         this.pelaaja.getK1().setText("");
         this.pelaaja.getK2().setText("");
         this.poyta.getFlop1().setText("");
@@ -49,10 +66,10 @@ public class PanostuksenKuuntelija implements ActionListener {
         this.poyta.getFlop3().setText("");
 
         int panostus = 0;
-        
-        try{
+
+        try {
             panostus = Integer.parseInt(this.panostus.getPanostuskentta().getText());
-        } catch (Exception e2){
+        } catch (Exception e2) {
             return;
         }
         if (peli.getPlayer().panosta(panostus)) {
@@ -64,22 +81,24 @@ public class PanostuksenKuuntelija implements ActionListener {
             } catch (Exception ex) {
                 Logger.getLogger(PanostuksenKuuntelija.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             this.pelaaja.asetaVariKorttienJakamiseksi();
             this.poyta.asetaVariFlopille();
             Kortti[] flop = this.peli.getTable().getFlop();
             tarkistaVarit(flop);
             asetaTekstit(flop);
+            //this.poyta.getTurn().setIcon(kuva);
+
             saadaNapit();
         }
     }
 
     private void tarkistaVarit(Kortti[] flop) {
-          this.pelaaja.getK1().setForeground(this.peli.getPlayer().getTaskut().get(0).getVari());
-          this.pelaaja.getK2().setForeground(this.peli.getPlayer().getTaskut().get(1).getVari());
-          this.poyta.getFlop1().setForeground(flop[0].getVari());
-          this.poyta.getFlop2().setForeground(flop[1].getVari());
-          this.poyta.getFlop3().setForeground(flop[2].getVari());
+        this.pelaaja.getK1().setForeground(this.peli.getPlayer().getTaskut().get(0).getVari());
+        this.pelaaja.getK2().setForeground(this.peli.getPlayer().getTaskut().get(1).getVari());
+        this.poyta.getFlop1().setForeground(flop[0].getVari());
+        this.poyta.getFlop2().setForeground(flop[1].getVari());
+        this.poyta.getFlop3().setForeground(flop[2].getVari());
     }
 
     private void saadaNapit() {
@@ -91,7 +110,7 @@ public class PanostuksenKuuntelija implements ActionListener {
 
     private void asetaTekstit(Kortti[] flop) {
         String taka = "\u1F0A0";
-        
+
         this.pelaaja.getK1().setText(this.peli.getPlayer().getTaskut().get(0).toString());
         this.pelaaja.getK2().setText(this.peli.getPlayer().getTaskut().get(1).toString());
 

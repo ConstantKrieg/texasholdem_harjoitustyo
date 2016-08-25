@@ -44,8 +44,6 @@ public class Poyta {
         this.river = k;
     }
 
-    
-
     public List<Kortti> getKortit() {
         List<Kortti> lista = new ArrayList();
 

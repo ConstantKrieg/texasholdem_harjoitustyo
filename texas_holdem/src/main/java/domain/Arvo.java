@@ -1,8 +1,5 @@
 package domain;
-    
 
-
- 
 public enum Arvo {
 
     KAKSI(2), KOLME(3), NELJÄ(4),

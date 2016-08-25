@@ -8,7 +8,6 @@ import java.util.List;
 /*
  * Luokka luo ja hallitsee 52 kortista tehtyä listaa
  */
-
 public class Pakka {
 
     private List<Kortti> pakka;
@@ -18,12 +17,10 @@ public class Pakka {
 
         for (Maa m : Maa.values()) {
             for (Arvo a : Arvo.values()) {
-                
+
                 pakka.add(new Kortti(m, a));
             }
         }
-        
-      
 
     }
 
@@ -34,19 +31,18 @@ public class Pakka {
     public List<Kortti> getPakka() {
         return this.pakka;
     }
-/*
- * Sekoittaa pakan
- */
+    /*
+     * Sekoittaa pakan
+     */
+
     public void sekoitus() {
         Collections.shuffle(pakka);
     }
-    
-    
 
     /*
- * Antaa ensimmäisenä olevan kortin pois
-    @return Kortti-olio joka listan ensimmäisenä
- */
+     * Antaa ensimmäisenä olevan kortin pois
+     @return Kortti-olio joka listan ensimmäisenä
+     */
     public Kortti jaa() throws Exception {
         Kortti k = this.pakka.get(0);
         pakka.remove(0);
@@ -55,8 +51,6 @@ public class Pakka {
         }
         return null;
     }
-
-  
 
     @Override
     public String toString() {

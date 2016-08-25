@@ -26,14 +26,12 @@ public class Pelaaja extends Osallistuja {
      */
 
     public boolean panosta(int panos) {
-        if(panos  <= this.panokset){
+        if (panos <= this.panokset) {
             this.panokset -= panos;
             return true;
         }
         return false;
     }
-    
-    
 
     /*
      * Lisää pelaajan panostuksiin luvun

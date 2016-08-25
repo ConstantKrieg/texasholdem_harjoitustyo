@@ -44,7 +44,7 @@ public class RaisenKuuntelija implements ActionListener {
         this.peli.paataVoittaja();
 
         if (this.peli.getVoittaja() >= 1) {
-            this.panostus.getStatus().setText("Voitit " + this.peli.getDealer().maksaVoitot(peli));
+            this.panostus.getStatus().setText("Voitit " + this.peli.maksaVoitot());
         } else if (this.peli.getVoittaja() == 0) {
             this.panostus.getStatus().setText("Tasapeli");
         } else {
@@ -61,8 +61,7 @@ public class RaisenKuuntelija implements ActionListener {
         this.poyta.getRiver().setForeground(this.peli.getTable().getRiver().getVari());
         this.jakaja.getK1().setForeground(this.peli.getDealer().getTaskut().get(0).getVari());
         this.jakaja.getK2().setForeground(this.peli.getDealer().getTaskut().get(1).getVari());
-        
-        
+
     }
 
     private void asetaTekstit() {

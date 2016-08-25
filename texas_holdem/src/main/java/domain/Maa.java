@@ -24,10 +24,5 @@ public enum Maa {
     public Color getVari() {
         return vari;
     }
-    
-    
 
-    
-    
-    
 }

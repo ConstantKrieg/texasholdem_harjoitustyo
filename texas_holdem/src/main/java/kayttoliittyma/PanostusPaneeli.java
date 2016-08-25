@@ -18,8 +18,8 @@ import javax.swing.JTextField;
  *
  * @author tokito
  */
-public class PanostusPaneeli extends JPanel{
-    
+public class PanostusPaneeli extends JPanel {
+
     private JTextField panostuskentta;
     private JButton panostusNappi;
     private JButton raiseNappi;
@@ -28,8 +28,8 @@ public class PanostusPaneeli extends JPanel{
     private JLabel status;
     private JLabel info;
     private Color vari;
-    
-    public PanostusPaneeli(){
+
+    public PanostusPaneeli() {
         super(new FlowLayout());
         //super(new GridLayout(1,6));
         this.vari = new Color(148, 7, 43);
@@ -37,16 +37,16 @@ public class PanostusPaneeli extends JPanel{
         this.panostuskentta = new JTextField(4);
         this.panostusNappi = new JButton("Panosta");
         this.raiseNappi = new JButton("Raise");
-        this.foldNappi = new JButton ("Fold");
+        this.foldNappi = new JButton("Fold");
         this.panostenMaara = new JLabel("");
         this.status = new JLabel();
         this.info = new JLabel("Panoksen oltava kokonaisluku | ");
         this.setAlignmentY(CENTER_ALIGNMENT);
-        
+
         this.raiseNappi.setEnabled(false);
         this.foldNappi.setEnabled(false);
         asetaVarit();
-        
+
         add(info);
         add(this.status);
         add(this.panostuskentta);
@@ -54,10 +54,10 @@ public class PanostusPaneeli extends JPanel{
         add(this.raiseNappi);
         add(this.foldNappi);
         add(this.panostenMaara);
-        
+
     }
-    
-    private void asetaVarit(){
+
+    private void asetaVarit() {
         Font f = new Font("Unicorn", Font.BOLD, 18);
         Color c = new Color(201, 172, 6);
         this.info.setFont(f);
@@ -66,7 +66,7 @@ public class PanostusPaneeli extends JPanel{
         this.status.setForeground(c);
         this.panostenMaara.setFont(f);
         this.panostenMaara.setForeground(c);
-        
+
     }
 
     public JTextField getPanostuskentta() {
@@ -92,7 +92,5 @@ public class PanostusPaneeli extends JPanel{
     public JButton getFoldNappi() {
         return foldNappi;
     }
-    
-    
-    
+
 }

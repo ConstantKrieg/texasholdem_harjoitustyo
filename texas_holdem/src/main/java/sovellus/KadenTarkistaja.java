@@ -25,10 +25,10 @@ public class KadenTarkistaja {
         this.v = v;
     }
 
-    public void tarkistaKasi(Osallistuja o) { 
+    public void tarkistaKasi(Osallistuja o) {
         List<Kortti> kortit = kaikkiKortit(o.getTaskut(), v.getGame().getTable().getKortit());
         Kasi k = Kasi.KICKER;
-        
+
         tarkistaPari(o, kortit, k);
         tarkistaKaksiParia(o, kortit, k);
         tarkistaKolmoset(o, kortit, k);
