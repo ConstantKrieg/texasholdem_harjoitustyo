@@ -17,4 +17,7 @@
 **Luokkakaavio**
 ![luokkakaavio](/dokumentaatio/luokkakaavio.png)
 
+**Sekvenssikaavio normaalista pelistä**
+![sekvenssikaavio](/dokumentaatio/sekvenssikaavio.png)
+
 
