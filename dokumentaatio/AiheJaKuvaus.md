@@ -18,6 +18,6 @@
 ![luokkakaavio](/dokumentaatio/luokkakaavio.png)
 
 **Sekvenssikaavio normaalista pelistä**
-![sekvenssikaavio](/dokumentaatio/sekvenssikaavio.png)
+![sekvenssikaavio](/dokumentaatio/sekvenssikaavio.PNG)
 
 
