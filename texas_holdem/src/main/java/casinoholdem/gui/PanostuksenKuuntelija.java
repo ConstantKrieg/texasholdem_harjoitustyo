@@ -41,12 +41,7 @@ public class PanostuksenKuuntelija implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        BufferedImage img = null;
-        try {
-            img = ImageIO.read(getClass().getClassLoader().getResource("kortti.png"));
-        } catch (IOException ie) {
-            ie.printStackTrace();
-        }
+        
 
         this.pelaaja.getK1().setText("");
         this.pelaaja.getK2().setText("");
