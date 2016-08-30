@@ -67,37 +67,37 @@ public class Vertailu {
      */
     public int onkoSuora(List<Kortti> kortit) {
         Collections.sort(kortit);
-        int j = 1;
         int i = 0;
         int onPerakkain = 1;
         int suurin = 0;
         while (i < kortit.size() - 1) {
-
-            if (kortit.get(i).getArvo() == kortit.get(j).getArvo() + 1) {
+            if (kortit.get(i).getArvo() == kortit.get(i + 1).getArvo() + 1) {
                 if (onPerakkain == 1) {
                     suurin = kortit.get(i).getArvo();
                 }
                 onPerakkain++;
                 i++;
-                j++;
-            } else if (kortit.get(i).getArvo() == kortit.get(j).getArvo()) {
+            } else if (kortit.get(i).getArvo() == kortit.get(i + 1).getArvo()) {
                 i++;
-                j++;
             } else {
                 onPerakkain = 1;
                 suurin = 0;
                 i++;
-                j++;
             }
             if (onPerakkain == 5) {
                 return suurin;
             }
         }
         if (onPerakkain == 4) {
-            int apu = kortit.size();
-            if (kortit.get(apu - 1).getArvo() == kortit.get(apu - 2).getArvo() - 1 && kortit.get(apu - 1).getArvo() == kortit.get(apu - 5).getArvo() - 4) {
-                return kortit.get(apu - 5).getArvo();
-            }
+            return suoranTarkistusJosViimeisestaKortistaKiinni(kortit);
+        }
+        return 0;
+    }
+
+    private int suoranTarkistusJosViimeisestaKortistaKiinni(List<Kortti> kortit) {
+        int apu = kortit.size();
+        if (kortit.get(apu - 1).getArvo() == kortit.get(apu - 2).getArvo() - 1 && kortit.get(apu - 1).getArvo() == kortit.get(apu - 5).getArvo() - 4) {
+            return kortit.get(apu - 5).getArvo();
         }
         return 0;
     }

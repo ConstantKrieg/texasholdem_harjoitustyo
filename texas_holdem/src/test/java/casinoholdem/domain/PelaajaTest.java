@@ -59,4 +59,28 @@ public class PelaajaTest {
         p.setKasi(k);
         assertEquals(p.getKasi(), k);
     }
+    
+    @Test
+    public void panoksenTarkistusToimiiJosEiSopiva() {
+        Pelaaja p = new Pelaaja();
+        boolean apu = p.onkoSopivaPanos(600);
+        
+        assertEquals(false, apu);
+    }
+    
+    @Test
+    public void panoksenTarkistusToimiiJosSopiva() {
+        Pelaaja p = new Pelaaja();
+        boolean apu = p.onkoSopivaPanos(400);
+        
+        assertEquals(true, apu);
+    }
+    
+    @Test
+    public void panoksenVastaanottaminenToimii() {
+        Pelaaja p = new Pelaaja();
+        p.vastaanotaVoitot(100);
+        
+        assertEquals(p.getPanokset(), 2100);
+    }
 }

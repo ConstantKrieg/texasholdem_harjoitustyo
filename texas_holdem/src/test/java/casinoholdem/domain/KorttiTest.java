@@ -5,6 +5,7 @@
  */
 package casinoholdem.domain;
 
+import java.awt.Color;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -44,6 +45,111 @@ public class KorttiTest {
 
         assertEquals(k.getArvo(), 11);
     }
+    
+    @Test
+    public void kortinTulostusOnnistuuJosRistiJaKuvakortti() {
+        Maa m = Maa.RISTI;
+        Arvo a = Arvo.J;
+
+        Kortti k = new Kortti(m, a);
+        String apu = "J" + "\u2663";
+
+        assertEquals(k.toString(), apu);
+    }
+    
+    
+    @Test
+    public void kortinTulostusOnnistuuJosHerttaJaKuvakortti() {
+        Maa m = Maa.HERTTA;
+        Arvo a = Arvo.J;
+
+        Kortti k = new Kortti(m, a);
+        String apu = "J" + "\u2665";
+
+        assertEquals(k.toString(), apu);
+    }
+    
+    
+    @Test
+    public void kortinTulostusOnnistuuJosPataJaKuvakortti() {
+        Maa m = Maa.PATA;
+        Arvo a = Arvo.J;
+
+        Kortti k = new Kortti(m, a);
+        String apu = "J" + "\u2660";
+
+        assertEquals(k.toString(), apu);
+    }
+    
+    @Test
+    public void kortinTulostusOnnistuuJosRuutuJaKuvakortti() {
+        Maa m = Maa.RUUTU;
+        Arvo a = Arvo.J;
+
+        Kortti k = new Kortti(m, a);
+        String apu = "J" + "\u2666";
+
+        assertEquals(k.toString(), apu);
+    }
+    
+    @Test
+    public void kortinTulostusOnnistuuJosHerttaJaEiKuvakortti() {
+        Maa m = Maa.HERTTA;
+        Arvo a = Arvo.KASI;
+
+        Kortti k = new Kortti(m, a);
+        String apu = "8" + "\u2665";
+
+        assertEquals(k.toString(), apu);
+    }
+    
+    @Test
+    public void kortinTulostusOnnistuuJosRuutuJaEiKuvakortti() {
+        Maa m = Maa.RUUTU;
+        Arvo a = Arvo.KASI;
+
+        Kortti k = new Kortti(m, a);
+        String apu = "8" + "\u2666";
+
+        assertEquals(k.toString(), apu);
+    }
+    
+    @Test
+    public void kortinTulostusOnnistuuJosPataJaEiKuvakortti() {
+        Maa m = Maa.PATA;
+        Arvo a = Arvo.KASI;
+
+        Kortti k = new Kortti(m, a);
+        String apu = "8" + "\u2660";
+
+        assertEquals(k.toString(), apu);
+    }
+    
+    @Test
+    public void kortinTulostusOnnistuuJosRISTIJaEiKuvakortti() {
+        Maa m = Maa.RISTI;
+        Arvo a = Arvo.KASI;
+
+        Kortti k = new Kortti(m, a);
+        String apu = "8" + "\u2663";
+
+        assertEquals(k.toString(), apu);
+    }
+    
+    
+    @Test
+    public void varinAsetusToimii() {
+        Maa m = Maa.HERTTA;
+        Arvo a = Arvo.KASI;
+
+        Kortti k = new Kortti(m, a);
+        
+
+        assertEquals(k.getVari(), Color.RED);
+    }
+    
+    
+    
 
     @After
     public void tearDown() {

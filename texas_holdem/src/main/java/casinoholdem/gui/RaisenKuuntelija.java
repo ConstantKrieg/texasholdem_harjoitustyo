@@ -77,7 +77,7 @@ public class RaisenKuuntelija implements ActionListener {
 
         this.pelaaja.getKadenKertoja().setText(this.peli.getPlayer().getKasi().toString());
 
-        if (this.peli.getDealer().mahtuukoPoytaan(peli)) {
+        if (this.peli.getDealer().mahtuukoPoytaan()) {
             this.jakaja.getKadenKertoja().setText(this.peli.getDealer().getKasi().toString());
         } else {
             this.jakaja.getKadenKertoja().setText("Ei pöydässä");

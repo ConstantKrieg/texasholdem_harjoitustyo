@@ -53,7 +53,7 @@ public class Peli {
         TasapelinKasittelija tk = new TasapelinKasittelija(this);
         kt.tarkistaKasi(player);
         kt.tarkistaKasi(dealer);
-        if (dealer.mahtuukoPoytaan(this) == true) {
+        if (dealer.mahtuukoPoytaan() == true) {
             if (player.getKasi().getKadenArvo() > dealer.getKasi().getKadenArvo()) {
                 setVoittaja(1);
             } else if (player.getKasi().getKadenArvo() < dealer.getKasi().getKadenArvo()) {
@@ -133,7 +133,9 @@ public class Peli {
     }
 
     public void setAnte(int ante) {
+        this.player.panosta(ante);
         this.ante = ante;
+        
     }
 
     public void setRaise(int raise) {

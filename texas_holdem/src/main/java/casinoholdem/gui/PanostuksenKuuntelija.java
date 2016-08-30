@@ -60,8 +60,6 @@ public class PanostuksenKuuntelija implements ActionListener {
         }
 
         if (this.peli.getPlayer().onkoSopivaPanos(panostus)) {
-
-            this.peli.getPlayer().panosta(panostus);
             this.peli.setAnte(panostus);
             this.panostus.getPanostenMaara().setText("Pelimerkkejä: " + this.peli.getPlayer().getPanokset());
 
@@ -78,7 +76,7 @@ public class PanostuksenKuuntelija implements ActionListener {
             asetaTekstit(flop);
             this.jakaja.laitaKortinTakakansi();
             this.poyta.laitaKortinTakakansiTurnilleJaRiverille();
-            //this.poyta.getTurn().setIcon(kuva);
+            
 
             saadaNapit();
         } else {

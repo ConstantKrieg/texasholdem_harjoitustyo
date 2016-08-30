@@ -66,12 +66,12 @@
                 <version>1.1.8</version>
                 <configuration>
                     <targetClasses>
-                        <param>sovelluslogiikka.*</param>
-                        <param>sovellus.*</param>
+                        <param>casinoholdem.domain.*</param>
+                        <param>casinoholdem.*</param>
                     </targetClasses>
                     <targetTests>
-                        <param>sovelluslogiikka.*</param>
-                        <param>sovellus.*</param>
+                        <param>casinoholdem.domain.*</param>
+                        <param>casinoholdem.*</param>
                     </targetTests>
                 </configuration>
             </plugin>

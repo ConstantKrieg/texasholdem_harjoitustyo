@@ -40,6 +40,18 @@ public class PakkaTest {
         assertEquals(p.getKoko(), 52);
     }
 
+    @Test
+    public void jakaminenToimii() throws Exception {
+        Pakka p = new Pakka();
+        Kortti k = p.jaa();
+        Boolean apu = false;
+        
+        if(!k.equals(null) && p.getKoko() == 51){
+            apu = true;
+        }
+        
+        assertEquals(apu, true);
+    }
   
 
     

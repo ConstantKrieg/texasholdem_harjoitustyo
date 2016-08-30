@@ -22,10 +22,10 @@ public class Jakaja extends Osallistuja {
      * @param p Peli jota käsitellään
      * @return Boolean sitä mukaa pitääkö väite paikkansa
      */
-    public boolean mahtuukoPoytaan(Peli p) {
-        if (p.getDealer().getKasi().getKadenArvo() > 2) {
+    public boolean mahtuukoPoytaan() {
+        if (this.getKasi().getKadenArvo() > 2) {
             return true;
-        } else if (p.getDealer().getKasi().getKadenArvo() == 2 && p.getDealer().getKorkeinKortti() > 3) {
+        } else if (this.getKasi().getKadenArvo() == 2 && this.getKorkeinKortti() > 3) {
             return true;
         }
         return false;

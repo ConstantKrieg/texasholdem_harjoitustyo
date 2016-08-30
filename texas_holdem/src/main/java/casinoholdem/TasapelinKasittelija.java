@@ -62,7 +62,7 @@ public class TasapelinKasittelija {
         return palautus;
     }
 
-    private int tieBreakerKickerilla(List<Kortti> p2, List<Kortti> j2, int koko) {
+    private static int tieBreakerKickerilla(List<Kortti> p2, List<Kortti> j2, int koko) {
         int apu = 0;
 
         Collections.sort(p2);
