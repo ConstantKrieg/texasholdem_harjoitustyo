@@ -14,5 +14,16 @@ That way multiple projects can share the same settings (useful for formatting ru
 Any value defined here will override the pom.xml file value but is only applicable to the current project.
 -->
         <org-netbeans-modules-javascript2-requirejs.enabled>true</org-netbeans-modules-javascript2-requirejs.enabled>
+        <de-markiewb-netbeans-plugins-eclipse-formatter44.SaveActionModifiedLinesOnly>false</de-markiewb-netbeans-plugins-eclipse-formatter44.SaveActionModifiedLinesOnly>
+        <de-markiewb-netbeans-plugins-eclipse-formatter44.preserveBreakPoints>true</de-markiewb-netbeans-plugins-eclipse-formatter44.preserveBreakPoints>
+        <de-markiewb-netbeans-plugins-eclipse-formatter44.linefeed/>
+        <de-markiewb-netbeans-plugins-eclipse-formatter44.eclipseFormatterActiveProfile/>
+        <de-markiewb-netbeans-plugins-eclipse-formatter44.useProjectPref>true</de-markiewb-netbeans-plugins-eclipse-formatter44.useProjectPref>
+        <de-markiewb-netbeans-plugins-eclipse-formatter44.eclipseFormatterLocation/>
+        <de-markiewb-netbeans-plugins-eclipse-formatter44.showNotifications>true</de-markiewb-netbeans-plugins-eclipse-formatter44.showNotifications>
+        <de-markiewb-netbeans-plugins-eclipse-formatter44.eclipseFormatterEnabled>false</de-markiewb-netbeans-plugins-eclipse-formatter44.eclipseFormatterEnabled>
+        <de-markiewb-netbeans-plugins-eclipse-formatter44.enableFormatAsSaveAction>false</de-markiewb-netbeans-plugins-eclipse-formatter44.enableFormatAsSaveAction>
+        <de-markiewb-netbeans-plugins-eclipse-formatter44.sourcelevel/>
+        <de-markiewb-netbeans-plugins-eclipse-formatter44.useProjectSettings>false</de-markiewb-netbeans-plugins-eclipse-formatter44.useProjectSettings>
     </properties>
 </project-shared-configuration>

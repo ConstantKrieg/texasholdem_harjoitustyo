@@ -12,5 +12,10 @@
     <suppress files="PanostusPaneeli.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="RaisenKuuntelija.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="PanostuksenKuuntelija.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="FoldinKuuntelija.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="Main.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="OtsikkoPaneeli.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="SivuPaneeli.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="TekstiPaneeli.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="VoittotaulukkoPaneeli.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>
