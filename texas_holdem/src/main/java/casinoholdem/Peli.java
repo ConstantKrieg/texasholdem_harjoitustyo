@@ -6,6 +6,8 @@ import casinoholdem.domain.Kortti;
 import casinoholdem.domain.Pakka;
 import casinoholdem.domain.Pelaaja;
 import casinoholdem.domain.Poyta;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * @author Kim Luokka toteuttaa kaikki pelin kulkuun vaikuttavat metodit.
@@ -23,13 +25,11 @@ public class Peli {
     private int voitto;
 
     /**
-     * Konstruktori joka saa parametrina joitain arvoja ja luo loput tarvittavat oliot ja muuttujat itse.
-     * @param pakka Käytettävä pakka
-     * @param poyta Käytettävä pöytä
+     * Konstruktori joka luo tarvittavat oliot ja muuttujat itse.
      */
-    public Peli(Pakka pakka, Poyta poyta) {
-        this.deck = pakka;
-        this.table = poyta;
+    public Peli() {
+        this.deck = new Pakka();
+        this.table = new Poyta();
         this.player = new Pelaaja();
         this.dealer = new Jakaja();
         this.ante = 0;
@@ -50,7 +50,6 @@ public class Peli {
     public void paataVoittaja() {
         Vertailu v = new Vertailu(this);
         KadenTarkistaja kt = new KadenTarkistaja(v);
-        TasapelinKasittelija tk = new TasapelinKasittelija(this);
         kt.tarkistaKasi(player);
         kt.tarkistaKasi(dealer);
         if (dealer.mahtuukoPoytaan() == true) {
@@ -59,6 +58,7 @@ public class Peli {
             } else if (player.getKasi().getKadenArvo() < dealer.getKasi().getKadenArvo()) {
                 setVoittaja(-1);
             } else if (player.getKasi().getKadenArvo() == dealer.getKasi().getKadenArvo()) {
+                TasapelinKasittelija tk = new TasapelinKasittelija(this, v);
                 setVoittaja(tk.kaynnistaTarkistus());
             }
         } else {
@@ -68,10 +68,27 @@ public class Peli {
 
     /**
      * Palauttaa poyta-muuttujan.
+     *
      * @return Peli-luokan muuttujan table
      */
     public Poyta getTable() {
         return table;
+    }
+
+    /**
+     * Metodi kokoaa listan pöydässä olevista korteista sekä osallistjan
+     * korteista.
+     *
+     * @param taskut Osallistujan kortit
+     * @param poydat Pöytäkortit
+     * @return Lista parametrien yhdistymisestä
+     *
+     */
+    public List<Kortti> kaikkiKortit(List<Kortti> taskut, List<Kortti> poydat) {
+        List<Kortti> lista = new ArrayList();
+        lista.addAll(poydat);
+        lista.addAll(taskut);
+        return lista;
     }
 
     /**
@@ -86,6 +103,7 @@ public class Peli {
     /**
      * Metodi käyttää Jakaja- ja Pelaaja-luokkien metodia ja asettaa taskukortit
      * niille. Jakaa myös kortit pöytään.
+     *
      * @throws Exception Jos pakkaa ei ole luotu tms.
      */
     public void jaaKortit() throws Exception {
@@ -111,7 +129,7 @@ public class Peli {
         this.lisaakoPanosta = lisaakoPanosta;
     }
 
-    private void alusta() {    
+    private void alusta() {
         this.deck = new Pakka();
         this.player.getTaskut().clear();
         this.dealer.getTaskut().clear();
@@ -132,10 +150,14 @@ public class Peli {
         return player;
     }
 
+    /**
+     * Asettaa pelille alkupanoksen sekä poistaa sen verran merkkejä pelaajalta.
+     *
+     * @param ante panoksen määrä
+     */
     public void setAnte(int ante) {
         this.player.panosta(ante);
         this.ante = ante;
-        
     }
 
     public void setRaise(int raise) {

@@ -8,11 +8,7 @@ package casinoholdem;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import casinoholdem.domain.Jakaja;
-import casinoholdem.domain.Kasi;
 import casinoholdem.domain.Kortti;
-import casinoholdem.domain.Osallistuja;
-import casinoholdem.domain.Pelaaja;
 
 /*
  *@author Kim Luokka toteuttaa metodeja joiden avulla tarkistetaan mikä käsi
@@ -20,7 +16,7 @@ import casinoholdem.domain.Pelaaja;
  */
 public class Vertailu {
 
-    private Peli game;
+    private final Peli game;
 
     /**
      * Konstruktori.
@@ -30,7 +26,6 @@ public class Vertailu {
     public Vertailu(Peli p) {
         this.game = p;
     }
-
     /**
      * Metodi tarkistaa onko korteissa ainaki viisi saman maan omaavaa korttia.
      *
@@ -56,7 +51,6 @@ public class Vertailu {
         }
         return palautus;
     }
-
     /**
      * Metodi tarkistaa onko korteissa ainaki viisi arvoltaan peräkkäistä
      * korttia.
@@ -93,7 +87,6 @@ public class Vertailu {
         }
         return 0;
     }
-
     private int suoranTarkistusJosViimeisestaKortistaKiinni(List<Kortti> kortit) {
         int apu = kortit.size();
         if (kortit.get(apu - 1).getArvo() == kortit.get(apu - 2).getArvo() - 1 && kortit.get(apu - 1).getArvo() == kortit.get(apu - 5).getArvo() - 4) {
@@ -101,7 +94,6 @@ public class Vertailu {
         }
         return 0;
     }
-
     /**
      * Metodi tarkistaa kuinka paljon saman arvon omaavia kortteja on listassa.
      *
@@ -126,11 +118,9 @@ public class Vertailu {
         }
         return 0;
     }
-
     public Peli getGame() {
         return game;
     }
-
     /**
      * Metodi tarkistaa onko korteissa ainakin kolmoset sekä pari.
      *
@@ -153,23 +143,6 @@ public class Vertailu {
             return luvut;
         }
     }
-
-    /**
-     * Metodi kokoaa listan pöydässä olevista korteista sekä osallistjan
-     * korteista.
-     *
-     * @param taskut Osallistujan kortit
-     * @param poydat Pöytäkortit
-     * @return Lista parametrien yhdistymisestä
-     *
-     */
-    public static List<Kortti> kaikkiKortit(List<Kortti> taskut, List<Kortti> poydat) {
-        List<Kortti> lista = new ArrayList();
-        lista.addAll(poydat);
-        lista.addAll(taskut);
-        return lista;
-    }
-
     /**
      * Metodi tarkistaa onko korteissa ainaki viisi saman maan omaavaa korttia
      * jotka ovat arvoltaan peräkkäisiä.
@@ -192,7 +165,6 @@ public class Vertailu {
         }
         return palautus;
     }
-
     /**
      * Metodi tarkistaa onko korteissa ainaki kaksi eri arvoista paria.
      *
@@ -203,10 +175,8 @@ public class Vertailu {
      */
     public int[] tarkistaKaksiParia(List<Kortti> kortit) {
         int ensimmaisenParinArvo = tarkistaSamat(2, kortit);
-
         List<Kortti> valiaikainen = new ArrayList();
         List<Kortti> poistettavat = new ArrayList();
-
         for (Kortti k : kortit) {
             if (k.getArvo() == ensimmaisenParinArvo) {
                 valiaikainen.add(k);
@@ -214,11 +184,8 @@ public class Vertailu {
             }
         }
         kortit.removeAll(poistettavat);
-
         int toisenParinArvo = tarkistaSamat(2, kortit);
-
         int[] luvut = new int[2];
-
         if (ensimmaisenParinArvo > toisenParinArvo) {
             luvut[0] = ensimmaisenParinArvo;
             luvut[1] = toisenParinArvo;

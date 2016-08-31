@@ -20,7 +20,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static casinoholdem.Vertailu.kaikkiKortit;
+
 
 /**
  *
@@ -49,10 +49,7 @@ public class VoitonMaksajaTest {
 
     @Test
     public void voitonmaksuToimiiJosJakajEiPoydassaJaKasiAlleVari() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         VoitonMaksaja vm = new VoitonMaksaja(p);
 
         p.getPlayer().setKasi(Kasi.PARI);
@@ -67,10 +64,7 @@ public class VoitonMaksajaTest {
 
     @Test
     public void voitonmaksuToimiiJosJakajaPoydassaJaKasiAlleVari() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         VoitonMaksaja vm = new VoitonMaksaja(p);
 
         p.getPlayer().setKasi(Kasi.PARI);
@@ -85,10 +79,7 @@ public class VoitonMaksajaTest {
 
     @Test
     public void voitonmaksuToimiiJosJakajaPoydassaJaKasiVari() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         VoitonMaksaja vm = new VoitonMaksaja(p);
 
         p.getPlayer().setKasi(Kasi.VARI);
@@ -103,10 +94,7 @@ public class VoitonMaksajaTest {
 
     @Test
     public void voitonmaksuToimiiJosJakajaEiPoydassaJaKasiVari() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         VoitonMaksaja vm = new VoitonMaksaja(p);
 
         p.getPlayer().setKasi(Kasi.VARI);
@@ -121,10 +109,7 @@ public class VoitonMaksajaTest {
 
     @Test
     public void voitonmaksuToimiiJosJakajaEiPoydassaJaKasiTayskasi() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         VoitonMaksaja vm = new VoitonMaksaja(p);
 
         p.getPlayer().setKasi(Kasi.TAYSKASI);
@@ -139,10 +124,7 @@ public class VoitonMaksajaTest {
 
     @Test
     public void voitonmaksuToimiiJosJakajaPoydassaJaKasiTayskasi() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         VoitonMaksaja vm = new VoitonMaksaja(p);
 
         p.getPlayer().setKasi(Kasi.TAYSKASI);
@@ -157,10 +139,7 @@ public class VoitonMaksajaTest {
 
     @Test
     public void voitonmaksuToimiiJosJakajaPoydassaJaKasiNeloset() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         VoitonMaksaja vm = new VoitonMaksaja(p);
 
         p.getPlayer().setKasi(Kasi.NELOSET);
@@ -175,10 +154,7 @@ public class VoitonMaksajaTest {
 
     @Test
     public void voitonmaksuToimiiJosJakajaEiPoydassaJaKasiNeloset() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         VoitonMaksaja vm = new VoitonMaksaja(p);
 
         p.getPlayer().setKasi(Kasi.NELOSET);
@@ -193,10 +169,7 @@ public class VoitonMaksajaTest {
 
     @Test
     public void voitonmaksuToimiiJosJakajaEiPoydassaJaKasiVarisuora() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         VoitonMaksaja vm = new VoitonMaksaja(p);
 
         p.getPlayer().setKasi(Kasi.VARISUORA);
@@ -211,10 +184,7 @@ public class VoitonMaksajaTest {
 
     @Test
     public void voitonmaksuToimiiJosJakajaPoydassaJaKasiVarisuora() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         VoitonMaksaja vm = new VoitonMaksaja(p);
 
         p.getPlayer().setKasi(Kasi.VARISUORA);

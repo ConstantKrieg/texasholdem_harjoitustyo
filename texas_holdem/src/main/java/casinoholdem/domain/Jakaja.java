@@ -19,7 +19,6 @@ public class Jakaja extends Osallistuja {
      * Metodi tarkistaa onko jakajan käsi tarpeeksi hyvä pääsemään mukaan
      * peliin.
      *
-     * @param p Peli jota käsitellään
      * @return Boolean sitä mukaa pitääkö väite paikkansa
      */
     public boolean mahtuukoPoytaan() {

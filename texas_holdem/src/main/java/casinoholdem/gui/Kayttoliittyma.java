@@ -26,9 +26,7 @@ public class Kayttoliittyma implements Runnable {
 
     private JFrame frame;
     private JButton button;
-    private Pakka pakka1 = new Pakka();
-    private Poyta poyta1 = new Poyta();
-    private Peli peli = new Peli(pakka1, poyta1);
+    private Peli peli = new Peli();
 
     @Override
     public void run() {

@@ -23,4 +23,16 @@ public enum Kasi {
         return this.kadenNimi;
     }
 
+    /**
+     * Tarkistaa onko käsi samanarvoinen kuin toinen vertaamalla niiden arvoja.
+     * @param k Vertailtava käsi.
+     * @return True jos kädet ovat samanarvoisia ja false jos ei.
+     */    
+    public boolean equals(Kasi k) {
+        if (this.getKadenArvo() == k.getKadenArvo()) {
+            return true;
+        }
+        return false;
+    }
+
 }

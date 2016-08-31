@@ -25,33 +25,29 @@ import static org.junit.Assert.*;
  * @author Kim
  */
 public class KadenTarkistajaTest {
-    
+
     public KadenTarkistajaTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
-    
     @Test
     public void kadenTarkastusToimiiJosPari() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
 
@@ -81,13 +77,10 @@ public class KadenTarkistajaTest {
 
         assertEquals(true, x);
     }
-    
+
     @Test
     public void kadenTarkastusToimiiJosPari2() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
 
@@ -120,14 +113,10 @@ public class KadenTarkistajaTest {
 
         assertEquals(true, x);
     }
-    
-    
+
     @Test
     public void kadenTarkastusToimiiJosKicker() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
 
@@ -160,10 +149,7 @@ public class KadenTarkistajaTest {
 
     @Test
     public void kadenTarkastusToimiiJosKaksiParia() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
 
@@ -196,10 +182,7 @@ public class KadenTarkistajaTest {
 
     @Test
     public void kadenTarkastusToimiiJosKolmoset() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
 
@@ -232,10 +215,7 @@ public class KadenTarkistajaTest {
 
     @Test
     public void kadenTarkastusToimiiJosSuora() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
 
@@ -268,10 +248,7 @@ public class KadenTarkistajaTest {
 
     @Test
     public void kadenTarkastusToimiiJosVari() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
 
@@ -300,10 +277,7 @@ public class KadenTarkistajaTest {
 
     @Test
     public void kadenTarkastusToimiiJosTayskasi() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
 
@@ -336,10 +310,7 @@ public class KadenTarkistajaTest {
 
     @Test
     public void kadenTarkastusToimiiJosNeloset() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
 
@@ -373,13 +344,10 @@ public class KadenTarkistajaTest {
 
     @Test
     public void kadenTarkastusToimiiJosVarisuora() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
-        
+
         Kortti p1 = new Kortti(Maa.HERTTA, Arvo.J);
         Kortti p2 = new Kortti(Maa.HERTTA, Arvo.K);
 

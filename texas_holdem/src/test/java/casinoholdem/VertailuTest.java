@@ -48,10 +48,7 @@ public class VertailuTest {
 
     @Test
     public void samojenTarkistusToimiiJosKolmoset() {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
 
         List<Kortti> lista = new ArrayList();
@@ -71,14 +68,10 @@ public class VertailuTest {
         assertEquals(13, testi);
 
     }
-    
-    
+
     @Test
     public void samojenTarkistusToimiiJosPari() {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
 
         List<Kortti> lista = new ArrayList();
@@ -102,16 +95,10 @@ public class VertailuTest {
         assertEquals(0, testi);
 
     }
-    
-    
-    
 
     @Test
     public void varinTarkastusToimii() {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
 
         List<Kortti> lista = new ArrayList();
@@ -139,10 +126,7 @@ public class VertailuTest {
 
     @Test
     public void varinTarkastusToimiiJosEiPade() {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
 
         List<Kortti> lista = new ArrayList();
@@ -170,10 +154,7 @@ public class VertailuTest {
 
     @Test
     public void suoranKokoaminenToimii() {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
 
         List<Kortti> lista = new ArrayList();
@@ -200,14 +181,10 @@ public class VertailuTest {
         }
         assertEquals(true, x);
     }
-    
-    
+
     @Test
     public void suoranKokoaminenToimii2() {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
 
         Kortti p1 = new Kortti(Maa.HERTTA, Arvo.VIISI);
@@ -230,22 +207,18 @@ public class VertailuTest {
         p.getTable().setTurn(k4);
         p.getTable().setRiver(k5);
 
-        int suora = v.onkoSuora(v.kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit()));
+        int suora = v.onkoSuora(p.kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit()));
         Boolean x = false;
         if (suora > 0) {
             x = true;
         }
-        
-        
+
         assertEquals(true, x);
     }
 
     @Test
     public void varisuoranTarkastusToimii() {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
 
         List<Kortti> lista = new ArrayList();
@@ -276,10 +249,7 @@ public class VertailuTest {
 
     @Test
     public void tayskadentarkistusToimii() {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
 
         List<Kortti> lista = new ArrayList();
@@ -305,10 +275,7 @@ public class VertailuTest {
 
     @Test
     public void tayskadentarkistusToimiiJosVaara() {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
 
         List<Kortti> lista = new ArrayList();
@@ -334,10 +301,7 @@ public class VertailuTest {
 
     @Test
     public void kahdenParinTarkastusToimii() {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
 
         List<Kortti> lista = new ArrayList();
@@ -365,10 +329,6 @@ public class VertailuTest {
         }
         assertEquals(true, y);
     }
-
-    
-
-    
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:

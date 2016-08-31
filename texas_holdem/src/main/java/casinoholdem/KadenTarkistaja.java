@@ -10,29 +10,31 @@ import casinoholdem.domain.Kortti;
 import casinoholdem.domain.Osallistuja;
 import java.util.ArrayList;
 import java.util.List;
-import static casinoholdem.Vertailu.kaikkiKortit;
+
 
 /*
- * @author Kim Käyttää vertailu-oliotaan asettamaan kädet.
+ * @author Kim KÃ¤yttÃ¤Ã¤ vertailu-oliotaan asettamaan kÃ¤det.
  */
 public class KadenTarkistaja {
 
-    private Vertailu v;
+    private Vertailu vertailu;
 
     /**
      * Konstruktori.
+     *
      * @param v Vertailu-olio
      */
     public KadenTarkistaja(Vertailu v) {
-        this.v = v;
+        this.vertailu = v;
     }
 
     /**
      * Tarkistaa muiden metodien avulla mikä käsi osallistujalla on.
-     * @param o Osallistuja jonka käsi tarkistetaan
+     *
+     * @param o Osallistuja jonka kÃ¤si tarkistetaan
      */
     public void tarkistaKasi(Osallistuja o) {
-        List<Kortti> kortit = kaikkiKortit(o.getTaskut(), v.getGame().getTable().getKortit());
+        List<Kortti> kortit = vertailu.getGame().kaikkiKortit(o.getTaskut(), vertailu.getGame().getTable().getKortit());
         Kasi k = Kasi.KICKER;
 
         tarkistaPari(o, kortit, k);
@@ -46,27 +48,25 @@ public class KadenTarkistaja {
     }
 
     private void tarkistaPari(Osallistuja o, List<Kortti> kortit, Kasi k) {
-
-        int x = v.tarkistaSamat(2, kortit);
-        if (x > 0) {
+        if (vertailu.tarkistaSamat(2, kortit) > 0) {
             k = Kasi.PARI;
             o.setKasi(k);
-            o.setKorkeinKortti(x);
+            o.setKorkeinKortti(vertailu.tarkistaSamat(2, kortit));
         }
     }
 
     private void tarkistaKolmoset(Osallistuja o, List<Kortti> kortit, Kasi k) {
-        int x = v.tarkistaSamat(3, kortit);
-        if (x > 0) {
+
+        if (vertailu.tarkistaSamat(3, kortit) > 0) {
             k = Kasi.KOLMOSET;
             o.setKasi(k);
-            o.setKorkeinKortti(x);
+            o.setKorkeinKortti(vertailu.tarkistaSamat(3, kortit));
         }
 
     }
 
     private void tarkistaKaksiParia(Osallistuja o, List<Kortti> kortit, Kasi k) {
-        int[] kp = v.tarkistaKaksiParia(kortit);
+        int[] kp = vertailu.tarkistaKaksiParia(kortit);
         if (kp[0] > 0 && kp[1] > 0) {
             k = Kasi.KAKSIPARIA;
             o.setKasi(k);
@@ -75,17 +75,16 @@ public class KadenTarkistaja {
     }
 
     private void tarkistaSuora(Osallistuja o, List<Kortti> kortit, Kasi k) {
-        int x = v.onkoSuora(kortit);
-        if (x > 0) {
+        if (vertailu.onkoSuora(kortit) > 0) {
             k = Kasi.SUORA;
             o.setKasi(k);
-            o.setKorkeinKortti(x);
+            o.setKorkeinKortti(vertailu.onkoSuora(kortit));
         }
     }
 
     private void tarkistaVari(Osallistuja o, List<Kortti> kortit, Kasi k) {
         List<Kortti> apuLista = new ArrayList();
-        apuLista = v.tarkistaVari(kortit);
+        apuLista = vertailu.tarkistaVari(kortit);
         if (!apuLista.isEmpty()) {
             k = Kasi.VARI;
             o.setKasi(k);
@@ -94,7 +93,7 @@ public class KadenTarkistaja {
     }
 
     private void tarkistaTayskasi(Osallistuja o, List<Kortti> kortit, Kasi k) {
-        int[] tk = v.tarkistaTayskasi(kortit);
+        int[] tk = vertailu.tarkistaTayskasi(kortit);
         if (tk[0] > 0 && tk[1] > 0) {
             k = Kasi.TAYSKASI;
             o.setKasi(k);
@@ -103,21 +102,18 @@ public class KadenTarkistaja {
     }
 
     private void tarkistaNeloset(Osallistuja o, List<Kortti> kortit, Kasi k) {
-        int x = v.tarkistaSamat(4, kortit);
-        if (x > 0) {
+        if (vertailu.tarkistaSamat(4, kortit) > 0) {
             k = Kasi.NELOSET;
             o.setKasi(k);
-            o.setKorkeinKortti(x);
+            o.setKorkeinKortti(vertailu.tarkistaSamat(4, kortit));
         }
     }
 
     private void tarkistaVarisuora(Osallistuja o, List<Kortti> kortit, Kasi k) {
-        int x = v.tarkistaVarisuora(kortit);
-        if (x > 0) {
+        if (vertailu.tarkistaVarisuora(kortit) > 0) {
             k = Kasi.VARISUORA;
             o.setKasi(k);
-            o.setKorkeinKortti(x);
+            o.setKorkeinKortti(vertailu.tarkistaVarisuora(kortit));
         }
     }
-
 }

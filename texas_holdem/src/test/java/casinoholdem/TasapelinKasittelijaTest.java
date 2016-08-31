@@ -21,7 +21,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static casinoholdem.Vertailu.kaikkiKortit;
+
 
 /**
  *
@@ -50,13 +50,10 @@ public class TasapelinKasittelijaTest {
     
     @Test
     public void tieBreakerKickerillaToimiiJosTasapeli() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
-        TasapelinKasittelija tk = new TasapelinKasittelija(p);
+        TasapelinKasittelija tk = new TasapelinKasittelija(p, v);
 
         Kortti p1 = new Kortti(Maa.HERTTA, Arvo.J);
         Kortti j1 = new Kortti(Maa.PATA, Arvo.J);
@@ -78,8 +75,8 @@ public class TasapelinKasittelijaTest {
         p.getTable().setTurn(k4);
         p.getTable().setRiver(k5);
         
-        List<Kortti> pelaaja = kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
-        List<Kortti> jakaja = kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> pelaaja = p.kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> jakaja = p.kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
         kt.tarkistaKasi(p.getPlayer());
         int apu = tk.kaynnistaTarkistus();
 
@@ -88,13 +85,10 @@ public class TasapelinKasittelijaTest {
 
     @Test
     public void tieBreakerKickerillaToimiiJosVoittaa() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
-        TasapelinKasittelija tk = new TasapelinKasittelija(p);
+        TasapelinKasittelija tk = new TasapelinKasittelija(p, v);
 
         Kortti p1 = new Kortti(Maa.HERTTA, Arvo.A);
         Kortti j1 = new Kortti(Maa.PATA, Arvo.J);
@@ -116,8 +110,8 @@ public class TasapelinKasittelijaTest {
         p.getTable().setTurn(k4);
         p.getTable().setRiver(k5);
         
-        List<Kortti> pelaaja = kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
-        List<Kortti> jakaja = kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> pelaaja = p.kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> jakaja = p.kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
         kt.tarkistaKasi(p.getPlayer());
         int apu = tk.kaynnistaTarkistus();
 
@@ -126,13 +120,10 @@ public class TasapelinKasittelijaTest {
 
     @Test
     public void tieBreakerKickerillaToimiiJosHaviaa() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
-        TasapelinKasittelija tk = new TasapelinKasittelija(p);
+        TasapelinKasittelija tk = new TasapelinKasittelija(p, v);
 
         Kortti p1 = new Kortti(Maa.HERTTA, Arvo.J);
         Kortti j1 = new Kortti(Maa.PATA, Arvo.A);
@@ -154,8 +145,8 @@ public class TasapelinKasittelijaTest {
         p.getTable().setTurn(k4);
         p.getTable().setRiver(k5);
         
-        List<Kortti> pelaaja = kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
-        List<Kortti> jakaja = kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> pelaaja = p.kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> jakaja = p.kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
         kt.tarkistaKasi(p.getPlayer());
         int apu = tk.kaynnistaTarkistus();
 
@@ -164,13 +155,10 @@ public class TasapelinKasittelijaTest {
     
     @Test
     public void tieBreakerParillaToimiiJosTasapeli() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
-        TasapelinKasittelija tk = new TasapelinKasittelija(p);
+        TasapelinKasittelija tk = new TasapelinKasittelija(p, v);
 
         Kortti p1 = new Kortti(Maa.HERTTA, Arvo.KOLME);
         Kortti j1 = new Kortti(Maa.PATA, Arvo.KAKSI);
@@ -192,8 +180,8 @@ public class TasapelinKasittelijaTest {
         p.getTable().setTurn(k4);
         p.getTable().setRiver(k5);
         
-        List<Kortti> pelaaja = kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
-        List<Kortti> jakaja = kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> pelaaja = p.kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> jakaja = p.kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
         kt.tarkistaKasi(p.getPlayer());
         kt.tarkistaKasi(p.getDealer());
         int apu = tk.kaynnistaTarkistus();
@@ -203,13 +191,10 @@ public class TasapelinKasittelijaTest {
     
     @Test
     public void tieBreakerParillaToimiiJosHaviaa() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
-        TasapelinKasittelija tk = new TasapelinKasittelija(p);
+        TasapelinKasittelija tk = new TasapelinKasittelija(p, v);
 
         Kortti p1 = new Kortti(Maa.HERTTA, Arvo.KOLME);
         Kortti j1 = new Kortti(Maa.PATA, Arvo.Q);
@@ -231,8 +216,8 @@ public class TasapelinKasittelijaTest {
         p.getTable().setTurn(k4);
         p.getTable().setRiver(k5);
         
-        List<Kortti> pelaaja = kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
-        List<Kortti> jakaja = kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> pelaaja = p.kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> jakaja = p.kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
         kt.tarkistaKasi(p.getPlayer());
         kt.tarkistaKasi(p.getDealer());
         int apu = tk.kaynnistaTarkistus();
@@ -242,13 +227,10 @@ public class TasapelinKasittelijaTest {
     
     @Test
     public void tieBreakerParillaToimiiJosVoittaa() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
-        TasapelinKasittelija tk = new TasapelinKasittelija(p);
+        TasapelinKasittelija tk = new TasapelinKasittelija(p, v);
 
         Kortti p1 = new Kortti(Maa.HERTTA, Arvo.Q);
         Kortti j1 = new Kortti(Maa.PATA, Arvo.J);
@@ -270,8 +252,8 @@ public class TasapelinKasittelijaTest {
         p.getTable().setTurn(k4);
         p.getTable().setRiver(k5);
         
-        List<Kortti> pelaaja = kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
-        List<Kortti> jakaja = kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> pelaaja = p.kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> jakaja = p.kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
         kt.tarkistaKasi(p.getPlayer());
         kt.tarkistaKasi(p.getDealer());
         int apu = tk.kaynnistaTarkistus();
@@ -281,13 +263,10 @@ public class TasapelinKasittelijaTest {
     
     @Test
     public void tieBreakerSuorallaToimiiJosTasapeli() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
-        TasapelinKasittelija tk = new TasapelinKasittelija(p);
+        TasapelinKasittelija tk = new TasapelinKasittelija(p, v);
 
         Kortti p1 = new Kortti(Maa.HERTTA, Arvo.A);
         Kortti j1 = new Kortti(Maa.PATA, Arvo.A);
@@ -309,8 +288,8 @@ public class TasapelinKasittelijaTest {
         p.getTable().setTurn(k4);
         p.getTable().setRiver(k5);
         
-        List<Kortti> pelaaja = kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
-        List<Kortti> jakaja = kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> pelaaja = p.kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> jakaja = p.kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
         kt.tarkistaKasi(p.getPlayer());
         kt.tarkistaKasi(p.getDealer());
         int apu = tk.kaynnistaTarkistus();
@@ -320,13 +299,10 @@ public class TasapelinKasittelijaTest {
     
     @Test
     public void tieBreakerSuorallaToimiiJosVoittaa() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
-        TasapelinKasittelija tk = new TasapelinKasittelija(p);
+        TasapelinKasittelija tk = new TasapelinKasittelija(p, v);
 
         Kortti p1 = new Kortti(Maa.HERTTA, Arvo.A);
         Kortti j1 = new Kortti(Maa.PATA, Arvo.A);
@@ -348,8 +324,8 @@ public class TasapelinKasittelijaTest {
         p.getTable().setTurn(k4);
         p.getTable().setRiver(k5);
         
-        List<Kortti> pelaaja = kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
-        List<Kortti> jakaja = kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> pelaaja = p.kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> jakaja = p.kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
         kt.tarkistaKasi(p.getPlayer());
         kt.tarkistaKasi(p.getDealer());
         int apu = tk.kaynnistaTarkistus();
@@ -359,13 +335,10 @@ public class TasapelinKasittelijaTest {
     
     @Test
     public void tieBreakerSuorallaToimiiJosHaviaa() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
-        TasapelinKasittelija tk = new TasapelinKasittelija(p);
+        TasapelinKasittelija tk = new TasapelinKasittelija(p, v);
 
         Kortti p1 = new Kortti(Maa.HERTTA, Arvo.YSI);
         Kortti j1 = new Kortti(Maa.PATA, Arvo.A);
@@ -387,8 +360,8 @@ public class TasapelinKasittelijaTest {
         p.getTable().setTurn(k4);
         p.getTable().setRiver(k5);
         
-        List<Kortti> pelaaja = kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
-        List<Kortti> jakaja = kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> pelaaja = p.kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> jakaja = p.kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
         kt.tarkistaKasi(p.getPlayer());
         kt.tarkistaKasi(p.getDealer());
         int apu = tk.kaynnistaTarkistus();
@@ -398,18 +371,15 @@ public class TasapelinKasittelijaTest {
 
     @Test
     public void tieBreakerVarillaToimiiJosVoittaa() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
-        TasapelinKasittelija tk = new TasapelinKasittelija(p);
+        TasapelinKasittelija tk = new TasapelinKasittelija(p, v);
 
-        Kortti p1 = new Kortti(Maa.HERTTA, Arvo.A);
+        Kortti p1 = new Kortti(Maa.HERTTA, Arvo.KYMPPI);
         Kortti j1 = new Kortti(Maa.HERTTA, Arvo.YSI);
         Kortti p2 = new Kortti(Maa.HERTTA, Arvo.K);
-        Kortti j2 = new Kortti(Maa.HERTTA, Arvo.KYMPPI);
+        Kortti j2 = new Kortti(Maa.HERTTA, Arvo.KAKSI);
 
         p.getPlayer().annaKortti(p1);
         p.getDealer().annaKortti(j1);
@@ -418,7 +388,7 @@ public class TasapelinKasittelijaTest {
 
         Kortti k1 = new Kortti(Maa.RISTI, Arvo.Q);
         Kortti k2 = new Kortti(Maa.RUUTU, Arvo.J);
-        Kortti k3 = new Kortti(Maa.HERTTA, Arvo.SEISKA);
+        Kortti k3 = new Kortti(Maa.HERTTA, Arvo.A);
         Kortti k4 = new Kortti(Maa.HERTTA, Arvo.VIISI);
         Kortti k5 = new Kortti(Maa.HERTTA, Arvo.KASI);
 
@@ -426,8 +396,8 @@ public class TasapelinKasittelijaTest {
         p.getTable().setTurn(k4);
         p.getTable().setRiver(k5);
         
-        List<Kortti> pelaaja = kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
-        List<Kortti> jakaja = kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> pelaaja = p.kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> jakaja = p.kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
         kt.tarkistaKasi(p.getPlayer());
         kt.tarkistaKasi(p.getDealer());
         int apu = tk.kaynnistaTarkistus();
@@ -437,13 +407,10 @@ public class TasapelinKasittelijaTest {
     
     @Test
     public void tieBreakerVarillaToimiiJosHaviaa() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
-        TasapelinKasittelija tk = new TasapelinKasittelija(p);
+        TasapelinKasittelija tk = new TasapelinKasittelija(p, v);
 
         Kortti p1 = new Kortti(Maa.HERTTA, Arvo.YSI);
         Kortti j1 = new Kortti(Maa.HERTTA, Arvo.A);
@@ -465,8 +432,8 @@ public class TasapelinKasittelijaTest {
         p.getTable().setTurn(k4);
         p.getTable().setRiver(k5);
         
-        List<Kortti> pelaaja = kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
-        List<Kortti> jakaja = kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> pelaaja = p.kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> jakaja = p.kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
         kt.tarkistaKasi(p.getPlayer());
         kt.tarkistaKasi(p.getDealer());
         int apu = tk.kaynnistaTarkistus();
@@ -476,13 +443,10 @@ public class TasapelinKasittelijaTest {
     
     @Test
     public void tieBreakerTayskadellaToimiiJosHaviaa() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
-        TasapelinKasittelija tk = new TasapelinKasittelija(p);
+        TasapelinKasittelija tk = new TasapelinKasittelija(p, v);
 
         Kortti p1 = new Kortti(Maa.HERTTA, Arvo.Q);
         Kortti j1 = new Kortti(Maa.HERTTA, Arvo.A);
@@ -504,8 +468,8 @@ public class TasapelinKasittelijaTest {
         p.getTable().setTurn(k4);
         p.getTable().setRiver(k5);
         
-        List<Kortti> pelaaja = kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
-        List<Kortti> jakaja = kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> pelaaja = p.kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> jakaja = p.kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
         kt.tarkistaKasi(p.getPlayer());
         kt.tarkistaKasi(p.getDealer());
         int apu = tk.kaynnistaTarkistus();
@@ -516,13 +480,10 @@ public class TasapelinKasittelijaTest {
     
     @Test
     public void tieBreakerTayskadellaToimiiJosVoittaa() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
-        TasapelinKasittelija tk = new TasapelinKasittelija(p);
+        TasapelinKasittelija tk = new TasapelinKasittelija(p, v);
 
         Kortti p1 = new Kortti(Maa.HERTTA, Arvo.A);
         Kortti j1 = new Kortti(Maa.HERTTA, Arvo.Q);
@@ -544,8 +505,8 @@ public class TasapelinKasittelijaTest {
         p.getTable().setTurn(k4);
         p.getTable().setRiver(k5);
         
-        List<Kortti> pelaaja = kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
-        List<Kortti> jakaja = kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> pelaaja = p.kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> jakaja = p.kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
         kt.tarkistaKasi(p.getPlayer());
         kt.tarkistaKasi(p.getDealer());
         int apu = tk.kaynnistaTarkistus();
@@ -556,13 +517,12 @@ public class TasapelinKasittelijaTest {
     
     @Test
     public void tieBreakerKahdellaParillaToimiiJosTasapeli() throws Exception {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
+        
 
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
-        TasapelinKasittelija tk = new TasapelinKasittelija(p);
+        TasapelinKasittelija tk = new TasapelinKasittelija(p, v);
 
         Kortti p1 = new Kortti(Maa.HERTTA, Arvo.A);
         Kortti j1 = new Kortti(Maa.PATA, Arvo.A);
@@ -584,8 +544,8 @@ public class TasapelinKasittelijaTest {
         p.getTable().setTurn(k4);
         p.getTable().setRiver(k5);
         
-        List<Kortti> pelaaja = kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
-        List<Kortti> jakaja = kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> pelaaja = p.kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> jakaja = p.kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
         kt.tarkistaKasi(p.getPlayer());
         kt.tarkistaKasi(p.getDealer());
         int apu = tk.kaynnistaTarkistus();
@@ -598,10 +558,10 @@ public class TasapelinKasittelijaTest {
         Pakka pa = new Pakka();
         Poyta po = new Poyta();
 
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
-        TasapelinKasittelija tk = new TasapelinKasittelija(p);
+        TasapelinKasittelija tk = new TasapelinKasittelija(p, v);
 
         Kortti p1 = new Kortti(Maa.HERTTA, Arvo.A);
         Kortti j1 = new Kortti(Maa.PATA, Arvo.K);
@@ -623,8 +583,8 @@ public class TasapelinKasittelijaTest {
         p.getTable().setTurn(k4);
         p.getTable().setRiver(k5);
         
-        List<Kortti> pelaaja = kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
-        List<Kortti> jakaja = kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> pelaaja = p.kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> jakaja = p.kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
         kt.tarkistaKasi(p.getPlayer());
         kt.tarkistaKasi(p.getDealer());
         int apu = tk.kaynnistaTarkistus();
@@ -637,10 +597,10 @@ public class TasapelinKasittelijaTest {
         Pakka pa = new Pakka();
         Poyta po = new Poyta();
 
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
         KadenTarkistaja kt = new KadenTarkistaja(v);
-        TasapelinKasittelija tk = new TasapelinKasittelija(p);
+        TasapelinKasittelija tk = new TasapelinKasittelija(p, v);
 
         Kortti p1 = new Kortti(Maa.HERTTA, Arvo.K);
         Kortti j1 = new Kortti(Maa.PATA, Arvo.A);
@@ -662,8 +622,8 @@ public class TasapelinKasittelijaTest {
         p.getTable().setTurn(k4);
         p.getTable().setRiver(k5);
         
-        List<Kortti> pelaaja = kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
-        List<Kortti> jakaja = kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> pelaaja = p.kaikkiKortit(p.getPlayer().getTaskut(), p.getTable().getKortit());
+        List<Kortti> jakaja = p.kaikkiKortit(p.getDealer().getTaskut(), p.getTable().getKortit());
         kt.tarkistaKasi(p.getPlayer());
         kt.tarkistaKasi(p.getDealer());
         int apu = tk.kaynnistaTarkistus();

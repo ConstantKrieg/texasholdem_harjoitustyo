@@ -40,7 +40,7 @@ public class VoitonMaksaja {
             maksaNeloset();
             maksaTayskasi();
             maksaVari();
-            maksaMuut();
+            maksaSuoraTaiHuonompi();
             lisaaRaise();
             this.game.getPlayer().vastaanotaVoitot(this.voitto);
         }
@@ -76,7 +76,7 @@ public class VoitonMaksaja {
         }
     }
 
-    private void maksaMuut() {
+    private void maksaSuoraTaiHuonompi() {
         if (this.game.getPlayer().getKasi().getKadenArvo() < 6) {
             this.voitto = this.game.getAnte();
         }

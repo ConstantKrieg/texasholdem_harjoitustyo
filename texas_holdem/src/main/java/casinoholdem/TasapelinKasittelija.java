@@ -11,7 +11,8 @@ import casinoholdem.domain.Pelaaja;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import static casinoholdem.Vertailu.kaikkiKortit;
+
+import casinoholdem.domain.Kasi;
 
 /*
  * @author Kim Luokka toteuttaa metodin kaynnistaTarkistus.
@@ -19,18 +20,21 @@ import static casinoholdem.Vertailu.kaikkiKortit;
 public class TasapelinKasittelija {
 
     private Peli p;
-    private Jakaja j;
-    private Pelaaja pe;
+    private Jakaja jakaja;
+    private Pelaaja pelaaja;
+    private Vertailu vertailu;
 
     /**
      * Konstruktori.
      *
      * @param p Peli jossa tasapeli tapahtunut
+     * @param v Vertailu jota käytetään
      */
-    public TasapelinKasittelija(Peli p) {
+    public TasapelinKasittelija(Peli p, Vertailu v) {
         this.p = p;
-        this.j = this.p.getDealer();
-        this.pe = this.p.getPlayer();
+        this.jakaja = this.p.getDealer();
+        this.pelaaja = this.p.getPlayer();
+        this.vertailu = v;
     }
 
     /**
@@ -41,98 +45,85 @@ public class TasapelinKasittelija {
      * käsi
      */
     public int kaynnistaTarkistus() {
-        List<Kortti> pelaaja = kaikkiKortit(pe.getTaskut(), p.getTable().getKortit());
-        List<Kortti> jakaja = kaikkiKortit(j.getTaskut(), p.getTable().getKortit());
-        int palautus = 0;
-        if (this.pe.getKorkeinKortti() > this.j.getKorkeinKortti()) {
-            palautus = 1;
-        } else if (this.pe.getKorkeinKortti() < this.j.getKorkeinKortti()) {
-            palautus = -1;
+        List<Kortti> pelaajaKortit = p.kaikkiKortit(this.pelaaja.getTaskut(), p.getTable().getKortit());
+        List<Kortti> jakajaKortit = p.kaikkiKortit(this.jakaja.getTaskut(), p.getTable().getKortit());
+        if (this.pelaaja.getKorkeinKortti() > this.jakaja.getKorkeinKortti()) {
+            return 1;
+        } else if (this.pelaaja.getKorkeinKortti() < this.jakaja.getKorkeinKortti()) {
+            return -1;
         } else {
-            if (this.j.getKasi().getKadenArvo() == 1) {
-                palautus = tieBreakerKickerilla(pelaaja, jakaja, 5);
-            } else if ((this.j.getKasi().getKadenArvo() == 2 || this.j.getKasi().getKadenArvo() == 4 || this.j.getKasi().getKadenArvo() == 8) && this.j.getKorkeinKortti() == this.pe.getKorkeinKortti()) {
-                palautus = tieBreakerSamoillaKorteilla(pelaaja, jakaja);
-            } else if (this.j.getKasi().getKadenArvo() == 5 || this.j.getKasi().getKadenArvo() == 6 || this.j.getKasi().getKadenArvo() == 9) {
-                palautus = tieBreakerSuorallaJaVarilla();
-            } else if (this.j.getKasi().getKadenArvo() == 3 || this.j.getKasi().getKadenArvo() == 7) {
-                palautus = tieBreakerKahdellaParillaJaTayskadella();
+            if (this.jakaja.getKasi().equals(Kasi.KICKER)) {
+                return tieBreakerKickerilla(pelaajaKortit, jakajaKortit, 5);
+            } else if ((this.jakaja.getKasi().equals(Kasi.PARI) || this.jakaja.getKasi().equals(Kasi.KOLMOSET) || this.jakaja.getKasi().equals(Kasi.NELOSET))) {
+                return tieBreakerSamoillaKorteilla(pelaajaKortit, jakajaKortit);
+            } else if (this.jakaja.getKasi().equals(Kasi.VARI)) { //Suoraa en tarkista koska jos molemmilla suora ja korkein kortti samanarvoinen on peli aina tasapeli. Sama pätee värisuorassa.
+                return tieBreakerVarilla(pelaajaKortit, jakajaKortit);
+            } else if (this.jakaja.getKasi().equals(Kasi.KAKSIPARIA) || this.jakaja.getKasi().equals(Kasi.TAYSKASI)) {
+                return tieBreakerKahdellaParillaJaTayskadella();
             }
         }
-        return palautus;
+        return 0;
     }
 
     private static int tieBreakerKickerilla(List<Kortti> p2, List<Kortti> j2, int koko) {
         int apu = 0;
-
         Collections.sort(p2);
         Collections.sort(j2);
-
         for (int i = 0; i < koko; i++) {
             if (p2.get(i).getArvo() > j2.get(i).getArvo()) {
-                apu = 1;
-                return apu;
+                return 1;
             } else if (p2.get(i).getArvo() < j2.get(i).getArvo()) {
-                apu = -1;
-                return apu;
-
+                return -1;
             }
-
         }
-        return apu;
+        return 0;
     }
 
-    private int tieBreakerSuorallaJaVarilla() {
-        int apu = 0;
+    private int tieBreakerVarilla(List<Kortti> pK, List<Kortti> jK) {
+        List<Kortti> pelaajaVari = vertailu.tarkistaVari(pK);
+        List<Kortti> jakajaVari = vertailu.tarkistaVari(jK);
+        Collections.sort(pelaajaVari);
+        Collections.sort(jakajaVari);
 
-        if (this.pe.getKorkeinKortti() > this.j.getKorkeinKortti()) {
-            return 1;
-        } else if (this.pe.getKorkeinKortti() < this.j.getKorkeinKortti()) {
-            return -1;
-        } else if (this.pe.getKorkeinKortti() == this.j.getKorkeinKortti()) {
-            return 0;
+        for (int i = 0; i < 5; i++) {
+            if (pelaajaVari.get(i).getArvo() > jakajaVari.get(i).getArvo()) {
+                return 1;
+            } else if (pelaajaVari.get(i).getArvo() < jakajaVari.get(i).getArvo()) {
+                return -1;
+            }
         }
         return 0;
     }
 
     private int tieBreakerKahdellaParillaJaTayskadella() {
-        int apu = 0;
-        Vertailu v = new Vertailu(this.p);
-        List<Kortti> pelaaja = kaikkiKortit(pe.getTaskut(), p.getTable().getKortit());
-        List<Kortti> jakaja = kaikkiKortit(j.getTaskut(), p.getTable().getKortit());
+        List<Kortti> pelaajaKortit = p.kaikkiKortit(pelaaja.getTaskut(), p.getTable().getKortit()); //Luo siksi uuden olion jottei poistaKorkeimmat-metodi vaikuta muihin tarkistuksiin.
+        List<Kortti> jakajaKortit = p.kaikkiKortit(jakaja.getTaskut(), p.getTable().getKortit());
 
-        if (this.pe.getKorkeinKortti() > this.j.getKorkeinKortti()) {
-            apu = 1;
-        } else if (this.pe.getKorkeinKortti() < this.j.getKorkeinKortti()) {
-            apu = -1;
-        } else if (this.pe.getKorkeinKortti() == this.j.getKorkeinKortti()) {
-            poistaKorkeimmat(pelaaja, jakaja);
-            if (v.tarkistaSamat(2, jakaja) > v.tarkistaSamat(2, pelaaja)) {
-                apu = -1;
-            } else if (v.tarkistaSamat(2, jakaja) < v.tarkistaSamat(2, pelaaja)) {
-                apu = 1;
-            } else if (v.tarkistaSamat(2, jakaja) == v.tarkistaSamat(2, pelaaja) && j.getKasi().getKadenArvo() == 3) {
-                poistaKorkeimmat(pelaaja, jakaja);
-                apu = tieBreakerKickerilla(pelaaja, jakaja, 1);
-            }
+        poistaKorkeimmat(pelaajaKortit, jakajaKortit);
+        if (vertailu.tarkistaSamat(2, jakajaKortit) > vertailu.tarkistaSamat(2, pelaajaKortit)) {
+            return -1;
+        } else if (vertailu.tarkistaSamat(2, jakajaKortit) < vertailu.tarkistaSamat(2, pelaajaKortit)) {
+            return 1;
+        } else if (vertailu.tarkistaSamat(2, jakajaKortit) == vertailu.tarkistaSamat(2, pelaajaKortit) && this.jakaja.getKasi().getKadenArvo() == 3) {
+            poistaKorkeimmat(pelaajaKortit, jakajaKortit);
+            return tieBreakerKickerilla(pelaajaKortit, jakajaKortit, 1);
         }
-        return apu;
+
+        return 0;
     }
 
     private int tieBreakerSamoillaKorteilla(List<Kortti> pelaaja, List<Kortti> jakaja) {
         int apu = 0;
         int koko = 0;
-        if (this.pe.getKasi().getKadenArvo() == 2) {
+        if (this.pelaaja.getKasi().getKadenArvo() == 2) {
             koko = 3;
-        } else if (this.pe.getKasi().getKadenArvo() == 4) {
+        } else if (this.pelaaja.getKasi().getKadenArvo() == 4) {
             koko = 2;
-        } else if (this.pe.getKasi().getKadenArvo() == 8) {
+        } else if (this.pelaaja.getKasi().getKadenArvo() == 8) {
             koko = 1;
         }
         poistaKorkeimmat(pelaaja, jakaja);
-        apu = tieBreakerKickerilla(pelaaja, jakaja, koko);
-
-        return apu;
+        return tieBreakerKickerilla(pelaaja, jakaja, koko);
     }
 
     private void poistaKorkeimmat(List<Kortti> p2, List<Kortti> j2) {
@@ -140,12 +131,12 @@ public class TasapelinKasittelija {
         List<Kortti> poistettavat2 = new ArrayList();
 
         for (Kortti k1 : p2) {
-            if (k1.getArvo() == pe.getKorkeinKortti()) {
+            if (k1.getArvo() == pelaaja.getKorkeinKortti()) {
                 poistettavat.add(k1);
             }
         }
         for (Kortti k2 : j2) {
-            if (k2.getArvo() == j.getKorkeinKortti()) {
+            if (k2.getArvo() == jakaja.getKorkeinKortti()) {
                 poistettavat2.add(k2);
             }
         }

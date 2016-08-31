@@ -54,10 +54,7 @@ public class PeliTest {
     
     @Test
     public void voittajanPaattaminenToimii() {
-        Pakka pa = new Pakka();
-        Poyta po = new Poyta();
-
-        Peli p = new Peli(pa, po);
+        Peli p = new Peli();
         Vertailu v = new Vertailu(p);
 
         Kortti p1 = new Kortti(Maa.HERTTA, Arvo.VIISI);
