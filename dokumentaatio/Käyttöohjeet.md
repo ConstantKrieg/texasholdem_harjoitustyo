@@ -10,8 +10,13 @@ Jos pelaaja häviää, menettää hän molemmat alkupanoksen ja raisen. tasapeli
 **Peli ei anna panostaa jos merkkejä ei riitä kierroksen aloituspanokseen sekä raiseen, joten merkkejä on oltava vähintään kolme kertaa aloituspanoksen verran**
 
 ##Voittotaulukko##
-Värisuora 20:1
+***
+Värisuora 20:1 
+***
 Neloset 10:1
+***
 Täyskäsi 3:1
+***
 Väri 1:1
+***
 Suora tai huonompi 1:1
