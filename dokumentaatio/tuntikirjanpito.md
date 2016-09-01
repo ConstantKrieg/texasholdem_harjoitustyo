@@ -18,3 +18,8 @@ Päivä | Tunnit | Kuvaus
 23.08.2016|3h|Käyttöliittymän tekoa
 24.08.2016|2h|Käyttöliittymän tekoa
 25.08.2016|5h|Testien kirjoittamista, luokkien lisäämistä sekä sekvenssikaavion piirtämistä
+26.08.2016|3h|Koodin parantelua
+29.08.2016|2h|Refaktorointia ja debuggausta
+30.08.2016|2h|Refaktorointia ja debuggausta
+31.08.2016|1h|Dokumentaation parantelua
+01.09.2016|1h|Dokumentoinnin viimeistely
