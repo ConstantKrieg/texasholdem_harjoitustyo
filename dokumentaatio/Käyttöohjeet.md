@@ -17,6 +17,7 @@ Neloset 10:1
 ***
 Täyskäsi 3:1
 ***
-Väri 1:1
+Väri 2:1
 ***
 Suora tai huonompi 1:1
+***
