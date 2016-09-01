@@ -41,8 +41,6 @@ public class PanostuksenKuuntelija implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        
-
         this.pelaaja.getK1().setText("");
         this.pelaaja.getK2().setText("");
         this.poyta.getFlop1().setText("");
@@ -56,6 +54,7 @@ public class PanostuksenKuuntelija implements ActionListener {
         try {
             panostus = Integer.parseInt(this.panostus.getPanostuskentta().getText());
         } catch (Exception e2) {
+            tyhjennaPoyta();
             return;
         }
 
@@ -76,7 +75,6 @@ public class PanostuksenKuuntelija implements ActionListener {
             asetaTekstit(flop);
             this.jakaja.laitaKortinTakakansi();
             this.poyta.laitaKortinTakakansiTurnilleJaRiverille();
-            
 
             saadaNapit();
         } else {

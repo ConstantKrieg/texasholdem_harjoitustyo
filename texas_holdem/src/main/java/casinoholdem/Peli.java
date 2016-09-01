@@ -129,7 +129,7 @@ public class Peli {
         this.lisaakoPanosta = lisaakoPanosta;
     }
 
-    private void alusta() {
+    void alusta() {
         this.deck = new Pakka();
         this.player.getTaskut().clear();
         this.dealer.getTaskut().clear();
